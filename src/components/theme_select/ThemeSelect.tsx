@@ -1,17 +1,12 @@
 'use client';
 
 import React, {
-  ReactNode,
-  useCallback, useContext, useEffect, useMemo, useState
+  ReactNode, useCallback, useContext, useEffect, useMemo, useState
 } from 'react';
 import Select from '@/components/select/Select';
 import { SelectOption } from '@/components/select/types';
 import {
-  darkMode,
-  darkModeSelected,
-  lightMode,
-  lightModeSelected,
-  systemDefault, systemDefaultSelected
+  darkMode, darkModeSelected, lightMode, lightModeSelected, systemDefault, systemDefaultSelected
 } from '@/components/theme_select/constants';
 import { useTheme } from 'next-themes';
 import { LocalStorageContext, LocalStorageValue } from '@/providers/LocalStorageProvider';
