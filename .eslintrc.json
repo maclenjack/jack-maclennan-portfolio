@@ -12,6 +12,10 @@
     "react/jsx-props-no-spreading": 1,
     "react/require-default-props": 0,
     "@typescript-eslint/comma-dangle": 0,
-    "max-len": ["error", { "code": 120, "tabWidth": 2, "ignoreStrings": true, "ignoreTemplateLiterals": true }]
+    "max-len": ["error", { "code": 120, "tabWidth": 2, "ignoreStrings": true, "ignoreTemplateLiterals": true }],
+    "jsx-a11y/click-events-have-key-events": 1,
+    "jsx-a11y/no-static-element-interactions": 1,
+    "jsx-a11y/no-noninteractive-tabindex": 1,
+    "jsx-a11y/no-noninteractive-element-interactions": 1
   }
 }
