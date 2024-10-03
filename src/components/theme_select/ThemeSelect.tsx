@@ -23,7 +23,7 @@ export default function ThemeSelect(): ReactNode {
     { value: 'system', label: systemDefault, selected: systemDefaultSelected }
   ]), []);
 
-  const localStorageEmpty: boolean = localStorageFail ? true : localStorage?.getItem('theme') === undefined;
+  const localStorageEmpty: boolean = localStorageFail || localStorage?.getItem('theme') === null;
   const getInitialSelectedOption: () => SelectOption = useCallback((): SelectOption => {
     if (!localStorageEmpty) {
       return options.find((option: SelectOption): boolean => (
