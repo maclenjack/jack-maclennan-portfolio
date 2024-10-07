@@ -48,7 +48,6 @@ export default function ThemeSelect(): ReactNode {
       placeholder={{ value: 'placeholder', label: placeholder }}
       options={options}
       onChange={onChange}
-      loading={selectedOption === undefined}
     />
   );
 }

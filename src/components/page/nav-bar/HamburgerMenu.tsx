@@ -62,7 +62,6 @@ export default function HamburgerMenu() {
                 <SocialIcons />
               </div>
               <div className="flex flex-col justify-around items-center gap-10 h-full">
-                {/* <SocialIcons /> */}
                 <Link className="text-slate-300 font-bold" href="/projects">Projects</Link>
                 <Link className="text-slate-300 font-bold" href="/experience">Experience</Link>
                 <Link className="text-slate-300 font-bold" href="/about-me">About Me</Link>
