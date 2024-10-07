@@ -27,8 +27,8 @@ export default function HamburgerMenu() {
 
   return (
     <>
-      <button type="button" aria-label="open hamburger menu" onClick={toggleActive}>
-        <FontAwesomeIcon className="text-slate-300 text-xl" icon={faBars} />
+      <button className="flex justify-center items-center h-4 w-5" type="button" aria-label="open hamburger menu" onClick={toggleActive}>
+        <FontAwesomeIcon className="text-slate-300 text-xl h-4 w-5" icon={faBars} />
       </button>
       <AriaModal
         mounted={isActive}
@@ -56,7 +56,7 @@ export default function HamburgerMenu() {
               <div className="flex justify-center items-start flex-wrap h-[6rem]">
                 <span className="w-full flex justify-end text-slate-600 text-xl md:text-2xl">
                   <button type="button" aria-label="exit" onClick={() => setStartTransition(false)}>
-                    <FontAwesomeIcon className="text-slate-700 dark:text-slate-300 text-xl" icon={faX} />
+                    <FontAwesomeIcon className="text-slate-300 text-xl" icon={faX} />
                   </button>
                 </span>
                 <SocialIcons />
