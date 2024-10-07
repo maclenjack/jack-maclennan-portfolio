@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { SelectOption, SelectProps } from '@/components/select/types';
 import classNames from 'classnames';
-import { TailSpin } from 'react-loader-spinner';
 
 export default function Select({
-  className = '', selectedOption, onChange, options, loading = false
+  className = '', selectedOption, placeholder, onChange, options
 }: SelectProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -12,23 +11,19 @@ export default function Select({
     if (option !== selectedOption) onChange(option);
   }
 
-  if (loading) {
-    return <TailSpin wrapperClass={className} height={30} width={30} />;
-  }
-
   return (
     <div
       onBlur={() => setIsOpen(false)}
       onClick={() => setIsOpen((prev) => !prev)}
       tabIndex={0}
-      className={classNames('relative w-fit min-h-6 border border-solid border-slate-800 dark:border-slate-300 flex items-center gap-2 p-2 rounded outline-none cursor-pointer', className)}
+      className={classNames('relative w-fit min-h-6 border border-solid border-slate-800 dark:border-slate-300 flex items-center gap-2 rounded outline-none cursor-pointer', className)}
     >
       <span className="flex-grow flex gap-2 flex-wrap text-slate-700 dark:text-slate-300">
-        {selectedOption?.selected || selectedOption?.label}
+        {selectedOption?.selected || selectedOption?.label || placeholder?.label}
       </span>
-      <div className="bg-slate-700 dark:bg-slate-300 self-stretch w-px" />
-      <div className="translate-y-1/4 border-4 border-solid border-transparent border-t-slate-800 dark:border-t-slate-300" />
-      <ul className={classNames('absolute left-1/2 translate-x-[-50%] list-none max-h-60 overflow-y-auto border border-solid border-slate-800 dark:border-slate-300 rounded w-fit top-full translate-y-1 bg-slate-600 dark:bg-slate-400 z-50 shadow-md shadow-slate-800 dark:shadow-slate-200', { block: isOpen, hidden: !isOpen })}>
+      <div className="bg-slate-300 self-stretch w-px" />
+      <div className="translate-y-1/4 border-4 border-solid border-transparent border-t-slate-300" />
+      <ul className={classNames('absolute left-1/2 translate-x-[-50%] list-none max-h-60 overflow-y-auto border border-solid border-slate-900 rounded w-fit top-full translate-y-1 bg-slate-600 dark:bg-slate-400 z-50 shadow-md shadow-slate-900', { block: isOpen, hidden: !isOpen })}>
         {
           options.map((option) => (
             <li
