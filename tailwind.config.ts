@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 
+const gradientMask = require('tailwind-gradient-mask-image'); // package has no typescript support
+
 const config: Config = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,7 +17,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwind-gradient-mask-image')],
+  plugins: [gradientMask],
   darkMode: 'class'
 };
 export default config;
