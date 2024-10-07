@@ -8,7 +8,6 @@ import './globals.css';
 // import Font Awesome CSS
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
-import LocalStorageProvider from '@/providers/LocalStorageProvider';
 
 config.autoAddCss = false;
 
@@ -23,9 +22,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider>
-          <LocalStorageProvider>
-            {children}
-          </LocalStorageProvider>
+          {children}
         </ThemeProvider>
         <Analytics />
         <SpeedInsights />

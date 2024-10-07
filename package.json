@@ -19,13 +19,16 @@
     "next": "^14.2.12",
     "next-themes": "^0.3.0",
     "react": "^18",
+    "react-aria-modal": "^5.0.2",
     "react-dom": "^18",
     "react-loader-spinner": "^6.1.6",
-    "tailwind-gradient-mask-image": "^1.2.0"
+    "tailwind-gradient-mask-image": "^1.2.0",
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
+    "@types/react-aria-modal": "^4.0.10",
     "@types/react-dom": "^18",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
