@@ -1,13 +1,11 @@
-import React, { ReactNode } from 'react';
 import NavBar from '@/components/page/nav-bar/NavBar';
+import { ReactNode } from 'react';
 
-export default function Page({ children } : { children: ReactNode }) {
+export default function Page({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen bg-slate-300 dark:bg-slate-800">
+    <div className="flex min-h-screen flex-col bg-slate-300 dark:bg-slate-800">
       <NavBar />
-      <main className="flex justify-center w-full">
-        {children}
-      </main>
+      <main className="flex w-full justify-center">{children}</main>
     </div>
   );
 }

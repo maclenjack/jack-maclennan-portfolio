@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
-import AriaModal from 'react-aria-modal';
-import classNames from 'classnames';
-import Link from 'next/link';
-import { useToggle, useWindowSize } from 'usehooks-ts';
 import SocialIcons from '@/components/page/nav-bar/SocialIcons';
+import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import AriaModal from 'react-aria-modal';
+import { useToggle, useWindowSize } from 'usehooks-ts';
 
 export default function HamburgerMenu() {
   const [isActive, toggleActive, setIsActive] = useToggle();
@@ -27,8 +27,13 @@ export default function HamburgerMenu() {
 
   return (
     <>
-      <button className="flex justify-center items-center h-4 w-5" type="button" aria-label="open hamburger menu" onClick={toggleActive}>
-        <FontAwesomeIcon className="text-slate-300 text-xl h-4 w-5" icon={faBars} />
+      <button
+        className="flex h-4 w-5 items-center justify-center"
+        type="button"
+        aria-label="open hamburger menu"
+        onClick={toggleActive}
+      >
+        <FontAwesomeIcon className="h-4 w-5 text-xl text-slate-300" icon={faBars} />
       </button>
       <AriaModal
         mounted={isActive}
@@ -38,33 +43,37 @@ export default function HamburgerMenu() {
         onExit={() => setStartTransition(false)}
       >
         <div
-          className={
-            classNames(
-              'h-full transition-all ease-in rounded-l-lg overflow-x-hidden',
-              { 'w-2/3': startTransition, 'w-0': !startTransition }
-            )
-          }
+          className={clsx('h-full overflow-x-hidden rounded-l-lg transition-all ease-in', {
+            'w-2/3': startTransition,
+            'w-0': !startTransition
+          })}
         >
-          <div className="w-screen h-full bg-gradient-to-r from-emerald-700 to-emerald-900 flex justify-end">
+          <div className="flex h-full w-screen justify-end bg-gradient-to-r from-emerald-700 to-emerald-900">
             <div
-              className={classNames(
-                'flex flex-col h-full px-12 py-8 text-slate-700 dark:text-slate-300 transition-all',
-                { 'w-2/3': startTransition, 'w-0': !startTransition }
-              )}
+              className={clsx('flex h-full flex-col px-12 py-8 text-slate-700 transition-all dark:text-slate-300', {
+                'w-2/3': startTransition,
+                'w-0': !startTransition
+              })}
               onTransitionEnd={handleTransition}
             >
-              <div className="flex justify-center items-start flex-wrap h-[6rem]">
-                <span className="w-full flex justify-end text-slate-600 text-xl md:text-2xl">
+              <div className="flex h-24 flex-wrap items-start justify-center">
+                <span className="flex w-full justify-end text-xl text-slate-600 md:text-2xl">
                   <button type="button" aria-label="exit" onClick={() => setStartTransition(false)}>
-                    <FontAwesomeIcon className="text-slate-300 text-xl" icon={faX} />
+                    <FontAwesomeIcon className="text-xl text-slate-300" icon={faX} />
                   </button>
                 </span>
                 <SocialIcons />
               </div>
-              <div className="flex flex-col justify-around items-center gap-10 h-full">
-                <Link className="text-slate-300 font-bold" href="/projects">Projects</Link>
-                <Link className="text-slate-300 font-bold" href="/experience">Experience</Link>
-                <Link className="text-slate-300 font-bold" href="/about-me">About Me</Link>
+              <div className="flex h-full flex-col items-center justify-around gap-10">
+                <Link className="font-bold text-slate-300" href="/projects">
+                  Projects
+                </Link>
+                <Link className="font-bold text-slate-300" href="/experience">
+                  Experience
+                </Link>
+                <Link className="font-bold text-slate-300" href="/about-me">
+                  About Me
+                </Link>
               </div>
             </div>
           </div>

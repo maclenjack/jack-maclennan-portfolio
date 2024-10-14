@@ -1,14 +1,18 @@
 'use client';
 
-import React, {
-  ReactNode, useCallback, useEffect, useMemo, useState
-} from 'react';
 import Select from '@/components/select/Select';
 import { SelectOption } from '@/components/select/types';
 import {
-  darkMode, darkModeSelected, lightMode, lightModeSelected, placeholder, systemDefault, systemDefaultSelected
+  darkMode,
+  darkModeSelected,
+  lightMode,
+  lightModeSelected,
+  placeholder,
+  systemDefault,
+  systemDefaultSelected
 } from '@/components/theme_select/constants';
 import { useTheme } from 'next-themes';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
 export default function ThemeSelect(): ReactNode {
@@ -19,15 +23,23 @@ export default function ThemeSelect(): ReactNode {
     serializer: (value) => value
   });
 
-  const options: Array<SelectOption> = useMemo(() => ([
-    { value: 'light', label: lightMode, selected: lightModeSelected },
-    { value: 'dark', label: darkMode, selected: darkModeSelected },
-    { value: 'system', label: systemDefault, selected: systemDefaultSelected }
-  ]), []);
+  const options: Array<SelectOption> = useMemo(
+    () => [
+      { value: 'light', label: lightMode, selected: lightModeSelected },
+      { value: 'dark', label: darkMode, selected: darkModeSelected },
+      {
+        value: 'system',
+        label: systemDefault,
+        selected: systemDefaultSelected
+      }
+    ],
+    []
+  );
 
-  const getInitialSelectedOption: () => SelectOption = useCallback(() => (
-    options.find((option: SelectOption): boolean => option.value === localTheme)
-  ) as SelectOption, [localTheme, options]);
+  const getInitialSelectedOption: () => SelectOption = useCallback(
+    () => options.find((option: SelectOption): boolean => option.value === localTheme) as SelectOption,
+    [localTheme, options]
+  );
 
   const [selectedOption, setSelectedOption] = useState<SelectOption>();
 
@@ -43,7 +55,6 @@ export default function ThemeSelect(): ReactNode {
 
   return (
     <Select
-      className="border-none"
       selectedOption={selectedOption}
       placeholder={{ value: 'placeholder', label: placeholder }}
       options={options}
