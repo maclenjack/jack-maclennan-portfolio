@@ -14,7 +14,7 @@ export default function Select({ className = '', selectedOption, placeholder, on
     <Wrapper className="relative" onMenuToggle={toggleIsOpen} onSelection={handleSelection}>
       <Button
         className={clsx(
-          'flex min-h-6 w-fit cursor-pointer items-center gap-2 rounded border border-none border-slate-800 outline-none focus:border-solid dark:border-slate-300',
+          'flex min-h-6 w-fit cursor-pointer items-center gap-2 rounded border border-solid border-transparent outline-none focus-visible:border-slate-800 focus-visible:dark:border-slate-300',
           className
         )}
       >
