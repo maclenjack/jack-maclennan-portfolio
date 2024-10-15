@@ -1,6 +1,7 @@
 import { FlatCompat } from '@eslint/eslintrc';
 import js from '@eslint/js';
 import jsxA11Y from 'eslint-plugin-jsx-a11y';
+import playwright from 'eslint-plugin-playwright';
 import prettier from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -28,6 +29,10 @@ export default ts.config(
       'postcss.config.mjs',
       'tailwind.config.js'
     ]
+  },
+  {
+    ...playwright.configs['flat/recommended'],
+    files: ['tests/e2e/**']
   },
   ...compat.extends(
     'plugin:jsx-a11y/recommended',
