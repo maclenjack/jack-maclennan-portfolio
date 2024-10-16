@@ -5,6 +5,7 @@ import playwright from 'eslint-plugin-playwright';
 import prettier from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import vitest from 'eslint-plugin-vitest';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import ts from 'typescript-eslint';
@@ -26,13 +27,32 @@ export default ts.config(
       '.prettierrc.json',
       'eslint.config.mjs',
       'next.config.mjs',
+      'playwright.config.ts',
       'postcss.config.mjs',
-      'tailwind.config.js'
+      'tailwind.config.js',
+      'vitest.config.mts'
     ]
   },
   {
     ...playwright.configs['flat/recommended'],
     files: ['tests/e2e/**']
+  },
+  {
+    files: ['tests/component/**'],
+    plugins: { vitest },
+    rules: {
+      ...vitest.configs.recommended.rules
+    },
+    settings: {
+      vitest: {
+        typecheck: true
+      }
+    },
+    languageOptions: {
+      globals: {
+        ...vitest.environments.env.globals
+      }
+    }
   },
   ...compat.extends(
     'plugin:jsx-a11y/recommended',
