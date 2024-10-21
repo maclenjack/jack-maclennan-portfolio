@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function SocialIcons() {
   return (
-    <div className="flex flex-row items-center justify-center gap-8">
+    <div className="flex flex-row items-center justify-center gap-8" data-testid="social-icons">
       <Link href="mailto:jackwmaclennan@gmail.com" aria-label="email me">
         <FontAwesomeIcon className="h-4 w-5 text-xl text-slate-300" icon={faEnvelope} />
       </Link>

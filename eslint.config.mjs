@@ -88,6 +88,7 @@ export default ts.config(
       'react/require-default-props': 0,
       'react/react-in-jsx-scope': 0,
       '@typescript-eslint/comma-dangle': 0,
+      '@typescript-eslint/no-unused-vars': 1,
 
       'max-len': [
         'error',

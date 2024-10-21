@@ -8,7 +8,9 @@ export default defineConfig({
     dir: './tests/component/',
     environment: 'jsdom',
     coverage: {
-      provider: 'v8'
+      provider: 'v8',
+      include: ['src/*'],
+      exclude: ['src/app/layout.tsx']
     },
     css: true,
     globals: true,
