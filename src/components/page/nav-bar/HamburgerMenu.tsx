@@ -1,15 +1,15 @@
 'use client';
 
+import SiteLinks from '@/components/page/nav-bar/SiteLinks';
 import SocialIcons from '@/components/page/nav-bar/SocialIcons';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import AriaModal from 'react-aria-modal';
 import { useToggle, useWindowSize } from 'usehooks-ts';
 
-export default function HamburgerMenu() {
+export default function HamburgerMenu({ className = '' }: { className?: string }) {
   const [isActive, toggleActive, setIsActive] = useToggle();
   const [startTransition, setStartTransition] = useState<boolean>(false);
   const { width } = useWindowSize();
@@ -26,12 +26,13 @@ export default function HamburgerMenu() {
   }, [setIsActive, setStartTransition, width]);
 
   return (
-    <>
+    <div className={clsx(className)} data-testid="hamburger-menu">
       <button
         className="flex h-4 w-5 items-center justify-center"
         type="button"
         aria-label="open hamburger menu"
         onClick={toggleActive}
+        data-testid="hamburger-icon"
       >
         <FontAwesomeIcon className="h-4 w-5 text-xl text-slate-300" icon={faBars} />
       </button>
@@ -41,6 +42,13 @@ export default function HamburgerMenu() {
         titleText="hamburger menu"
         onEnter={() => setStartTransition(true)}
         onExit={() => setStartTransition(false)}
+        focusTrapOptions={{
+          // needed for testing
+          tabbableOptions: {
+            displayCheck: process.env.NODE_ENV === 'test' ? 'none' : undefined
+          }
+        }}
+        data-testid="hamburger-modal"
       >
         <div
           className={clsx('h-full overflow-x-hidden rounded-l-lg transition-all ease-in', {
@@ -58,27 +66,22 @@ export default function HamburgerMenu() {
             >
               <div className="flex h-24 flex-wrap items-start justify-center">
                 <span className="flex w-full justify-end text-xl text-slate-600 md:text-2xl">
-                  <button type="button" aria-label="exit" onClick={() => setStartTransition(false)}>
+                  <button
+                    type="button"
+                    aria-label="exit"
+                    onClick={() => setStartTransition(false)}
+                    data-testid="hamburger-close"
+                  >
                     <FontAwesomeIcon className="text-xl text-slate-300" icon={faX} />
                   </button>
                 </span>
                 <SocialIcons />
               </div>
-              <div className="flex h-full flex-col items-center justify-around gap-10">
-                <Link className="font-bold text-slate-300" href="/projects">
-                  Projects
-                </Link>
-                <Link className="font-bold text-slate-300" href="/experience">
-                  Experience
-                </Link>
-                <Link className="font-bold text-slate-300" href="/about-me">
-                  About Me
-                </Link>
-              </div>
+              <SiteLinks className="flex h-full flex-col items-center justify-around gap-10" />
             </div>
           </div>
         </div>
       </AriaModal>
-    </>
+    </div>
   );
 }
