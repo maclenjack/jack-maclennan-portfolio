@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import AriaModal from 'react-aria-modal';
 import { useToggle, useWindowSize } from 'usehooks-ts';
 
-export default function HamburgerMenu() {
+export default function HamburgerMenu({ className = '' }: { className?: string }) {
   const [isActive, toggleActive, setIsActive] = useToggle();
   const [startTransition, setStartTransition] = useState<boolean>(false);
   const { width } = useWindowSize();
@@ -26,7 +26,7 @@ export default function HamburgerMenu() {
   }, [setIsActive, setStartTransition, width]);
 
   return (
-    <>
+    <div className={clsx(className)} data-testid="hamburger-menu">
       <button
         className="flex h-4 w-5 items-center justify-center"
         type="button"
@@ -63,7 +63,6 @@ export default function HamburgerMenu() {
                 'w-0': !startTransition
               })}
               onTransitionEnd={handleTransition}
-              data-testid="hamburger-transition-handler"
             >
               <div className="flex h-24 flex-wrap items-start justify-center">
                 <span className="flex w-full justify-end text-xl text-slate-600 md:text-2xl">
@@ -83,6 +82,6 @@ export default function HamburgerMenu() {
           </div>
         </div>
       </AriaModal>
-    </>
+    </div>
   );
 }

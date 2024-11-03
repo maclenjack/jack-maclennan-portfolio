@@ -1,3 +1,4 @@
+import { SelectOption } from '@/components/select/types';
 import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TailSpin } from 'react-loader-spinner';
@@ -56,4 +57,14 @@ const systemDefaultSelected = (
 
 const placeholder = <TailSpin height={16} width={20} color="white" />;
 
-export { darkMode, darkModeSelected, lightMode, lightModeSelected, placeholder, systemDefault, systemDefaultSelected };
+const options: Array<SelectOption> = [
+  { value: 'light', label: lightMode, selected: lightModeSelected },
+  { value: 'dark', label: darkMode, selected: darkModeSelected },
+  {
+    value: 'system',
+    label: systemDefault,
+    selected: systemDefaultSelected
+  }
+];
+
+export { options, placeholder };

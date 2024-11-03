@@ -15,12 +15,12 @@ export default function NavBar() {
           Logo/name
           {/* TODO: add logo */}
         </Link>
-        <span className="flex items-center gap-6 max-md:hidden">
+        <span className="flex items-center gap-6 max-md:hidden" data-testid="desktop-components">
           <SiteLinks className="flex items-center gap-6" />
           <ThemeSelect />
           <SocialIcons />
         </span>
-        <span className="flex items-center gap-4 md:hidden">
+        <span className="flex items-center gap-4 md:hidden" data-testid="mobile-components">
           <ThemeSelect />
           <HamburgerMenu />
         </span>
