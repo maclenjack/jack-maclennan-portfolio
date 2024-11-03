@@ -10,7 +10,9 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       include: ['src/*'],
-      exclude: ['src/app/layout.tsx']
+      exclude: ['src/app/layout.tsx'],
+      reporter: ['text', 'json-summary', 'json'],
+      reportOnFailure: true
     },
     css: true,
     globals: true,
