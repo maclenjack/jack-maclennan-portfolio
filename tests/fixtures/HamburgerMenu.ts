@@ -8,7 +8,7 @@ import Component from './interfaces/Component';
  * @remarks
  * Provides method helpers for locating child elements and interactivity.
  *
- * @includeExample tests/fixtures/HamburgerMenu.ts:106
+ * @includeExample tests/fixtures/HamburgerMenu.ts:105
  * @source
  */
 export class HamburgerModal implements Component {
@@ -22,7 +22,6 @@ export class HamburgerModal implements Component {
   private readonly closeIcon: Locator;
 
   /**
-   * @constructor
    * @param page - Playwright page object.
    */
   public constructor(private readonly page: Page) {
@@ -117,7 +116,7 @@ export default class HamburgerMenu implements Component {
     await this.getModal().rendersCorrectly();
   }
 
-  /** Getter method. @returns {@icon}. */
+  /** Getter method. @returns {@link icon}. */
   getIcon(): Locator {
     return this.icon;
   }
