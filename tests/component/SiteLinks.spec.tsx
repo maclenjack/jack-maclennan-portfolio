@@ -16,5 +16,6 @@ describe('<SiteLinks />', () => {
     expect(siteLinks.getByText('Projects')).toBeDefined();
     expect(siteLinks.getByText('Experience')).toBeDefined();
     expect(siteLinks.getByText('About Me')).toBeDefined();
+    expect(siteLinks.getByText('Docs')).toBeDefined();
   });
 });
