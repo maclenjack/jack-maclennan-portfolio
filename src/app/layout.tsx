@@ -13,6 +13,12 @@ config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
 
+/**
+ * @param props - The component accepts children as props.
+ * @param props.children - The main site content.
+ * @returns The rendered layout and its children.
+ * @source
+ */
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>

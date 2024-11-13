@@ -1,6 +1,7 @@
 import { test } from '@playwright/test';
 
-const homeTest = test.extend<{ forEachTest: void }>({
+/** @hidden */
+export const homeTest = test.extend<{ forEachTest: void }>({
   forEachTest: [
     async ({ page }, use) => {
       await page.goto('http://localhost:3000');
@@ -9,5 +10,3 @@ const homeTest = test.extend<{ forEachTest: void }>({
     { auto: true }
   ]
 });
-
-export default homeTest;

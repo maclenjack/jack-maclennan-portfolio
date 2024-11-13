@@ -3,6 +3,12 @@ import clsx from 'clsx';
 import { Button, Menu, MenuItem, Wrapper } from 'react-aria-menubutton';
 import { useToggle } from 'usehooks-ts';
 
+/**
+ * Custom select component. Made to be slightly generic.
+ * @param {SelectProps} props
+ * @includeExample src/components/theme-select/ThemeSelect.tsx:37-44
+ * @source
+ */
 export default function Select({ className = '', selectedOption, placeholder, onChange, options }: SelectProps) {
   const [isOpen, toggleIsOpen] = useToggle(false);
 

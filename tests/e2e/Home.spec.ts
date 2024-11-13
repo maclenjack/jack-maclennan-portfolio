@@ -1,8 +1,9 @@
-import { expect, mergeTests } from '@playwright/test';
-import hamburgerMenuTest from '../fixtures/HamburgerMenu';
-import homeTest from '../fixtures/Home';
-import navBarTest from '../fixtures/NavBar';
-import pageTest from '../fixtures/util';
+import { expect, Locator, mergeTests } from '@playwright/test';
+import { hamburgerMenuTest } from '../fixtures/HamburgerMenu';
+import { homeTest } from '../fixtures/Home';
+import { navBarTest } from '../fixtures/NavBar';
+import ThemeSelect from '../fixtures/ThemeSelect';
+import { pageTest } from '../fixtures/util';
 
 const test = mergeTests(pageTest, homeTest, navBarTest, hamburgerMenuTest);
 
@@ -13,33 +14,33 @@ describe('all devices', () => {
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Home Page');
   });
   describe('<NavBar />', () => {
-    test('renders nav bar', async ({ navBar }) => {
-      await expect(navBar.getWrapper()).toBeVisible();
-    });
-    test('renders logo link', async ({ navBar }) => {
-      await expect(navBar.getLogo()).toBeVisible();
+    test('renders correctly', async ({ navBar }) => {
+      await navBar.rendersCorrectly();
     });
     test('logo link navigates to /', async ({ page, navBar }) => {
       await page.goto(`/projects`);
       await navBar.getLogo().click();
-      await expect(page).toHaveURL('/');
-    });
-    test('at least 1 <ThemeSelect /> is visible', async ({ page }) => {
-      await expect(page.getByTestId('theme-select')).toHaveCount(2);
-      await expect(page.getByTestId('theme-select').locator('visible=true')).toBeVisible();
+      await expect(page, 'url is correct').toHaveURL('/');
     });
     describe('<ThemeSelect />', () => {
-      test('renders <Select />', async ({ page }) => {
+      test('renders <Select />', async ({ page, navBar }) => {
         await expect(
-          page.getByTestId('theme-select').locator('visible=true').getByTestId('custom-select')
+          (await navBar.getVisibleThemeSelect()).getSelect().getWrapper(),
+          'custom select is visible'
         ).toBeVisible();
       });
       describe('<Select />', () => {
         test('<Menu /> is visible on <Button /> click', async ({ page }) => {
-          const customSelect = page.getByTestId('custom-select').locator('visible=true');
-          await expect(customSelect.getByTestId('custom-select-menu')).toBeHidden();
+          const customSelect: Locator = page.getByTestId('custom-select').locator('visible=true');
+          await expect(
+            customSelect.getByTestId('custom-select-menu'),
+            'custom select menu is hidden when closed'
+          ).toBeHidden();
           await customSelect.getByTestId('custom-select-button').click();
-          await expect(customSelect.getByTestId('custom-select-menu')).toBeVisible();
+          await expect(
+            customSelect.getByTestId('custom-select-menu'),
+            'custom select menu is visible when open'
+          ).toBeVisible();
         });
       });
     });
@@ -48,12 +49,6 @@ describe('all devices', () => {
 
 describe('mobile', () => {
   describe('<NavBar />', () => {
-    test('desktop components are hidden', async ({ page }) => {
-      await expect(page.getByTestId('desktop-components')).toBeHidden();
-    });
-    test('mobile components are visible', async ({ page }) => {
-      await expect(page.getByTestId('mobile-components')).toBeVisible();
-    });
     describe('<ThemeSelect />', () => {
       type TestOption = { theme: string; themeName: string };
       const testOptions: Array<TestOption> = [
@@ -63,37 +58,39 @@ describe('mobile', () => {
       ];
       testOptions.forEach(({ theme, themeName }: TestOption, i: number) => {
         test(`set theme to ${themeName}`, async ({ navBar }) => {
-          const themeSelect = navBar.getMobileThemeSelect();
+          const themeSelect: ThemeSelect = navBar.getMobileThemeSelect();
           await themeSelect.setTheme(testOptions[(i + 1) % 3].themeName);
           await themeSelect.setTheme(themeName);
           const resolvedTheme = await themeSelect.getTheme();
-          expect(resolvedTheme).toEqual(theme);
+          expect(resolvedTheme, 'stored theme value is correct').toEqual(theme);
         });
       });
     });
     describe('<HamburgerMenu />', () => {
-      test('renders correctly', async ({ hamburgerMenu }) => {
-        await expect(hamburgerMenu.getWrapper()).toBeVisible();
-        await expect(hamburgerMenu.getIcon()).toBeVisible();
-        await expect(hamburgerMenu.getModal()).toBeHidden();
-      });
       test('renders modal on icon click', async ({ hamburgerMenu }) => {
-        await expect(hamburgerMenu.getModal()).toBeHidden();
+        await expect(hamburgerMenu.getModal().getWrapper(), 'modal is hidden when closed').toBeHidden();
         await hamburgerMenu.openModal();
-        await expect(hamburgerMenu.getModal()).toBeVisible();
+        await expect(hamburgerMenu.getModal().getWrapper(), 'modal is visible when open').toBeVisible();
       });
       test('renders modal correctly', async ({ hamburgerMenu }) => {
         await hamburgerMenu.openModal();
-        await expect(hamburgerMenu.getModal()).toBeVisible();
-        await expect(hamburgerMenu.getCloseIcon()).toBeVisible();
-        await expect(hamburgerMenu.getSocialIcons().getWrapper()).toBeVisible();
-        await expect(hamburgerMenu.getSiteLinks().getWrapper()).toBeVisible();
+        await hamburgerMenu.getModal().rendersCorrectly();
       });
       test('modal is hidden on close', async ({ hamburgerMenu }) => {
         await hamburgerMenu.openModal();
-        await expect(hamburgerMenu.getModal()).toBeVisible();
-        await hamburgerMenu.closeModal();
-        await expect(hamburgerMenu.getModal()).toBeHidden();
+        await expect(hamburgerMenu.getModal().getWrapper(), 'modal is visible when open').toBeVisible();
+        await hamburgerMenu.getModal().closeModal();
+        await expect(hamburgerMenu.getModal().getWrapper(), 'modal is hidden when closed').toBeHidden();
+      });
+      describe('<SiteLinks />', () => {
+        test('navigates correctly', async ({ page, hamburgerMenu }) => {
+          await hamburgerMenu
+            .getModal()
+            .getSiteLinks()
+            .navigatesCorrectly(page, async () => {
+              await hamburgerMenu.openModal();
+            });
+        });
       });
     });
   });
@@ -102,27 +99,54 @@ describe('mobile', () => {
 describe('desktop', () => {
   describe('<NavBar />', () => {
     test('mobile components are hidden', async ({ page }) => {
-      await expect(page.getByTestId('mobile-components')).toBeHidden();
+      await expect(page.getByTestId('mobile-components'), 'mobile components hidden on desktop').toBeHidden();
     });
     test('desktop components are visible', async ({ page }) => {
-      await expect(page.getByTestId('desktop-components')).toBeVisible();
+      await expect(page.getByTestId('desktop-components'), 'desktop components visible on desktop').toBeVisible();
     });
     test('components are tabbable', async ({ page, navBar }) => {
       await page.keyboard.press('Tab');
-      await expect(navBar.getLogo()).toBeFocused();
+      await expect(navBar.getLogo(), 'logo focused on tab').toBeFocused();
 
-      for (let i = 0; i < (await navBar.getSiteLinks().getListLength()); i++) {
+      for (let i: number = 0; i < (await navBar.getSiteLinks().getListLength()); i++) {
         await page.keyboard.press('Tab');
-        await expect(navBar.getSiteLinks().getListItemByIndex(i)).toBeFocused();
+        await expect(
+          navBar.getSiteLinks().getListItemByIndex(i),
+          `site link at index ${i} focused on tab`
+        ).toBeFocused();
       }
 
       await page.keyboard.press('Tab');
-      await expect(navBar.getDesktopThemeSelect().getSelect().getButton()).toBeFocused();
+      await expect(navBar.getDesktopThemeSelect().getSelect().getButton(), 'theme select focused on tab').toBeFocused();
 
-      for (let i = 0; i < (await navBar.getSocialIcons().getListLength()); i++) {
+      for (let i: number = 0; i < (await navBar.getSocialIcons().getListLength()); i++) {
         await page.keyboard.press('Tab');
-        await expect(navBar.getSocialIcons().getListItemByIndex(i)).toBeFocused();
+        await expect(
+          navBar.getSocialIcons().getListItemByIndex(i),
+          `social icon at index ${i} focused on tab`
+        ).toBeFocused();
       }
+    });
+    describe('<SiteLinks />', () => {
+      test('renders correctly', async ({ navBar }) => {
+        await navBar.getSiteLinks().rendersCorrectly();
+      });
+      test('links navigate correctly', async ({ page, navBar }) => {
+        await navBar.getSiteLinks().navigatesCorrectly(page);
+      });
+    });
+    describe('<ThemeSelect />', () => {
+      test('renders correctly', async ({ navBar }) => {
+        const themeSelect: ThemeSelect = navBar.getDesktopThemeSelect();
+        const mobileThemeSelect: ThemeSelect = navBar.getMobileThemeSelect();
+        await expect(themeSelect.getWrapper(), 'desktop component is visible').toBeVisible();
+        await expect(mobileThemeSelect.getWrapper(), 'mobile component is hidden').toBeHidden();
+      });
+    });
+    describe('<SocialIcons />', () => {
+      test('renders correctly', async ({ navBar }) => {
+        await navBar.getSocialIcons().rendersCorrectly();
+      });
     });
   });
 });

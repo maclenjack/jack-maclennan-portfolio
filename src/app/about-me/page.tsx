@@ -1,5 +1,6 @@
 import Page from '@/components/page/Page';
 
+/** About me page located [here](https://jack-maclennan-portfolio.vercel.app/about-me). @source */
 export default function AboutMe() {
   return (
     <Page>

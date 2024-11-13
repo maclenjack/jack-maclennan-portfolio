@@ -1,4 +1,4 @@
-const gradientMask = require('tailwind-gradient-mask-image'); // package has no typescript support
+import gradientMask from 'tailwind-gradient-mask-image';
 
 const config = {
   content: [
