@@ -20,6 +20,8 @@ export default class SiteLinks implements ListComponent {
   private readonly experienceLink: Locator;
   /** @public About me link element. */
   private readonly aboutMeLink: Locator;
+  /** @public Link to docs GitHub Page. */
+  private readonly docsLink: Locator;
 
   /**
    * Fixture constructor - initialise variables.
@@ -30,6 +32,7 @@ export default class SiteLinks implements ListComponent {
     this.projectsLink = this.siteLinks.getByTestId('projects');
     this.experienceLink = this.siteLinks.getByTestId('experience');
     this.aboutMeLink = this.siteLinks.getByTestId('about-me');
+    this.docsLink = this.siteLinks.getByTestId('docs');
   }
 
   /** Getter method. @returns {@link siteLinks}. */
@@ -43,20 +46,27 @@ export default class SiteLinks implements ListComponent {
     await expect(this.getProjectsLink(), 'projects link is visible').toBeVisible();
     await expect(this.getExperienceLink(), 'experience link is visible').toBeVisible();
     await expect(this.getAboutMeLink(), 'about me link is visible').toBeVisible();
-    expect(await this.getListLength(), 'list length is 3').toBe(3);
+    await expect(this.getDocsLink(), 'docs link is visible').toBeVisible();
+    expect(await this.getListLength(), 'list length is 4').toBe(4);
   }
 
   /** Testing helper method; ensures links function as intended. */
   public async navigatesCorrectly(page: Page, beforeEach?: () => Promise<void>): Promise<void> {
     if (beforeEach !== undefined) await beforeEach();
-    await this.navigateToProjects();
+    await this.navigateToProjects(page);
     await expect(page, 'navigate to projects page').toHaveURL('/projects');
     if (beforeEach !== undefined) await beforeEach();
-    await this.navigateToExperience();
+    await this.navigateToExperience(page);
     await expect(page, 'navigate to experience page').toHaveURL('/experience');
     if (beforeEach !== undefined) await beforeEach();
-    await this.navigateToAboutMe();
+    await this.navigateToAboutMe(page);
     await expect(page, 'navigate to about me page').toHaveURL('/about-me');
+    if (beforeEach !== undefined) await beforeEach();
+    await this.navigateToDocs(page);
+    expect(page.url(), 'navigate to docs GitHub page').toEqual(
+      'https://maclenjack.github.io/jack-maclennan-portfolio/'
+    );
+    await page.goto('http://localhost:3000');
   }
 
   /** Getter method. @returns {@link projectsLink}. */
@@ -74,25 +84,41 @@ export default class SiteLinks implements ListComponent {
     return this.aboutMeLink;
   }
 
+  /** Getter method. @returns {@link docsLink}. */
+  public getDocsLink(): Locator {
+    return this.docsLink;
+  }
+
   /** Interact with {@link projectsLink}. */
-  public async navigateToProjects(): Promise<void> {
+  public async navigateToProjects(page: Page): Promise<void> {
     const projectsLink: Locator = this.getProjectsLink();
-    expect(projectsLink).toBeVisible();
+    expect(projectsLink, 'projects link is visible').toBeVisible();
     await projectsLink.click();
+    await page.waitForURL('**/projects');
   }
 
   /** Interact with {@link experienceLink}. */
-  public async navigateToExperience(): Promise<void> {
+  public async navigateToExperience(page: Page): Promise<void> {
     const experienceLink: Locator = this.getExperienceLink();
-    expect(experienceLink).toBeVisible();
+    expect(experienceLink, 'experience link is visible').toBeVisible();
     await experienceLink.click();
+    await page.waitForURL('**/experience');
   }
 
   /** Interact with {@link aboutMeLink}. */
-  public async navigateToAboutMe(): Promise<void> {
+  public async navigateToAboutMe(page: Page): Promise<void> {
     const aboutMeLink: Locator = this.getAboutMeLink();
-    expect(aboutMeLink).toBeVisible();
+    expect(aboutMeLink, 'about me link is visible').toBeVisible();
     await aboutMeLink.click();
+    await page.waitForURL('**/about-me');
+  }
+
+  /** Interact with {@link docsLink}. */
+  public async navigateToDocs(page: Page): Promise<void> {
+    const docsLink: Locator = this.getDocsLink();
+    expect(docsLink, 'docs link is visible').toBeVisible();
+    await docsLink.click();
+    await page.waitForURL('https://maclenjack.github.io/jack-maclennan-portfolio/');
   }
 
   /** Getter method. @returns Link element children. */

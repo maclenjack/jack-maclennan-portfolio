@@ -21,6 +21,13 @@ export default function SiteLinks({ className }: { className?: string }) {
       <Link className="font-bold text-slate-300" href="/about-me" data-testid="about-me">
         About Me
       </Link>
+      <Link
+        className="font-bold text-slate-300"
+        href="https://maclenjack.github.io/jack-maclennan-portfolio/"
+        data-testid="docs"
+      >
+        Docs
+      </Link>
     </span>
   );
 }
