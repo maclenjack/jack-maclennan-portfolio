@@ -1,5 +1,6 @@
 import Page from '@/components/page/Page';
 
+/** Projects page located [here](https://jack-maclennan-portfolio.vercel.app/projects). @source */
 export default function Projects() {
   return (
     <Page>

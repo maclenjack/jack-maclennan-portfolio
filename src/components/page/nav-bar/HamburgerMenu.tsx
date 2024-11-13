@@ -9,17 +9,26 @@ import { useEffect, useState } from 'react';
 import AriaModal from 'react-aria-modal';
 import { useToggle, useWindowSize } from 'usehooks-ts';
 
+/**
+ * Menu for mobile devices.
+ * @param props - The component accepts className as props.
+ * @param props.className - Optional prop for styling the wrapper.
+ * @returns The rendered HamburgerMenu component.
+ * @includeExample src/components/page/nav-bar/NavBar.tsx:29-32
+ * @source
+ */
 export default function HamburgerMenu({ className = '' }: { className?: string }) {
   const [isActive, toggleActive, setIsActive] = useToggle();
   const [startTransition, setStartTransition] = useState<boolean>(false);
   const { width } = useWindowSize();
 
   const handleTransition = () => {
-    if (!startTransition) toggleActive();
+    if (!startTransition) toggleActive(); // close menu
   };
 
   useEffect(() => {
     if (width > 768) {
+      // close if screen width increases e.g. rotate phone from vertical to landscape
       setIsActive(false);
       setStartTransition(false);
     }

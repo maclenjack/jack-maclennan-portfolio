@@ -1,9 +1,15 @@
 import HamburgerMenu from '@/components/page/nav-bar/HamburgerMenu';
 import SiteLinks from '@/components/page/nav-bar/SiteLinks';
 import SocialIcons from '@/components/page/nav-bar/SocialIcons';
-import ThemeSelect from '@/components/theme_select/ThemeSelect';
+import ThemeSelect from '@/components/theme-select/ThemeSelect';
 import Link from 'next/link';
 
+/**
+ * Navigation bar to be visible on all devices.
+ * @returns The rendered NavBar component.
+ * @includeExample src/components/page/Page.tsx:14-17
+ * @source
+ */
 export default function NavBar() {
   return (
     <nav

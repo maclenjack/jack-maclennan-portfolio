@@ -2,12 +2,18 @@
 
 import Select from '@/components/select/Select';
 import { SelectOption } from '@/components/select/types';
-import { options, placeholder } from '@/components/theme_select/constants';
+import { options, placeholder } from '@/components/theme-select/constants';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
+/**
+ * Implementation of Select. Used to select theme for user: dark, light or system
+ * @param className optional value to customize wrapper style
+ * @includeExample src/components/page/nav-bar/NavBar.tsx:24-28
+ * @source
+ */
 export default function ThemeSelect({ className }: { className?: string }): ReactNode {
   const { setTheme } = useTheme();
   const [localTheme, setLocalTheme] = useLocalStorage('theme', 'system', {

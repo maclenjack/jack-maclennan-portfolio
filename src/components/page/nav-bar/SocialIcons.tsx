@@ -3,6 +3,12 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
+/**
+ * Icon links for navigating to social profiles.
+ * @returns The rendered SocialIcons component.
+ * @includeExample src/components/page/nav-bar/NavBar.tsx:24-28
+ * @source
+ */
 export default function SocialIcons() {
   return (
     <div className="flex flex-row items-center justify-center gap-8" data-testid="social-icons">
