@@ -27,7 +27,7 @@ export default class SiteLinks implements ListComponent {
    */
   public constructor(public readonly parent: Locator) {
     this.siteLinks = this.parent.getByTestId('site-links');
-    this.projectsLink = this.siteLinks.getByTestId('project');
+    this.projectsLink = this.siteLinks.getByTestId('projects');
     this.experienceLink = this.siteLinks.getByTestId('experience');
     this.aboutMeLink = this.siteLinks.getByTestId('about-me');
   }
