@@ -1,4 +1,4 @@
-import Projects from '@/app/projects/page';
+import Projects from '@pages/projects/page';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 

@@ -1,4 +1,4 @@
-import HamburgerMenu from '@/components/page/nav-bar/HamburgerMenu';
+import HamburgerMenu from '@components/page/nav-bar/HamburgerMenu';
 import { cleanup, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';

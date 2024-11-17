@@ -1,4 +1,4 @@
-import ThemeSelect from '@/components/theme-select/ThemeSelect';
+import ThemeSelect from '@components/theme-select/ThemeSelect';
 import { render, renderHook, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { act } from 'react';

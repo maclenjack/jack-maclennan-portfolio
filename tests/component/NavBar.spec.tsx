@@ -1,4 +1,4 @@
-import NavBar from '@/components/page/nav-bar/NavBar';
+import NavBar from '@components/page/nav-bar/NavBar';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 

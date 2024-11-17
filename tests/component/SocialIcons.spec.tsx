@@ -1,4 +1,4 @@
-import SocialIcons from '@/components/page/nav-bar/SocialIcons';
+import SocialIcons from '@components/page/nav-bar/SocialIcons';
 import { render, screen, within } from '@testing-library/react';
 import { describe, it } from 'vitest';
 

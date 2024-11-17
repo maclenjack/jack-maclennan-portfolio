@@ -1,4 +1,4 @@
-import SiteLinks from '@/components/page/nav-bar/SiteLinks';
+import SiteLinks from '@components/page/nav-bar/SiteLinks';
 import { render, screen, within } from '@testing-library/react';
 import { describe, it } from 'vitest';
 

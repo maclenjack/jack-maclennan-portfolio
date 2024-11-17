@@ -1,7 +1,7 @@
 'use client';
 
-import SiteLinks from '@/components/page/nav-bar/SiteLinks';
-import SocialIcons from '@/components/page/nav-bar/SocialIcons';
+import SiteLinks from '@components/page/nav-bar/SiteLinks';
+import SocialIcons from '@components/page/nav-bar/SocialIcons';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';

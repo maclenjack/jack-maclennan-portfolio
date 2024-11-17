@@ -1,9 +1,9 @@
+import { hamburgerMenuTest } from '@fixtures/HamburgerMenu';
+import { homeTest } from '@fixtures/Home';
+import { navBarTest } from '@fixtures/NavBar';
+import ThemeSelect from '@fixtures/ThemeSelect';
+import { pageTest } from '@fixtures/util';
 import { expect, Locator, mergeTests } from '@playwright/test';
-import { hamburgerMenuTest } from '../fixtures/HamburgerMenu';
-import { homeTest } from '../fixtures/Home';
-import { navBarTest } from '../fixtures/NavBar';
-import ThemeSelect from '../fixtures/ThemeSelect';
-import { pageTest } from '../fixtures/util';
 
 const test = mergeTests(pageTest, homeTest, navBarTest, hamburgerMenuTest);
 

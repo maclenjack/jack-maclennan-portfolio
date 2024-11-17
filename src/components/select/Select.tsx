@@ -1,4 +1,4 @@
-import { SelectOption, SelectProps } from '@/components/select/types';
+import { SelectOption, SelectProps } from '@components/select/types';
 import clsx from 'clsx';
 import { Button, Menu, MenuItem, Wrapper } from 'react-aria-menubutton';
 import { useToggle } from 'usehooks-ts';

@@ -1,4 +1,4 @@
-import AboutMe from '@/app/about-me/page';
+import AboutMe from '@pages/about-me/page';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 
