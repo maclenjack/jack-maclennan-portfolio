@@ -1,4 +1,4 @@
-import NavBar from '@/components/page/nav-bar/NavBar';
+import NavBar from '@components/page/nav-bar/NavBar';
 import { ReactNode } from 'react';
 
 /**
