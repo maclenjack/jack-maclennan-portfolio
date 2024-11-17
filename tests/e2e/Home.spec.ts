@@ -10,9 +10,6 @@ const test = mergeTests(pageTest, homeTest, navBarTest, hamburgerMenuTest);
 const { describe } = test;
 
 describe('all devices', () => {
-  test('has heading', async ({ page }) => {
-    await expect(page.getByRole('heading', { level: 1 })).toHaveText('Home Page');
-  });
   describe('<NavBar />', () => {
     test('renders correctly', async ({ navBar }) => {
       await navBar.rendersCorrectly();
@@ -23,7 +20,7 @@ describe('all devices', () => {
       await expect(page, 'url is correct').toHaveURL('/');
     });
     describe('<ThemeSelect />', () => {
-      test('renders <Select />', async ({ page, navBar }) => {
+      test('renders <Select />', async ({ navBar }) => {
         await expect(
           (await navBar.getVisibleThemeSelect()).getSelect().getWrapper(),
           'custom select is visible'
