@@ -1,4 +1,4 @@
-import Page from '@/components/page/Page';
+import Page from '@components/page/Page';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 

@@ -12,7 +12,7 @@ import Component from './interfaces/Component';
  *
  * Used in example to be accessed in testing environment.
  *
- * @includeExample tests/fixtures/NavBar.ts:133-138
+ * @includeExample tests/fixtures/NavBar.ts:132-137
  * @source
  */
 export default class NavBar implements Component {
@@ -58,8 +58,7 @@ export default class NavBar implements Component {
 
   /** Testing helper method. */
   public async rendersCorrectly(): Promise<void> {
-    let isMobile: boolean = false;
-    if (await this.getMobileComponents().isVisible()) isMobile = true;
+    const isMobile: boolean = await this.getMobileComponents().isVisible();
 
     await expect(this.getLogo(), 'logo is visible').toBeVisible();
     if (isMobile) {

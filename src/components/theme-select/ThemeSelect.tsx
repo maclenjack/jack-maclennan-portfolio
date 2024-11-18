@@ -1,8 +1,8 @@
 'use client';
 
-import Select from '@/components/select/Select';
-import { SelectOption } from '@/components/select/types';
-import { options, placeholder } from '@/components/theme-select/constants';
+import Select from '@components/select/Select';
+import { SelectOption } from '@components/select/types';
+import { options, placeholder } from '@components/theme-select/constants';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
 import { ReactNode, useCallback, useEffect, useState } from 'react';

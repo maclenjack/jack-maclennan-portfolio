@@ -1,4 +1,4 @@
-import NavBar from '@/components/page/nav-bar/NavBar';
+import NavBar from '@components/page/nav-bar/NavBar';
 import { ReactNode } from 'react';
 
 /**
@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
  * @param props - The component accepts children as props.
  * @param props.children - Page content to be rendered.
  * @returns The rendered Page component and it's children.
- * @includeExample src/app/page.tsx:6-12
+ * @includeExample src/app/layout.tsx:28
  * @source
  */
 export default function Page({ children }: { children: ReactNode }) {

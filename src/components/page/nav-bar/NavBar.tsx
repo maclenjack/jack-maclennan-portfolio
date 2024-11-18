@@ -1,7 +1,7 @@
-import HamburgerMenu from '@/components/page/nav-bar/HamburgerMenu';
-import SiteLinks from '@/components/page/nav-bar/SiteLinks';
-import SocialIcons from '@/components/page/nav-bar/SocialIcons';
-import ThemeSelect from '@/components/theme-select/ThemeSelect';
+import HamburgerMenu from '@components/page/nav-bar/HamburgerMenu';
+import SiteLinks from '@components/page/nav-bar/SiteLinks';
+import SocialIcons from '@components/page/nav-bar/SocialIcons';
+import ThemeSelect from '@components/theme-select/ThemeSelect';
 import Link from 'next/link';
 
 /**

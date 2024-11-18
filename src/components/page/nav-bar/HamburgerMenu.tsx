@@ -1,7 +1,7 @@
 'use client';
 
-import SiteLinks from '@/components/page/nav-bar/SiteLinks';
-import SocialIcons from '@/components/page/nav-bar/SocialIcons';
+import SiteLinks from '@components/page/nav-bar/SiteLinks';
+import SocialIcons from '@components/page/nav-bar/SocialIcons';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
@@ -86,7 +86,10 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
                 </span>
                 <SocialIcons />
               </div>
-              <SiteLinks className="flex h-full flex-col items-center justify-around gap-10" />
+              <SiteLinks
+                className="flex h-full flex-col items-center justify-around gap-10"
+                onClick={() => setStartTransition(false)}
+              />
             </div>
           </div>
         </div>
