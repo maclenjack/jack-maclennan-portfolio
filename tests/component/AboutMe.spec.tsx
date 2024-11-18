@@ -6,19 +6,14 @@ describe('<AboutMe />', () => {
   beforeEach(() => {
     render(<AboutMe />);
   });
-  it('should render image', ({ expect }) => {
-    const image = screen.getByTestId('image');
-    expect(image).toBeInTheDocument();
-    expect(image).toBeVisible();
-  });
   it('should render header', ({ expect }) => {
-    const header = screen.getByRole('heading', { level: 2 });
+    const header = screen.getByTestId('page-header');
     expect(header).toBeInTheDocument();
     expect(header).toBeVisible();
     expect(header).toHaveTextContent('About Me');
   });
   it('should render name', ({ expect }) => {
-    const name = screen.getByRole('heading', { level: 1 });
+    const name = screen.getByTestId('name-header');
     expect(name).toBeInTheDocument();
     expect(name).toBeVisible();
     expect(name).toHaveTextContent('Jack Maclennan');

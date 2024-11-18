@@ -7,8 +7,12 @@ export default function AboutMe() {
       <div className="flex h-full flex-col justify-around gap-8 sm:basis-2/3 lg:basis-3/5">
         <div className="flex w-full gap-4 max-sm:justify-around">
           <span className="flex flex-col justify-around gap-8">
-            <h2 className="text-lg font-medium text-slate-800 dark:text-slate-300">About Me</h2>
-            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-300">Jack Maclennan</h1>
+            <h2 className="text-lg font-medium text-slate-800 dark:text-slate-300" data-testid="page-header">
+              About Me
+            </h2>
+            <h1 className="text-2xl font-bold text-slate-800 dark:text-slate-300" data-testid="name-header">
+              Jack Maclennan
+            </h1>
           </span>
           <span className="rounded bg-emerald-700 drop-shadow-lg sm:hidden" data-testid="mobile-image">
             <Image className="!static overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
