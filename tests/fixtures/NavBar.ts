@@ -57,7 +57,7 @@ export default class NavBar implements Component {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
+  public async rendersCorrectly(): Promise<boolean> {
     const isMobile: boolean = await this.getMobileComponents().isVisible();
 
     await expect(this.getLogo(), 'logo is visible').toBeVisible();
@@ -67,18 +67,19 @@ export default class NavBar implements Component {
       await expect(this.getSocialIcons().getWrapper(), 'social icons hidden on mobile').toBeHidden();
       await expect(this.getDesktopComponents(), 'desktop components hidden on mobile').toBeHidden();
       await expect(this.getMobileComponents(), 'mobile components visible on mobile').toBeVisible();
-      await this.getMobileThemeSelect().rendersCorrectly();
-      await this.getHamburgerMenu().rendersCorrectly();
+      expect(await this.getMobileThemeSelect().rendersCorrectly()).toBeTruthy();
+      expect(await this.getHamburgerMenu().rendersCorrectly()).toBeTruthy();
     } else {
       await expect(this.getMobileThemeSelect().getWrapper(), 'mobile theme select hidden on desktop').toBeHidden();
       await expect(this.getHamburgerMenu().getWrapper(), 'hamburger menu hidden on desktop').toBeHidden();
       await expect(this.getMobileComponents(), 'mobile components hidden on desktop').toBeHidden();
       await expect(this.getDesktopComponents(), 'desktop components visible on desktop').toBeVisible();
-      await this.getSiteLinks().rendersCorrectly();
-      await this.getSiteLinks().navigatesCorrectly(this.page);
-      await this.getDesktopThemeSelect().rendersCorrectly();
-      await this.getSocialIcons().rendersCorrectly();
+      expect(await this.getSiteLinks().rendersCorrectly()).toBeTruthy();
+      expect(await this.getSiteLinks().navigatesCorrectly(this.page)).toBeTruthy();
+      expect(await this.getDesktopThemeSelect().rendersCorrectly()).toBeTruthy();
+      expect(await this.getSocialIcons().rendersCorrectly()).toBeTruthy();
     }
+    return true;
   }
 
   /** Getter method. @returns {@link logoLink}. */

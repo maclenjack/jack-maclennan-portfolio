@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page, expect } from '@playwright/test';
 import Select from './Select';
 import Component from './interfaces/Component';
 
@@ -37,8 +37,9 @@ export default class ThemeSelect implements Component {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
-    await this.getSelect().rendersCorrectly();
+  public async rendersCorrectly(): Promise<boolean> {
+    expect(await this.getSelect().rendersCorrectly()).toBeTruthy();
+    return true;
   }
 
   /** Getter method. @returns {@link select}. */

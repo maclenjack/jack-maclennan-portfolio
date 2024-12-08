@@ -37,17 +37,18 @@ export class HamburgerModal implements Component {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
+  public async rendersCorrectly(): Promise<boolean> {
     if (await this.getWrapper().isHidden()) {
       await expect(this.getSocialIcons().getWrapper(), 'site links hidden when modal closed').toBeHidden();
       await expect(this.getSiteLinks().getWrapper(), 'site links hidden when modal closed').toBeHidden();
       await expect(this.getCloseIcon(), 'close icon hidden when modal closed').toBeHidden();
       await expect(this.getWrapper()).toBeHidden();
     } else {
-      await this.getSocialIcons().rendersCorrectly();
-      await this.getSiteLinks().rendersCorrectly();
+      expect(await this.getSocialIcons().rendersCorrectly()).toBeTruthy();
+      expect(await this.getSiteLinks().rendersCorrectly()).toBeTruthy();
       await expect(this.getCloseIcon(), 'close icon should be visible when modal open').toBeVisible();
     }
+    return true;
   }
 
   /** Getter method. @returns {@link socialIcons}. */
@@ -111,9 +112,10 @@ export default class HamburgerMenu implements Component {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
+  public async rendersCorrectly(): Promise<boolean> {
     await expect(this.getIcon(), 'hamburger icon visible when closed').toBeVisible();
-    await this.getModal().rendersCorrectly();
+    expect(await this.getModal().rendersCorrectly()).toBeTruthy();
+    return true;
   }
 
   /** Getter method. @returns {@link icon}. */

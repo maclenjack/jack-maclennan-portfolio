@@ -2,17 +2,16 @@ import { hamburgerMenuTest } from '@fixtures/HamburgerMenu';
 import { homeTest } from '@fixtures/Home';
 import { navBarTest } from '@fixtures/NavBar';
 import ThemeSelect from '@fixtures/ThemeSelect';
-import { pageTest } from '@fixtures/util';
 import { expect, Locator, mergeTests } from '@playwright/test';
 
-const test = mergeTests(pageTest, homeTest, navBarTest, hamburgerMenuTest);
+const test = mergeTests(homeTest, navBarTest, hamburgerMenuTest);
 
 const { describe } = test;
 
 describe('all devices', () => {
   describe('<NavBar />', () => {
     test('renders correctly', async ({ navBar }) => {
-      await navBar.rendersCorrectly();
+      expect(await navBar.rendersCorrectly()).toBeTruthy();
     });
     test('logo link navigates to /', async ({ page, navBar }) => {
       await page.goto(`/projects`);
@@ -71,7 +70,7 @@ describe('mobile', () => {
       });
       test('renders modal correctly', async ({ hamburgerMenu }) => {
         await hamburgerMenu.openModal();
-        await hamburgerMenu.getModal().rendersCorrectly();
+        expect(await hamburgerMenu.getModal().rendersCorrectly()).toBeTruthy();
       });
       test('modal is hidden on close', async ({ hamburgerMenu }) => {
         await hamburgerMenu.openModal();
@@ -81,12 +80,14 @@ describe('mobile', () => {
       });
       describe('<SiteLinks />', () => {
         test('navigates correctly', async ({ page, hamburgerMenu }) => {
-          await hamburgerMenu
-            .getModal()
-            .getSiteLinks()
-            .navigatesCorrectly(page, async () => {
-              await hamburgerMenu.openModal();
-            });
+          expect(
+            await hamburgerMenu
+              .getModal()
+              .getSiteLinks()
+              .navigatesCorrectly(page, async () => {
+                await hamburgerMenu.openModal();
+              })
+          ).toBeTruthy();
         });
       });
     });
@@ -126,10 +127,10 @@ describe('desktop', () => {
     });
     describe('<SiteLinks />', () => {
       test('renders correctly', async ({ navBar }) => {
-        await navBar.getSiteLinks().rendersCorrectly();
+        expect(await navBar.getSiteLinks().rendersCorrectly()).toBeTruthy();
       });
       test('links navigate correctly', async ({ page, navBar }) => {
-        await navBar.getSiteLinks().navigatesCorrectly(page);
+        expect(await navBar.getSiteLinks().navigatesCorrectly(page)).toBeTruthy();
       });
     });
     describe('<ThemeSelect />', () => {
@@ -142,7 +143,7 @@ describe('desktop', () => {
     });
     describe('<SocialIcons />', () => {
       test('renders correctly', async ({ navBar }) => {
-        await navBar.getSocialIcons().rendersCorrectly();
+        expect(await navBar.getSocialIcons().rendersCorrectly()).toBeTruthy();
       });
     });
   });

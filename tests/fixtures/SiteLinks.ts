@@ -41,17 +41,18 @@ export default class SiteLinks implements ListComponent {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
+  public async rendersCorrectly(): Promise<boolean> {
     await expect(this.getWrapper(), 'wrapper is visible').toBeVisible();
     await expect(this.getProjectsLink(), 'projects link is visible').toBeVisible();
     await expect(this.getExperienceLink(), 'experience link is visible').toBeVisible();
     await expect(this.getAboutMeLink(), 'about me link is visible').toBeVisible();
     await expect(this.getDocsLink(), 'docs link is visible').toBeVisible();
     expect(await this.getListLength(), 'list length is 4').toBe(4);
+    return true;
   }
 
   /** Testing helper method; ensures links function as intended. */
-  public async navigatesCorrectly(page: Page, beforeEach?: () => Promise<void>): Promise<void> {
+  public async navigatesCorrectly(page: Page, beforeEach?: () => Promise<void>): Promise<boolean> {
     if (beforeEach !== undefined) await beforeEach();
     await this.navigateToProjects(page);
     await expect(page, 'navigate to projects page').toHaveURL('/projects');
@@ -67,6 +68,7 @@ export default class SiteLinks implements ListComponent {
       'https://maclenjack.github.io/jack-maclennan-portfolio/'
     );
     await page.goto('http://localhost:3000');
+    return true;
   }
 
   /** Getter method. @returns {@link projectsLink}. */

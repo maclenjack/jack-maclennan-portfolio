@@ -38,12 +38,13 @@ export default class SocialIcons implements ListComponent {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
+  public async rendersCorrectly(): Promise<boolean> {
     await expect(this.getWrapper(), 'wrapper is visible').toBeVisible();
     await expect(this.getEmailLink(), 'email link is visible').toBeVisible();
     await expect(this.getGithubLink(), 'github link is visible').toBeVisible();
     await expect(this.getLinkedInLink(), 'linkedin link is visible').toBeVisible();
     expect(await this.getListLength(), 'has list length of 3').toBe(3);
+    return true;
   }
 
   /** Getter method. @returns {@link emailLink}. */

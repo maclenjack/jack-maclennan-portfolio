@@ -1,15 +1,14 @@
 import { aboutMeTest } from '@fixtures/AboutMe';
 import { navBarTest } from '@fixtures/NavBar';
-import { pageTest } from '@fixtures/util';
 import { expect, mergeTests } from '@playwright/test';
 
-const test = mergeTests(pageTest, aboutMeTest, navBarTest);
+const test = mergeTests(aboutMeTest, navBarTest);
 
 const { describe } = test;
 
 describe('all devices', () => {
   test('<NavBar /> renders correctly', async ({ navBar }) => {
-    await navBar.rendersCorrectly();
+    expect(await navBar.rendersCorrectly()).toBeTruthy();
   });
   test('renders headers', async ({ page }) => {
     await expect(page.getByTestId('page-header'), 'page header should be visible').toBeVisible();
