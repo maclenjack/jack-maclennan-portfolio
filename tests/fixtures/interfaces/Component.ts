@@ -13,5 +13,5 @@ export default interface Component {
   /**
    * Test util.
    */
-  rendersCorrectly: () => Promise<void>;
+  rendersCorrectly: () => Promise<boolean>;
 }

@@ -33,9 +33,10 @@ export default class Select implements Component {
   }
 
   /** Testing helper method. */
-  public async rendersCorrectly(): Promise<void> {
+  public async rendersCorrectly(): Promise<boolean> {
     await expect(this.getButton(), 'select button should be visible').toBeVisible();
     await expect(this.getMenu(), 'select menu should be hidden').toBeHidden();
+    return true;
   }
 
   /** Getter method. @returns {@link button}. */
