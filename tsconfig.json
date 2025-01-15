@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,18 +22,38 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@pages/*": ["./src/app/*"],
-      "@components/*": ["./src/components/*"],
-      "@providers/*": ["./src/providers/*"],
-      "@fixtures/*": ["./tests/fixtures/*"]
-    }
+      "@/*": [
+        "./src/*"
+      ],
+      "@pages/*": [
+        "./src/app/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@providers/*": [
+        "./src/providers/*"
+      ],
+      "@fixtures/*": [
+        "./tests/fixtures/*"
+      ]
+    },
+    "target": "ES2017"
   },
   "typedocOptions": {
     "name": "Jack Maclennan Portfolio",
-    "entryPoints": ["src/**", "tests/fixtures/**"],
+    "entryPoints": [
+      "src/**",
+      "tests/fixtures/**"
+    ],
     "out": "docs",
-    "plugin": ["typedoc-plugin-merge-modules", "typedoc-plugin-include-example", "typedoc-plugin-github-widget", "typedoc-plugin-inline-sources", "@zamiell/typedoc-plugin-not-exported"],
+    "plugin": [
+      "typedoc-plugin-merge-modules",
+      "typedoc-plugin-include-example",
+      "typedoc-plugin-github-widget",
+      "typedoc-plugin-inline-sources",
+      "@zamiell/typedoc-plugin-not-exported"
+    ],
     "mergeModulesRenameDefaults": true,
     "mergeModulesMergeMode": "module",
     "githubWidgetUrl": "https://github.com/maclenjack/jack-maclennan-portfolio",
@@ -47,6 +71,14 @@
       "html": true
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
