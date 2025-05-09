@@ -25,6 +25,8 @@ export default function SiteLinks({ className, onClick }: { className?: string; 
       <Link
         className="font-bold text-slate-300"
         href="https://maclenjack.github.io/jack-maclennan-portfolio/"
+        target="_blank"
+        rel="noreferrer"
         data-testid="docs"
       >
         Docs
