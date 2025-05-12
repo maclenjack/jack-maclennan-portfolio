@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -31,7 +35,10 @@
   },
   "typedocOptions": {
     "name": "Jack Maclennan Portfolio",
-    "entryPoints": ["src/**", "tests/fixtures/**"],
+    "entryPoints": [
+      "src/**",
+      "tests/fixtures/**"
+    ],
     "out": "docs",
     "plugin": [
       "typedoc-plugin-merge-modules",
