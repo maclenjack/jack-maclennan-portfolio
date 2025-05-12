@@ -98,6 +98,11 @@ export default [
       'react/jsx-props-no-spreading': 1,
       'react/require-default-props': 0,
       'react/react-in-jsx-scope': 0
+    },
+    settings: {
+      react: {
+        version: 'detect'
+      }
     }
   },
   eslintPluginPrettier
