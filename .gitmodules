@@ -1,0 +1,4 @@
+[submodule "jack-maclennan-portfolio-docs"]
+	path = jack-maclennan-portfolio-docs
+	url = https://github.com/maclenjack/jack-maclennan-portfolio-docs.git
+	branch = main
