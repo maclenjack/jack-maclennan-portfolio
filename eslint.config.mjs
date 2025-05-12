@@ -32,7 +32,7 @@ export default [
       'postcss.config.mjs',
       'vitest.config.mts',
       'jack-maclennan-portfolio-docs',
-    ]         
+    ]
   },
   ...nextCoreWebVitals,
   ...nextTypescript,
@@ -101,13 +101,12 @@ export default [
       ...jsxA11Y.configs.recommended.rules,
       'react/jsx-props-no-spreading': 1,
       'react/require-default-props': 0,
-      'react/react-in-jsx-scope': 0,
-      'react/jsx-uses-react': 0,
-      'react/jsx-uses-vars': 1,
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'warn',
-      'jsx-a11y/alt-text': 'error',
-      'jsx-a11y/anchor-has-content': 'error',
+      'react/react-in-jsx-scope': 0
+    },
+    settings: {
+      react: {
+        version: 'detect'
+      }
     }
   },
   eslintPluginPrettier
