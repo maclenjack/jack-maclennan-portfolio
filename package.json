@@ -13,8 +13,8 @@
     "test:vite": "vitest",
     "test:playwright": "playwright test --headed",
     "test:playwright:report": "playwright show-report",
-    "document": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin @zamiell/typedoc-plugin-not-exported",
-    "document:watch": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin @zamiell/typedoc-plugin-not-exported --watch"
+    "document": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin @zamiell/typedoc-plugin-not-exported --out jack-maclennan-portfolio-docs/docs",
+    "document:watch": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin @zamiell/typedoc-plugin-not-exported --out jack-maclennan-portfolio-docs/docs --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
