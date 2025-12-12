@@ -24,18 +24,17 @@
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
     "clsx": "^2.1.1",
-    "next": "15.1.4",
+    "next": "16.0.10",
     "next-themes": "^0.4.6",
-    "react": "19.0.0",
+    "react": "19.2.3",
     "react-aria-menubutton": "^7.0.3",
     "react-aria-modal": "^5.0.2",
-    "react-dom": "19.0.0",
+    "react-dom": "19.2.3",
     "react-loader-spinner": "^6.1.6",
     "tailwind-gradient-mask-image": "^1.2.0",
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.26.0",
     "@playwright/test": "1.49.1",
     "@testing-library/jest-dom": "^6.6.3",
@@ -44,9 +43,9 @@
     "@types/eslint__js": "^8.42.3",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.15.17",
-    "@types/react": "19.0.7",
+    "@types/react": "19.2.7",
     "@types/react-aria-modal": "^5.0.0",
-    "@types/react-dom": "19.0.3",
+    "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^4.4.1",
     "@vitest/coverage-v8": "^2.1.9",
     "@zamiell/typedoc-plugin-not-exported": "^0.3.0",
@@ -73,12 +72,13 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^2.1.9"
+    "vitest": "^2.1.9",
+    "eslint-config-next": "16.0.10"
   },
   "pnpm": {
     "overrides": {
-      "@types/react": "19.0.7",
-      "@types/react-dom": "19.0.3"
+      "@types/react": "19.2.7",
+      "@types/react-dom": "19.2.3"
     }
   }
 }
