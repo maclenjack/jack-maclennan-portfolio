@@ -47,7 +47,7 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
       </button>
       <AriaModal
         mounted={isActive}
-        dialogClass="w-full h-screen !flex justify-end"
+        dialogClass="w-full h-screen flex! justify-end"
         titleText="hamburger menu"
         onEnter={() => setStartTransition(true)}
         onExit={() => setStartTransition(false)}
@@ -65,7 +65,7 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
             'w-0': !startTransition
           })}
         >
-          <div className="flex h-full w-screen justify-end bg-gradient-to-r from-emerald-700 to-emerald-900">
+          <div className="flex h-full w-screen justify-end bg-linear-to-r from-emerald-700 to-emerald-900">
             <div
               className={clsx('flex h-full flex-col px-12 py-8 text-slate-700 transition-all dark:text-slate-300', {
                 'w-2/3': startTransition,

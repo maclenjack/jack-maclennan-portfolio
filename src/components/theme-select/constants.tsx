@@ -56,11 +56,11 @@ const systemDefault = (
     <span className="whitespace-nowrap">System Default</span>{' '}
     <span className="relative h-6 w-5 self-stretch">
       <FontAwesomeIcon
-        className="absolute inset-y-0 right-0 m-auto text-xl text-slate-300 gradient-mask-t-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%] dark:text-slate-800"
+        className="absolute inset-y-0 right-0 m-auto text-xl text-slate-300 mask-t-from-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%] dark:text-slate-800"
         icon={faMoon}
       />
       <FontAwesomeIcon
-        className="absolute inset-0 m-auto text-xl text-slate-300 gradient-mask-b-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%] dark:text-slate-800"
+        className="absolute inset-0 m-auto text-xl text-slate-300 mask-b-from-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%] mask-b-to-50% dark:text-slate-800"
         icon={faSun}
       />
     </span>
@@ -75,11 +75,11 @@ const systemDefault = (
 const systemDefaultSelected = (
   <span className="relative size-5 self-stretch" data-testid="system-default-selected">
     <FontAwesomeIcon
-      className="absolute inset-y-0 right-0 m-auto text-xl text-slate-300 gradient-mask-t-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%]"
+      className="absolute inset-y-0 right-0 m-auto text-xl text-slate-300 mask-t-from-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%]"
       icon={faMoon}
     />
     <FontAwesomeIcon
-      className="absolute inset-0 m-auto text-xl text-slate-300 gradient-mask-b-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%]"
+      className="absolute inset-0 m-auto text-xl text-slate-300 mask-b-from-[rgba(0,0,0,1.0)_40%,rgba(0,0,0,0.4),transparent_50%]"
       icon={faSun}
     />
   </span>

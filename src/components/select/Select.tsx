@@ -20,7 +20,7 @@ export default function Select({ className = '', selectedOption, placeholder, on
     <Wrapper className="relative" onMenuToggle={toggleIsOpen} onSelection={handleSelection} data-testid="custom-select">
       <Button
         className={clsx(
-          'flex min-h-6 w-fit cursor-pointer items-center gap-2 rounded border border-solid border-transparent outline-none focus-visible:border-slate-800 focus-visible:dark:border-slate-300',
+          'flex min-h-6 w-fit cursor-pointer items-center gap-2 rounded-sm border border-solid border-transparent outline-hidden focus-visible:border-slate-800 dark:focus-visible:border-slate-300',
           className
         )}
         data-testid="custom-select-button"
@@ -33,7 +33,7 @@ export default function Select({ className = '', selectedOption, placeholder, on
       </Button>
       <Menu
         className={clsx(
-          'absolute left-1/2 top-full z-50 max-h-60 w-fit translate-x-[-50%] translate-y-1 list-none overflow-y-auto rounded border border-solid border-slate-900 bg-slate-600 shadow-md shadow-slate-900 dark:bg-slate-400',
+          'absolute left-1/2 top-full z-50 max-h-60 w-fit translate-x-[-50%] translate-y-1 list-none overflow-y-auto rounded-sm border border-solid border-slate-900 bg-slate-600 shadow-md shadow-slate-900 dark:bg-slate-400',
           { block: isOpen, hidden: !isOpen }
         )}
         data-testid="custom-select-menu"
@@ -41,7 +41,7 @@ export default function Select({ className = '', selectedOption, placeholder, on
         {options.map((option) => (
           <MenuItem
             key={option.value}
-            className="flex w-full cursor-pointer items-start px-1 py-2 hover:bg-slate-700 focus:bg-slate-700 hover:dark:bg-slate-300 focus:dark:bg-slate-300"
+            className="flex w-full cursor-pointer items-start px-1 py-2 hover:bg-slate-700 focus:bg-slate-700 dark:hover:bg-slate-300 dark:focus:bg-slate-300"
             value={option}
             data-testid="custom-select-menu-item"
           >

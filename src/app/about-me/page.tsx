@@ -3,7 +3,7 @@ import Image from 'next/image';
 /** About me page located [here](https://jack-maclennan-portfolio.vercel.app/about-me). @source */
 export default function AboutMe() {
   return (
-    <div className="m-8 flex w-full max-w-screen-2xl flex-row items-center justify-around gap-4">
+    <div className="m-8 flex w-full max-w-(--breakpoint-2xl) flex-row items-center justify-around gap-4">
       <div className="flex h-full flex-col justify-around gap-8 sm:basis-2/3 lg:basis-3/5">
         <div className="flex w-full gap-4 max-sm:justify-around">
           <span className="flex flex-col justify-around gap-8">
@@ -14,8 +14,8 @@ export default function AboutMe() {
               Jack Maclennan
             </h1>
           </span>
-          <span className="rounded bg-emerald-700 drop-shadow-lg sm:hidden" data-testid="mobile-image">
-            <Image className="!static overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
+          <span className="rounded-sm bg-emerald-700 drop-shadow-lg sm:hidden" data-testid="mobile-image">
+            <Image className="static! overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
           </span>
         </div>
         <span className="text-slate-800 dark:text-slate-300" data-testid="description">
@@ -29,10 +29,10 @@ export default function AboutMe() {
         </span>
       </div>
       <span
-        className="basis-1/3 rounded bg-emerald-700 drop-shadow-lg max-sm:hidden lg:basis-1/5"
+        className="basis-1/3 rounded-sm bg-emerald-700 drop-shadow-lg max-sm:hidden lg:basis-1/5"
         data-testid="desktop-image"
       >
-        <Image className="!static overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
+        <Image className="static! overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
       </span>
     </div>
   );
