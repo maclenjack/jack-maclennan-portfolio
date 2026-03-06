@@ -13,11 +13,13 @@ describe('all devices', () => {
     test('renders correctly', async ({ navBar }) => {
       expect(await navBar.rendersCorrectly()).toBeTruthy();
     });
+
     test('logo link navigates to /', async ({ page, navBar }) => {
       await page.goto(`/projects`);
       await navBar.getLogo().click();
       await expect(page, 'url is correct').toHaveURL('/');
     });
+
     describe('<ThemeSelect />', () => {
       test('renders <Select />', async ({ navBar }) => {
         await expect(
@@ -25,6 +27,7 @@ describe('all devices', () => {
           'custom select is visible'
         ).toBeVisible();
       });
+
       describe('<Select />', () => {
         test('<Menu /> is visible on <Button /> click', async ({ page }) => {
           const customSelect: Locator = page.getByTestId('custom-select').locator('visible=true');
@@ -62,22 +65,26 @@ describe('mobile', () => {
         });
       });
     });
+
     describe('<HamburgerMenu />', () => {
       test('renders modal on icon click', async ({ hamburgerMenu }) => {
         await expect(hamburgerMenu.getModal().getWrapper(), 'modal is hidden when closed').toBeHidden();
         await hamburgerMenu.openModal();
         await expect(hamburgerMenu.getModal().getWrapper(), 'modal is visible when open').toBeVisible();
       });
+
       test('renders modal correctly', async ({ hamburgerMenu }) => {
         await hamburgerMenu.openModal();
         expect(await hamburgerMenu.getModal().rendersCorrectly()).toBeTruthy();
       });
+
       test('modal is hidden on close', async ({ hamburgerMenu }) => {
         await hamburgerMenu.openModal();
         await expect(hamburgerMenu.getModal().getWrapper(), 'modal is visible when open').toBeVisible();
         await hamburgerMenu.getModal().closeModal();
         await expect(hamburgerMenu.getModal().getWrapper(), 'modal is hidden when closed').toBeHidden();
       });
+
       describe('<SiteLinks />', () => {
         test('navigates correctly', async ({ page, hamburgerMenu }) => {
           expect(
@@ -99,9 +106,11 @@ describe('desktop', () => {
     test('mobile components are hidden', async ({ page }) => {
       await expect(page.getByTestId('mobile-components'), 'mobile components hidden on desktop').toBeHidden();
     });
+
     test('desktop components are visible', async ({ page }) => {
       await expect(page.getByTestId('desktop-components'), 'desktop components visible on desktop').toBeVisible();
     });
+
     test('components are tabbable', async ({ page, navBar }) => {
       await page.keyboard.press('Tab');
       await expect(navBar.getLogo(), 'logo focused on tab').toBeFocused();
@@ -125,14 +134,17 @@ describe('desktop', () => {
         ).toBeFocused();
       }
     });
+
     describe('<SiteLinks />', () => {
       test('renders correctly', async ({ navBar }) => {
         expect(await navBar.getSiteLinks().rendersCorrectly()).toBeTruthy();
       });
+
       test('links navigate correctly', async ({ page, navBar }) => {
         expect(await navBar.getSiteLinks().navigatesCorrectly(page)).toBeTruthy();
       });
     });
+
     describe('<ThemeSelect />', () => {
       test('renders correctly', async ({ navBar }) => {
         const themeSelect: ThemeSelect = navBar.getDesktopThemeSelect();
@@ -141,6 +153,7 @@ describe('desktop', () => {
         await expect(mobileThemeSelect.getWrapper(), 'mobile component is hidden').toBeHidden();
       });
     });
+
     describe('<SocialIcons />', () => {
       test('renders correctly', async ({ navBar }) => {
         expect(await navBar.getSocialIcons().rendersCorrectly()).toBeTruthy();

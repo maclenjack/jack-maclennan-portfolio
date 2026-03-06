@@ -5,7 +5,7 @@ import SocialIcons from '@components/page/nav-bar/SocialIcons';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AriaModal from 'react-aria-modal';
 import { useToggle, useWindowSize } from 'usehooks-ts';
 
@@ -26,13 +26,11 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
     if (!startTransition) toggleActive(); // close menu
   };
 
-  useEffect(() => {
-    if (width > 768) {
-      // close if screen width increases e.g. rotate phone from vertical to landscape
-      setIsActive(false);
-      setStartTransition(false);
-    }
-  }, [setIsActive, setStartTransition, width]);
+  if (width > 768 && isActive) {
+    // close if screen width increases e.g. rotate phone from vertical to landscape
+    setIsActive(false);
+    setStartTransition(false);
+  }
 
   return (
     <div className={clsx(className)} data-testid="hamburger-menu">
@@ -47,7 +45,7 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
       </button>
       <AriaModal
         mounted={isActive}
-        dialogClass="w-full h-screen flex! justify-end"
+        dialogClass="w-full h-screen !flex justify-end"
         titleText="hamburger menu"
         onEnter={() => setStartTransition(true)}
         onExit={() => setStartTransition(false)}

@@ -146,6 +146,7 @@ export default class HamburgerMenu implements Component {
 export const hamburgerMenuTest = test.extend<{ hamburgerMenu: HamburgerMenu }>({
   hamburgerMenu: async ({ page }, use) => {
     const hamburgerMenu = new HamburgerMenu(page);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(hamburgerMenu);
     await hamburgerMenu.cleanup();
   }

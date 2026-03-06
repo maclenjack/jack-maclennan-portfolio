@@ -133,6 +133,7 @@ export default class NavBar implements Component {
 export const navBarTest = test.extend<{ navBar: NavBar }>({
   navBar: async ({ page }, use) => {
     const navBar = new NavBar(page);
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     await use(navBar);
   }
 });

@@ -1,6 +1,5 @@
 {
   "plugins": ["prettier-plugin-organize-imports", "prettier-plugin-tailwindcss"],
-  "tailwindConfig": "./tailwind.config.js",
   "tailwindFunctions": ["clsx"],
   "semi": true,
   "trailingComma": "none",
@@ -8,5 +7,6 @@
   "printWidth": 120,
   "tabWidth": 2,
   "arrowParens": "always",
-  "parser": "typescript"
+  "parser": "typescript",
+  "endOfLine": "auto"
 }

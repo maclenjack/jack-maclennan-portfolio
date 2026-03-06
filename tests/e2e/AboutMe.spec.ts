@@ -10,6 +10,7 @@ describe('all devices', () => {
   test('<NavBar /> renders correctly', async ({ navBar }) => {
     expect(await navBar.rendersCorrectly()).toBeTruthy();
   });
+
   test('renders headers', async ({ page }) => {
     await expect(page.getByTestId('page-header'), 'page header should be visible').toBeVisible();
     await expect(page.getByTestId('name-header'), 'name header should be visible').toBeVisible();
