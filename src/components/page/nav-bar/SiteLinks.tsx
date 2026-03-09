@@ -13,13 +13,19 @@ import Link from 'next/link';
 export default function SiteLinks({ className, onClick }: { className?: string; onClick?: () => void }) {
   return (
     <span className={clsx(className)} data-testid="site-links">
-      <Link className="font-bold text-slate-300" href="/projects" onClick={onClick} data-testid="projects">
+      <Link className="font-bold text-slate-300" href="/projects" onClick={onClick} tabIndex={0} data-testid="projects">
         Projects
       </Link>
-      <Link className="font-bold text-slate-300" href="/experience" onClick={onClick} data-testid="experience">
+      <Link
+        className="font-bold text-slate-300"
+        href="/experience"
+        onClick={onClick}
+        tabIndex={0}
+        data-testid="experience"
+      >
         Experience
       </Link>
-      <Link className="font-bold text-slate-300" href="/about-me" onClick={onClick} data-testid="about-me">
+      <Link className="font-bold text-slate-300" href="/about-me" onClick={onClick} tabIndex={0} data-testid="about-me">
         About Me
       </Link>
       <Link
@@ -27,6 +33,7 @@ export default function SiteLinks({ className, onClick }: { className?: string; 
         href="https://maclenjack.github.io/jack-maclennan-portfolio/"
         target="_blank"
         rel="noreferrer"
+        tabIndex={0}
         data-testid="docs"
       >
         Docs

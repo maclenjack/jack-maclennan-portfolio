@@ -17,7 +17,7 @@ export default function NavBar() {
       data-testid="nav-bar"
     >
       <div className="flex w-full max-w-(--breakpoint-2xl) flex-row justify-between px-12 py-8">
-        <Link href="/" data-testid="logo-link">
+        <Link href="/" tabIndex={0} data-testid="logo-link">
           Logo/name
           {/* TODO: add logo */}
         </Link>
