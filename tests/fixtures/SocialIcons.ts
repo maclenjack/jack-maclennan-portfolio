@@ -8,7 +8,7 @@ import ListComponent from './interfaces/ListComponent';
  *
  * Used in example to be accessed in testing environment.
  *
- * @includeExample tests/fixtures/NavBar.ts:46
+ * @includeExample tests/fixtures/NavBar.ts[40:52]
  * @source
  */
 export default class SocialIcons implements ListComponent {

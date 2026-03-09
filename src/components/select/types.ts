@@ -5,7 +5,6 @@ import { ReactNode } from 'react';
  * @property value the unique key stored by parent
  * @property selected optional value to display with selected option
  * @interface
- * @source
  */
 export interface SelectOption {
   label: ReactNode;
@@ -21,7 +20,6 @@ export interface SelectOption {
  * @property onChange function for parent to handle option change
  * @property loading optional value to display loading component if parent data is asynchronous
  * @interface
- * @source
  */
 export interface SelectProps {
   className?: string;

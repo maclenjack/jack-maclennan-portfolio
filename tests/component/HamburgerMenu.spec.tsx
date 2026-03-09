@@ -3,9 +3,24 @@ import { cleanup, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 
+const setWindowSize = (width: number, height: number) => {
+  Object.defineProperty(window, 'innerWidth', {
+    writable: true,
+    configurable: true,
+    value: width
+  });
+  Object.defineProperty(window, 'innerHeight', {
+    writable: true,
+    configurable: true,
+    value: height
+  });
+  window.dispatchEvent(new Event('resize'));
+};
+
 describe('<HamburgerMenu />', () => {
   describe('inactive', () => {
-    beforeEach(() => {
+    beforeEach(async () => {
+      setWindowSize(375, 667);
       render(<HamburgerMenu />);
     });
     afterEach(() => {

@@ -46,14 +46,24 @@
       "src/**",
       "tests/fixtures/**"
     ],
-    "out": "docs",
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**"
+    ],
+    "out": "jack-maclennan-portfolio-docs/docs",
     "plugin": [
       "typedoc-plugin-merge-modules",
       "typedoc-plugin-include-example",
       "typedoc-plugin-github-widget",
       "typedoc-plugin-inline-sources",
-      "@zamiell/typedoc-plugin-not-exported"
+      "typedoc-plugin-missing-exports"
     ],
+    "includeDocCommentReferences": true,
+    "internalModule": "Not Exported",
+    "placeInternalsInOwningModule": true,
     "mergeModulesRenameDefaults": true,
     "mergeModulesMergeMode": "module",
     "githubWidgetUrl": "https://github.com/maclenjack/jack-maclennan-portfolio",

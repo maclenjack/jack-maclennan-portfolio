@@ -3,10 +3,6 @@
   "extends": ["typedoc/tsdoc.json"],
   "tagDefinitions": [
     {
-      "tagName": "@notExported",
-      "syntaxKind": "block"
-    },
-    {
       "tagName": "@source",
       "syntaxKind": "block"
     },

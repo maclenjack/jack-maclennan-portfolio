@@ -5,7 +5,7 @@ import SocialIcons from '@components/page/nav-bar/SocialIcons';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AriaModal from 'react-aria-modal';
 import { useToggle, useWindowSize } from 'usehooks-ts';
 
@@ -14,7 +14,7 @@ import { useToggle, useWindowSize } from 'usehooks-ts';
  * @param props - The component accepts className as props.
  * @param props.className - Optional prop for styling the wrapper.
  * @returns The rendered HamburgerMenu component.
- * @includeExample src/components/page/nav-bar/NavBar.tsx:29-32
+ * @includeExample src/components/page/nav-bar/NavBar.tsx[29:32]
  * @source
  */
 export default function HamburgerMenu({ className = '' }: { className?: string }) {
@@ -26,13 +26,11 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
     if (!startTransition) toggleActive(); // close menu
   };
 
-  useEffect(() => {
-    if (width > 768) {
-      // close if screen width increases e.g. rotate phone from vertical to landscape
-      setIsActive(false);
-      setStartTransition(false);
-    }
-  }, [setIsActive, setStartTransition, width]);
+  if (width > 768 && isActive) {
+    // close if screen width increases e.g. rotate phone from vertical to landscape
+    setIsActive(false);
+    setStartTransition(false);
+  }
 
   return (
     <div className={clsx(className)} data-testid="hamburger-menu">
@@ -65,7 +63,7 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
             'w-0': !startTransition
           })}
         >
-          <div className="flex h-full w-screen justify-end bg-gradient-to-r from-emerald-700 to-emerald-900">
+          <div className="flex h-full w-screen justify-end bg-linear-to-r from-emerald-700 to-emerald-900">
             <div
               className={clsx('flex h-full flex-col px-12 py-8 text-slate-700 transition-all dark:text-slate-300', {
                 'w-2/3': startTransition,

@@ -6,7 +6,7 @@ import Component from './interfaces/Component';
  * @remarks
  * Provides method helpers for locating child elements and interactivity.
  *
- * @includeExample tests/fixtures/ThemeSelect.ts:31
+ * @includeExample tests/fixtures/ThemeSelect.ts[26:32]
  * @source
  */
 export default class Select implements Component {

@@ -16,6 +16,6 @@ export default defineConfig({
     },
     css: true,
     globals: true,
-    setupFiles: './tests/vite.setup.ts'
+    setupFiles: ['./tests/vite.setup.tsx', 'vitest-localstorage-mock']
   }
 });
