@@ -9,7 +9,7 @@ import Component from './interfaces/Component';
  *
  * Used in example to be accessed in testing environment.
  *
- * @includeExample tests/fixtures/NavBar.ts:47-50
+ * @includeExample tests/fixtures/NavBar.ts[40:52]
  * @source
  */
 export default class ThemeSelect implements Component {

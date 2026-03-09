@@ -13,8 +13,8 @@
     "test:vite": "vitest",
     "test:playwright": "playwright test --headed",
     "test:playwright:report": "playwright show-report",
-    "document": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin @zamiell/typedoc-plugin-not-exported",
-    "document:watch": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin @zamiell/typedoc-plugin-not-exported --watch"
+    "document": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin typedoc-plugin-missing-exports",
+    "document:watch": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin typedoc-plugin-missing-exports --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.2.0",
@@ -48,7 +48,6 @@
     "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
     "@vitest/coverage-v8": "^4.0.18",
-    "@zamiell/typedoc-plugin-not-exported": "^0.3.0",
     "eslint": "9.39.4",
     "eslint-config-next": "16.1.6",
     "eslint-config-prettier": "^10.1.8",
@@ -69,6 +68,7 @@
     "typedoc-plugin-include-example": "^3.0.2",
     "typedoc-plugin-inline-sources": "^1.3.0",
     "typedoc-plugin-merge-modules": "^7.0.0",
+    "typedoc-plugin-missing-exports": "^4.1.2",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.56.1",
     "vite-tsconfig-paths": "^6.1.1",

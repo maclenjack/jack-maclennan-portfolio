@@ -11,7 +11,7 @@ import { useLocalStorage } from 'usehooks-ts';
 /**
  * Implementation of Select. Used to select theme for user: dark, light or system
  * @param className optional value to customize wrapper style
- * @includeExample src/components/page/nav-bar/NavBar.tsx:24-28
+ * @includeExample src/components/page/nav-bar/NavBar.tsx[24:28]
  * @source
  */
 export default function ThemeSelect({ className }: { className?: string }): ReactNode {

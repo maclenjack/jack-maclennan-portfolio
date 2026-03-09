@@ -12,7 +12,7 @@ import Component from './interfaces/Component';
  *
  * Used in example to be accessed in testing environment.
  *
- * @includeExample tests/fixtures/NavBar.ts:132-137
+ * @includeExample tests/fixtures/NavBar.ts[141:147]
  * @source
  */
 export default class NavBar implements Component {
@@ -129,7 +129,15 @@ export default class NavBar implements Component {
   }
 }
 
-/** @hidden */
+/**
+ * Test environment for Navigation Bar.
+ * @remarks
+ * Provides a NavBar to be used in tests.
+ * 
+ * @includeExample tests/e2e/AboutMe.spec.ts[5]
+ * @source
+ * 
+ */
 export const navBarTest = test.extend<{ navBar: NavBar }>({
   navBar: async ({ page }, use) => {
     const navBar = new NavBar(page);

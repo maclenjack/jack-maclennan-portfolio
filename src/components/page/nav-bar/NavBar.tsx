@@ -7,7 +7,7 @@ import Link from 'next/link';
 /**
  * Navigation bar to be visible on all devices.
  * @returns The rendered NavBar component.
- * @includeExample src/components/page/Page.tsx:14-17
+ * @includeExample src/components/page/Page.tsx[14:17]
  * @source
  */
 export default function NavBar() {

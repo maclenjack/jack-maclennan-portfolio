@@ -6,7 +6,7 @@ import Link from 'next/link';
 /**
  * Icon links for navigating to social profiles.
  * @returns The rendered SocialIcons component.
- * @includeExample src/components/page/nav-bar/NavBar.tsx:24-28
+ * @includeExample src/components/page/nav-bar/NavBar.tsx[24:28]
  * @source
  */
 export default function SocialIcons() {

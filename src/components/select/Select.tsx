@@ -6,7 +6,7 @@ import { useToggle } from 'usehooks-ts';
 /**
  * Custom select component. Made to be slightly generic.
  * @param {SelectProps} props
- * @includeExample src/components/theme-select/ThemeSelect.tsx:37-44
+ * @includeExample src/components/theme-select/ThemeSelect.tsx[43:50]
  * @source
  */
 export default function Select({ className = '', selectedOption, placeholder, onChange, options }: SelectProps) {

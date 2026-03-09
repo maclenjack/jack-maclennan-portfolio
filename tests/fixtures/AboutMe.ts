@@ -1,6 +1,14 @@
 import { test } from '@playwright/test';
 
-/** @hidden */
+/**
+ * Test environment for About Me page.
+ * @remarks
+ * Sets up testing environment for About Me page tests by navigating to the page before each test.
+ * 
+ * @includeExample tests/e2e/AboutMe.spec.ts[5]
+ * @source
+ * 
+ */
 export const aboutMeTest = test.extend<{ forEachTest: void }>({
   forEachTest: [
     async ({ page }, use) => {

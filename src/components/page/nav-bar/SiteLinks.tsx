@@ -7,7 +7,7 @@ import Link from 'next/link';
  * @param props.className - Optional prop for styling the wrapper.
  * @param props.onClick - Optional prop to handle click on links.
  * @returns The rendered SiteLinks component.
- * @includeExample src/components/page/nav-bar/NavBar.tsx:24-28
+ * @includeExample src/components/page/nav-bar/NavBar.tsx[24:28]
  * @source
  */
 export default function SiteLinks({ className, onClick }: { className?: string; onClick?: () => void }) {

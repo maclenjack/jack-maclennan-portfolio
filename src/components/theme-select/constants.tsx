@@ -87,7 +87,7 @@ const systemDefaultSelected = (
 
 /**
  * Loading spinner.
- * @includeExample src/components/theme-select/ThemeSelect.tsx:46
+ * @includeExample src/components/theme-select/ThemeSelect.tsx[44:49]
  * @source
  */
 const placeholder = <TailSpin height={16} width={20} color="white" />;
@@ -98,7 +98,7 @@ const placeholder = <TailSpin height={16} width={20} color="white" />;
  * Labels: {@link lightMode}, {@link darkMode}, {@link systemDefault}
  *
  * Selected label: {@link lightModeSelected}, {@link darkModeSelected}, {@link systemDefaultSelected}
- * @includeExample src/components/theme-select/ThemeSelect.tsx:25-28
+ * @includeExample src/components/theme-select/ThemeSelect.tsx[25:28]
  * @source
  */
 const options: Array<SelectOption> = [

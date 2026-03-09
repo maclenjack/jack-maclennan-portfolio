@@ -46,13 +46,20 @@
       "src/**",
       "tests/fixtures/**"
     ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/out/**"
+    ],
     "out": "docs",
     "plugin": [
       "typedoc-plugin-merge-modules",
       "typedoc-plugin-include-example",
       "typedoc-plugin-github-widget",
       "typedoc-plugin-inline-sources",
-      "@zamiell/typedoc-plugin-not-exported"
+      "typedoc-plugin-missing-exports"
     ],
     "mergeModulesRenameDefaults": true,
     "mergeModulesMergeMode": "module",

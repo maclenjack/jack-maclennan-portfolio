@@ -1,6 +1,14 @@
 import { test } from '@playwright/test';
 
-/** @hidden */
+/**
+ * Test environment for Home page.
+ * @remarks
+ * Sets up testing environment for Home page tests by navigating to the page before each test.
+ * 
+ * @includeExample tests/e2e/Home.spec.ts[7]
+ * @source
+ * 
+ */
 export const homeTest = test.extend<{ forEachTest: void }>({
   forEachTest: [
     async ({ page }, use) => {

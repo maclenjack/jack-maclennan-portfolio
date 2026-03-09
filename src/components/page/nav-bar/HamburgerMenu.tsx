@@ -14,7 +14,7 @@ import { useToggle, useWindowSize } from 'usehooks-ts';
  * @param props - The component accepts className as props.
  * @param props.className - Optional prop for styling the wrapper.
  * @returns The rendered HamburgerMenu component.
- * @includeExample src/components/page/nav-bar/NavBar.tsx:29-32
+ * @includeExample src/components/page/nav-bar/NavBar.tsx[29:32]
  * @source
  */
 export default function HamburgerMenu({ className = '' }: { className?: string }) {

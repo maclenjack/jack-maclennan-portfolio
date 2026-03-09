@@ -8,7 +8,7 @@ import Component from './interfaces/Component';
  * @remarks
  * Provides method helpers for locating child elements and interactivity.
  *
- * @includeExample tests/fixtures/HamburgerMenu.ts:105
+ * @includeExample tests/fixtures/HamburgerMenu.ts[103:107]
  * @source
  */
 export class HamburgerModal implements Component {
@@ -85,7 +85,7 @@ export class HamburgerModal implements Component {
  * Provides method helpers for locating child elements and interactivity.
  *
  * Used in example to be accessed in testing environment.
- * @includeExample tests/fixtures/HamburgerMenu.ts:145-151
+ * @includeExample tests/fixtures/HamburgerMenu.ts[154:161]
  * @source
  */
 export default class HamburgerMenu implements Component {
@@ -142,7 +142,15 @@ export default class HamburgerMenu implements Component {
   }
 }
 
-/** @hidden */
+/**
+ * Test environment for Hamburger Menu.
+ * @remarks
+ * Provides a HamburgerMenu to be used in tests.
+ * 
+ * @includeExample tests/e2e/Home.spec.ts[7]
+ * @source
+ * 
+ */
 export const hamburgerMenuTest = test.extend<{ hamburgerMenu: HamburgerMenu }>({
   hamburgerMenu: async ({ page }, use) => {
     const hamburgerMenu = new HamburgerMenu(page);
