@@ -14,7 +14,6 @@ const setWindowSize = (width: number, height: number) => {
     configurable: true,
     value: height
   });
-  // Dispatch a resize event if your component listens for it
   window.dispatchEvent(new Event('resize'));
 };
 
