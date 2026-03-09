@@ -53,7 +53,7 @@
       "**/.next/**",
       "**/out/**"
     ],
-    "out": "docs",
+    "out": "jack-maclennan-portfolio-docs/docs",
     "plugin": [
       "typedoc-plugin-merge-modules",
       "typedoc-plugin-include-example",
@@ -61,6 +61,9 @@
       "typedoc-plugin-inline-sources",
       "typedoc-plugin-missing-exports"
     ],
+    "includeDocCommentReferences": true,
+    "internalModule": "Not Exported",
+    "placeInternalsInOwningModule": true,
     "mergeModulesRenameDefaults": true,
     "mergeModulesMergeMode": "module",
     "githubWidgetUrl": "https://github.com/maclenjack/jack-maclennan-portfolio",
