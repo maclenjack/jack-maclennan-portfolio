@@ -1,8 +1,6 @@
 import ThemeSelect from '@components/theme-select/ThemeSelect';
-import { render, renderHook, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { act } from 'react';
-import { useLocalStorage } from 'usehooks-ts';
 import { beforeEach, describe, it } from 'vitest';
 
 describe('<ThemeSelect />', () => {
@@ -21,36 +19,12 @@ describe('<ThemeSelect />', () => {
   ])('update theme to $themeName', ({ theme, themeName }) => {
     const user = userEvent.setup();
     beforeEach(() => {
-      const { result } = renderHook(() =>
-        useLocalStorage('theme', 'system', {
-          deserializer: (value) => value,
-          initializeWithValue: false,
-          serializer: (value) => value
-        })
-      );
-      act(() => {
-        const [_localTheme, setLocalTheme] = result.current;
-        setLocalTheme('system');
-      });
+      localStorage.setItem('theme', 'system');
     });
     it("should have default value of 'system'", ({ expect }) => {
-      const { result } = renderHook(() =>
-        useLocalStorage('theme', 'system', {
-          deserializer: (value) => value,
-          initializeWithValue: false,
-          serializer: (value) => value
-        })
-      );
-      expect(result.current[0]).toEqual('system');
+      expect(localStorage.getItem('theme')).toEqual('system');
     });
     it(`should update to '${theme}' on change`, async ({ expect }) => {
-      const { result } = renderHook(() =>
-        useLocalStorage('theme', 'system', {
-          deserializer: (value) => value,
-          initializeWithValue: false,
-          serializer: (value) => value
-        })
-      );
       expect(screen.getByTestId(`system-default-selected`)).toBeInTheDocument();
       expect(screen.queryByTestId('custom-select-menu')).not.toBeInTheDocument();
 
@@ -59,7 +33,7 @@ describe('<ThemeSelect />', () => {
       expect(screen.getByTestId('custom-select-menu')).toBeVisible();
 
       await user.click(screen.getByTestId(`${themeName}-option`));
-      expect(result.current[0]).toEqual(theme);
+      expect(localStorage.getItem('theme')).toEqual(theme);
       expect(screen.getByTestId(`${themeName}-selected`)).toBeInTheDocument();
       expect(screen.queryByTestId('custom-select-menu')).not.toBeInTheDocument();
     });
