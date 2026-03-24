@@ -146,10 +146,10 @@ export default class HamburgerMenu implements Component {
  * Test environment for Hamburger Menu.
  * @remarks
  * Provides a HamburgerMenu to be used in tests.
- * 
+ *
  * @includeExample tests/e2e/Home.spec.ts[7]
  * @source
- * 
+ *
  */
 export const hamburgerMenuTest = test.extend<{ hamburgerMenu: HamburgerMenu }>({
   hamburgerMenu: async ({ page }, use) => {
