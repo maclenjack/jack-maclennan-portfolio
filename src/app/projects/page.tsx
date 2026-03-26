@@ -1,3 +1,11 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Projects',
+  description:
+    'Discover my projects as a web developer, showcasing my skills. Explore the various applications and websites I have in the works, demonstrating my passion for programming and my ability to create innovative solutions.'
+};
+
 /** Projects page located [here](https://jack-maclennan-portfolio.vercel.app/projects). @source */
 export default function Projects() {
   return (

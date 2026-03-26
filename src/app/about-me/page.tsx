@@ -1,4 +1,11 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'About Me',
+  description:
+    'Learn more about me, Jack Maclennan, a passionate web developer with experience in React and Ruby on Rails. Discover my background, interests, and what drives me in the world of programming.'
+};
 
 /** About me page located [here](https://jack-maclennan-portfolio.vercel.app/about-me). @source */
 export default function AboutMe() {
