@@ -15,7 +15,7 @@ export default function AboutMe() {
             </h1>
           </span>
           <span className="rounded-sm bg-emerald-700 drop-shadow-lg sm:hidden" data-testid="mobile-image">
-            <Image className="static! overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
+            <Image className="static! overflow-hidden rounded-xl p-2" src="/me.jpg" alt="Jack Maclennan" fill={true} />
           </span>
         </div>
         <span className="text-slate-800 dark:text-slate-300" data-testid="description">

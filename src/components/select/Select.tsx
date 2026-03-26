@@ -23,6 +23,10 @@ export default function Select({ className = '', selectedOption, placeholder, on
           'flex min-h-6 w-fit cursor-pointer items-center gap-2 rounded-sm border border-solid border-transparent outline-hidden focus-visible:border-slate-800 dark:focus-visible:border-slate-300',
           className
         )}
+        role="button"
+        aria-haspopup="listbox"
+        aria-expanded={isOpen}
+        aria-label="select theme"
         data-testid="custom-select-button"
       >
         <span className="flex grow flex-wrap gap-2 text-slate-700 dark:text-slate-300">
@@ -43,6 +47,7 @@ export default function Select({ className = '', selectedOption, placeholder, on
             key={option.value}
             className="flex w-full cursor-pointer items-start px-2 py-3 hover:bg-slate-700 focus:bg-slate-700 dark:hover:bg-slate-300 dark:focus:bg-slate-300"
             value={option}
+            aria-label={`select ${option.label} theme`}
             data-testid="custom-select-menu-item"
           >
             {option.label}

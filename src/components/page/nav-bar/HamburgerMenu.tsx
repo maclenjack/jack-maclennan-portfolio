@@ -75,7 +75,7 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
                 <span className="flex w-full justify-end text-xl text-slate-600 md:text-2xl">
                   <button
                     type="button"
-                    aria-label="exit"
+                    aria-label="exit hamburger menu"
                     onClick={() => setStartTransition(false)}
                     data-testid="hamburger-close"
                   >
