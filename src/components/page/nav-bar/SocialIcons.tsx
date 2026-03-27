@@ -12,13 +12,7 @@ import Link from 'next/link';
 export default function SocialIcons() {
   return (
     <div className="flex flex-row items-center justify-center gap-8" data-testid="social-icons">
-      <Link
-        href="mailto:jackwmaclennan@gmail.com"
-        role="link"
-        aria-label="my email"
-        tabIndex={0}
-        data-testid="email-link"
-      >
+      <Link href="mailto:jackwmaclennan@gmail.com" role="link" aria-label="email" tabIndex={0} data-testid="email-link">
         <FontAwesomeIcon className="h-4 w-5 text-xl text-slate-300" icon={faEnvelope} />
       </Link>
       <Link
@@ -26,7 +20,7 @@ export default function SocialIcons() {
         target="_blank"
         rel="noreferrer"
         role="link"
-        aria-label="my github"
+        aria-label="github"
         tabIndex={0}
         data-testid="github-link"
       >
@@ -37,7 +31,7 @@ export default function SocialIcons() {
         target="_blank"
         rel="noreferrer"
         role="link"
-        aria-label="my linkedin"
+        aria-label="linkedin"
         tabIndex={0}
         data-testid="linkedin-link"
       >

@@ -40,7 +40,7 @@ export default function SiteLinks({ className, onClick }: { className?: string; 
       </Link>
       <Link
         className="font-bold text-slate-300"
-        href="https://maclenjack.github.io/jack-maclennan-portfolio/"
+        href="https://maclenjack.github.io/jack-maclennan-portfolio-docs/"
         target="_blank"
         rel="noreferrer"
         tabIndex={0}

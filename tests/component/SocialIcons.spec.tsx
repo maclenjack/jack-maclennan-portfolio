@@ -13,7 +13,7 @@ describe('<SocialIcons />', () => {
   });
   it('should render links', ({ expect }) => {
     const socialLinks = within(screen.getByTestId('social-icons'));
-    expect(socialLinks.getByLabelText('email me')).toBeDefined();
+    expect(socialLinks.getByLabelText('email')).toBeDefined();
     expect(socialLinks.getByLabelText('github')).toBeDefined();
     expect(socialLinks.getByLabelText('linkedin')).toBeDefined();
   });

@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 /**
  * Provider for theme value: dark, light or system.
  * @param children
- * @includeExample src/app/layout.tsx[27:29]
+ * @includeExample src/app/layout.tsx[35:37]
  * @source
  */
 export default function ThemeProvider({ children }: { children: ReactNode }) {

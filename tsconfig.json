@@ -61,8 +61,8 @@
       "typedoc-plugin-inline-sources",
       "typedoc-plugin-missing-exports"
     ],
+    "excludePrivate": false,
     "includeDocCommentReferences": true,
-    "internalModule": "Not Exported",
     "placeInternalsInOwningModule": true,
     "mergeModulesRenameDefaults": true,
     "mergeModulesMergeMode": "module",

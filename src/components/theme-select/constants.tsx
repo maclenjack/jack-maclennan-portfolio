@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { TailSpin } from 'react-loader-spinner';
 
 /**
- * @notExported
  * {@label lightMode}
  * @source
  */
@@ -15,7 +14,6 @@ const lightMode = (
 );
 
 /**
- * @notExported
  * {@label lightModeSelected}
  * @source
  */
@@ -24,7 +22,6 @@ const lightModeSelected = (
 );
 
 /**
- * @notExported
  * {@label darkMode}
  * @source
  */
@@ -35,7 +32,6 @@ const darkMode = (
 );
 
 /**
- * @notExported
  * {@label darkModeSelected}
  * @source
  */
@@ -44,7 +40,6 @@ const darkModeSelected = (
 );
 
 /**
- * @notExported
  * {@label systemDefault}
  * @source
  */
@@ -68,7 +63,6 @@ const systemDefault = (
 );
 
 /**
- * @notExported
  * {@label systemDefaultSelected}
  * @source
  */

@@ -32,7 +32,7 @@ export default class SocialIcons implements ListComponent {
     this.linkedInLink = this.socialIcons.getByTestId('linkedin-link');
   }
 
-  /** Getter method. @returns {@link siteLinks}. */
+  /** Getter method. @returns {@link socialIcons}. */
   public getWrapper(): Locator {
     return this.socialIcons;
   }
