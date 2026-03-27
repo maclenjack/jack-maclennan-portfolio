@@ -13,9 +13,9 @@ import Component from './interfaces/Component';
  * @source
  */
 export default class ThemeSelect implements Component {
-  /** Component wrapper. */
+  /** Component wrapper. {@link themeSelect} */
   private readonly themeSelect: Locator;
-  /** Child {@link Select}. */
+  /** Child {@link select}. */
   private readonly select: Select;
 
   /**

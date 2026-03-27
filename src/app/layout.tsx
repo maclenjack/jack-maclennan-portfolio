@@ -9,10 +9,18 @@ import './globals.css';
 // import Font Awesome CSS
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
+import { Metadata } from 'next';
 
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | Jack Maclennan Portfolio',
+    default: 'Jack Maclennan Portfolio'
+  }
+};
 
 /**
  * @param props - The component accepts children as props.

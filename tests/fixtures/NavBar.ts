@@ -133,10 +133,10 @@ export default class NavBar implements Component {
  * Test environment for Navigation Bar.
  * @remarks
  * Provides a NavBar to be used in tests.
- * 
+ *
  * @includeExample tests/e2e/AboutMe.spec.ts[5]
  * @source
- * 
+ *
  */
 export const navBarTest = test.extend<{ navBar: NavBar }>({
   navBar: async ({ page }, use) => {

@@ -1,4 +1,11 @@
+import { Metadata } from 'next';
 import Image from 'next/image';
+
+export const metadata: Metadata = {
+  title: 'About Me',
+  description:
+    'Learn more about me, Jack Maclennan, a passionate web developer with experience in React and Ruby on Rails. Discover my background, interests, and what drives me in the world of programming.'
+};
 
 /** About me page located [here](https://jack-maclennan-portfolio.vercel.app/about-me). @source */
 export default function AboutMe() {
@@ -15,7 +22,7 @@ export default function AboutMe() {
             </h1>
           </span>
           <span className="rounded-sm bg-emerald-700 drop-shadow-lg sm:hidden" data-testid="mobile-image">
-            <Image className="static! overflow-hidden rounded-xl p-2" src="/me.jpg" alt="me" fill={true} />
+            <Image className="static! overflow-hidden rounded-xl p-2" src="/me.jpg" alt="Jack Maclennan" fill={true} />
           </span>
         </div>
         <span className="text-slate-800 dark:text-slate-300" data-testid="description">

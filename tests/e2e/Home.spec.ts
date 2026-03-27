@@ -1,3 +1,4 @@
+import { AxeBuilder } from '@axe-core/playwright';
 import { hamburgerMenuTest } from '@fixtures/HamburgerMenu';
 import { homeTest } from '@fixtures/Home';
 import { navBarTest } from '@fixtures/NavBar';
@@ -9,6 +10,13 @@ const test = mergeTests(homeTest, navBarTest, hamburgerMenuTest);
 const { describe } = test;
 
 describe('all devices', () => {
+  describe('AxeBuilder.analyze', () => {
+    test('has no accessibility violations', async ({ page }) => {
+      const results = await new AxeBuilder({ page }).analyze();
+      expect(results.violations, 'no accessibility violations').toEqual([]);
+    });
+  });
+
   describe('<NavBar />', () => {
     test('renders correctly', async ({ navBar }) => {
       expect(await navBar.rendersCorrectly()).toBeTruthy();

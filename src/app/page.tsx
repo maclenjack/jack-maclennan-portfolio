@@ -1,3 +1,11 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description:
+    'Welcome to my portfolio website! I am a software engineer with experience mainly in web development. Please check back soon for updates on my projects and experience.'
+};
+
 /** Home page located [here](https://jack-maclennan-portfolio.vercel.app/). @source */
 export default function Home() {
   return (
