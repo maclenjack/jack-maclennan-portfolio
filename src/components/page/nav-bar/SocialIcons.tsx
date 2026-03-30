@@ -11,13 +11,12 @@ import Link from 'next/link';
  */
 export default function SocialIcons() {
   return (
-    <div className="flex items-center justify-center gap-4 md:flex-row md:gap-6" data-testid="social-icons">
+    <div className="flex items-center justify-center gap-4 md:flex-row md:gap-6" role="group" aria-label="Social links">
       <Link
         href="mailto:jackwmaclennan@gmail.com"
         role="link"
         aria-label="email"
         tabIndex={0}
-        data-testid="email-link"
         className="group flex h-14 w-14 items-center justify-center rounded-xl transition-all hover:bg-slate-100 md:h-auto md:w-auto md:rounded-lg md:p-2 dark:hover:bg-slate-800"
       >
         <FontAwesomeIcon
@@ -32,7 +31,6 @@ export default function SocialIcons() {
         role="link"
         aria-label="github"
         tabIndex={0}
-        data-testid="github-link"
         className="group flex h-14 w-14 items-center justify-center rounded-xl transition-all hover:bg-slate-100 md:h-auto md:w-auto md:rounded-lg md:p-2 dark:hover:bg-slate-800"
       >
         <FontAwesomeIcon
@@ -47,7 +45,6 @@ export default function SocialIcons() {
         role="link"
         aria-label="linkedin"
         tabIndex={0}
-        data-testid="linkedin-link"
         className="group flex h-14 w-14 items-center justify-center rounded-xl transition-all hover:bg-slate-100 md:h-auto md:w-auto md:rounded-lg md:p-2 dark:hover:bg-slate-800"
       >
         <FontAwesomeIcon

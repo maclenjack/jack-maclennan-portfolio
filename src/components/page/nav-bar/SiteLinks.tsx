@@ -12,7 +12,7 @@ import Link from 'next/link';
  */
 export default function SiteLinks({ className, onClick }: { className?: string; onClick?: () => void }) {
   return (
-    <nav className={clsx(className)} data-testid="site-links" aria-label="Site links">
+    <nav className={clsx(className)} aria-label="Site links">
       <ul className="flex flex-col gap-1 md:flex-row md:items-center md:gap-6">
         <li>
           <Link
@@ -22,7 +22,6 @@ export default function SiteLinks({ className, onClick }: { className?: string; 
             tabIndex={0}
             role="link"
             aria-label="projects"
-            data-testid="projects"
           >
             Projects
             <span className="absolute bottom-2 left-3 h-0.5 w-0 bg-linear-to-r from-emerald-500 to-emerald-600 transition-all duration-300 group-hover:w-[calc(100%-1.5rem)] md:bottom-0 md:left-0 md:group-hover:w-full" />
@@ -36,7 +35,6 @@ export default function SiteLinks({ className, onClick }: { className?: string; 
             tabIndex={0}
             role="link"
             aria-label="experience"
-            data-testid="experience"
           >
             Experience
             <span className="absolute bottom-2 left-3 h-0.5 w-0 bg-linear-to-r from-emerald-500 to-emerald-600 transition-all duration-300 group-hover:w-[calc(100%-1.5rem)] md:bottom-0 md:left-0 md:group-hover:w-full" />
@@ -63,7 +61,6 @@ export default function SiteLinks({ className, onClick }: { className?: string; 
             tabIndex={0}
             role="link"
             aria-label="docs"
-            data-testid="docs"
           >
             Docs
             <span className="absolute bottom-2 left-3 h-0.5 w-0 bg-linear-to-r from-emerald-500 to-emerald-600 transition-all duration-300 group-hover:w-[calc(100%-1.5rem)] md:bottom-0 md:left-0 md:group-hover:w-full" />

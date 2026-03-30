@@ -46,12 +46,7 @@ export default function Modal({ isOpen, onClose, children, title = 'Modal' }: Cu
 
   const modalContent = (
     <>
-      <div
-        className="fixed inset-0 z-9999 bg-black/50 backdrop-blur-sm"
-        onClick={onClose}
-        aria-hidden="true"
-        data-testid="custom-modal-backdrop"
-      />
+      <div className="fixed inset-0 z-9999 bg-black/50 backdrop-blur-sm" onClick={onClose} aria-hidden="true" />
 
       <div
         ref={modalRef}
@@ -59,7 +54,6 @@ export default function Modal({ isOpen, onClose, children, title = 'Modal' }: Cu
         role="dialog"
         aria-modal="true"
         aria-labelledby={title}
-        data-testid="custom-modal-content"
         tabIndex={-1}
       >
         {children}

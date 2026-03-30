@@ -30,13 +30,12 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
   }
 
   return (
-    <div className={clsx(className)} data-testid="hamburger-menu">
+    <div className={clsx(className)}>
       <button
         className="group flex h-10 w-10 items-center justify-center rounded-lg transition-all hover:bg-slate-100 dark:hover:bg-slate-800"
         type="button"
         aria-label="open hamburger menu"
         onClick={toggleActive}
-        data-testid="hamburger-icon"
       >
         <FontAwesomeIcon
           className="h-5 w-5 text-slate-600 transition-colors group-hover:text-emerald-600 dark:text-slate-400 dark:group-hover:text-emerald-400"
@@ -52,7 +51,6 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
               aria-label="exit hamburger menu"
               onClick={handleClose}
               className="group flex h-12 w-12 items-center justify-center rounded-xl transition-all hover:bg-slate-100 dark:hover:bg-slate-800"
-              data-testid="hamburger-close"
             >
               <FontAwesomeIcon
                 className="h-6 w-6 text-slate-600 transition-colors group-hover:text-emerald-600 dark:text-slate-400 dark:group-hover:text-emerald-400"

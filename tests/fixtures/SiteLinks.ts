@@ -28,11 +28,11 @@ export default class SiteLinks implements ListComponent {
    * @param parent - Parent element.
    */
   public constructor(public readonly parent: Locator) {
-    this.siteLinks = this.parent.getByTestId('site-links');
-    this.projectsLink = this.siteLinks.getByTestId('projects');
-    this.experienceLink = this.siteLinks.getByTestId('experience');
-    this.aboutMeLink = this.siteLinks.getByTestId('about-me');
-    this.docsLink = this.siteLinks.getByTestId('docs');
+    this.siteLinks = this.parent.getByRole('navigation', { name: 'Site links' });
+    this.projectsLink = this.siteLinks.getByRole('link', { name: 'projects' });
+    this.experienceLink = this.siteLinks.getByRole('link', { name: 'experience' });
+    this.aboutMeLink = this.siteLinks.getByRole('link', { name: 'about me' });
+    this.docsLink = this.siteLinks.getByRole('link', { name: 'docs' });
   }
 
   /** Getter method. @returns {@link siteLinks}. */
