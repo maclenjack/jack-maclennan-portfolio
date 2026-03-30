@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "prettier-format": "prettier --config .prettierrc.json 'src/**/*.*' --write",
-    "test:vite": "vitest",
+    "test:vite": "vitest run",
     "test:playwright": "playwright test --headed",
     "test:playwright:report": "playwright show-report",
     "document": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin typedoc-plugin-missing-exports",
@@ -28,7 +28,6 @@
     "next-themes": "^0.4.6",
     "react": "19.2.4",
     "react-aria-menubutton": "^8.0.0",
-    "react-aria-modal": "^5.0.2",
     "react-dom": "19.2.4",
     "react-loader-spinner": "^8.0.2",
     "usehooks-ts": "^3.1.1"

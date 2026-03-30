@@ -108,6 +108,8 @@ export default [
       'react-hooks/exhaustive-deps': 'warn',
       'jsx-a11y/alt-text': 'error',
       'jsx-a11y/anchor-has-content': 'error',
+      'indent': ['error', 2],
+      '@typescript-eslint/indent': ['error', 2]
     }
   },
   eslintPluginPrettier
