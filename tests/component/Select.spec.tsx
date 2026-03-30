@@ -115,7 +115,7 @@ describe('<Select />', () => {
         );
         await user.click(screen.getByTestId('custom-select-button'));
         await user.click(screen.getAllByTestId('custom-select-menu-item')[options.indexOf(item)]);
-        expect(onChangeSpy).toHaveBeenCalledOnce();
+        expect(onChangeSpy).toHaveBeenCalledTimes(1);
       });
       it("shouldn't trigger onChange when same option selected", async () => {
         const onChangeSpy = vi.fn();
