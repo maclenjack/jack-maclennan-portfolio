@@ -26,20 +26,23 @@ describe('<HamburgerMenu />', () => {
     afterEach(() => {
       cleanup();
     });
-    it('should render hamburger icon', ({ expect }) => {
-      expect(screen.getByTestId('hamburger-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('hamburger-icon')).toBeVisible();
+    it('should render hamburger icon', () => {
+      const hamburgerButton = screen.getByRole('button', { name: 'open hamburger menu' });
+      expect(hamburgerButton).toBeInTheDocument();
+      expect(hamburgerButton).toBeVisible();
     });
-    it("shouldn't mount modal", ({ expect }) => {
-      expect(screen.queryByTestId('hamburger-modal')).not.toBeInTheDocument();
+    it("shouldn't render modal content", () => {
+      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'exit hamburger menu' })).not.toBeInTheDocument();
+      expect(screen.queryByText('Connect')).not.toBeInTheDocument();
+      expect(screen.queryByText('Explore')).not.toBeInTheDocument();
     });
   });
   describe('active', () => {
     const user = userEvent.setup();
     beforeEach(async () => {
-      window.scroll = vi.fn(); // needed for modal
       render(<HamburgerMenu />);
-      await user.click(screen.getByTestId('hamburger-icon'));
+      await user.click(screen.getByRole('button', { name: 'open hamburger menu' }));
     });
     afterEach(() => {
       cleanup();
@@ -48,25 +51,49 @@ describe('<HamburgerMenu />', () => {
     afterAll(() => {
       vi.clearAllMocks();
     });
-    it('should render hamburger icon', ({ expect }) => {
-      expect(screen.getByTestId('hamburger-icon')).toBeInTheDocument();
-      expect(screen.getByTestId('hamburger-icon')).toBeVisible();
+    it('should render hamburger icon', () => {
+      const hamburgerButton = screen.getByRole('button', { name: 'open hamburger menu' });
+      expect(hamburgerButton).toBeInTheDocument();
+      expect(hamburgerButton).toBeVisible();
     });
-    it('should mount modal', ({ expect }) => {
-      expect(screen.getByTestId('hamburger-modal')).toBeInTheDocument();
-      expect(screen.getByTestId('hamburger-modal')).toBeVisible();
+    it('should render modal with menu title', () => {
+      expect(screen.getByText('Menu')).toBeInTheDocument();
     });
-    it('should render close <button />', ({ expect }) => {
-      expect(screen.getByTestId('hamburger-close')).toBeInTheDocument();
-      expect(screen.getByTestId('hamburger-close')).toBeVisible();
+    it('should render close button', () => {
+      const closeButton = screen.getByRole('button', { name: 'exit hamburger menu' });
+      expect(closeButton).toBeInTheDocument();
+      expect(closeButton).toBeVisible();
     });
-    it('should render <SocialIcons />', ({ expect }) => {
-      expect(screen.getByTestId('social-icons')).toBeInTheDocument();
-      expect(screen.getByTestId('social-icons')).toBeVisible();
+    it('should render social icons section', () => {
+      expect(screen.getByText('Connect')).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'email' })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'github' })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: 'linkedin' })).toBeInTheDocument();
     });
-    it('should render <SiteLinks />', ({ expect }) => {
-      expect(screen.getByTestId('site-links')).toBeInTheDocument();
-      expect(screen.getByTestId('site-links')).toBeVisible();
+    it('should render site links section', () => {
+      expect(screen.getByText('Explore')).toBeInTheDocument();
+      const projectsLinks = screen.getAllByRole('link', { name: 'projects' });
+      expect(projectsLinks.length).toBeGreaterThan(0);
+      const experienceLinks = screen.getAllByRole('link', { name: 'experience' });
+      expect(experienceLinks.length).toBeGreaterThan(0);
+      const docsLinks = screen.getAllByRole('link', { name: 'docs' });
+      expect(docsLinks.length).toBeGreaterThan(0);
+    });
+    it('should close modal when close button is clicked', async () => {
+      await user.click(screen.getByRole('button', { name: 'exit hamburger menu' }));
+      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+      expect(screen.queryByRole('button', { name: 'exit hamburger menu' })).not.toBeInTheDocument();
+    });
+    it('should close modal when backdrop is clicked', async () => {
+      const backdrop = document.querySelector('.fixed.inset-0.bg-black\\/50');
+      if (backdrop) {
+        await user.click(backdrop);
+      }
+      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+    });
+    it('should close modal when escape key is pressed', async () => {
+      await user.keyboard('{Escape}');
+      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
     });
   });
 });

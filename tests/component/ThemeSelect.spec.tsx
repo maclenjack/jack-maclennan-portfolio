@@ -7,7 +7,7 @@ describe('<ThemeSelect />', () => {
   beforeEach(() => {
     render(<ThemeSelect />);
   });
-  it('should render custom <Select />', ({ expect }) => {
+  it('should render custom <Select />', () => {
     const select = screen.getByTestId('custom-select');
     expect(select).toBeInTheDocument();
     expect(select).toBeVisible();
@@ -21,10 +21,10 @@ describe('<ThemeSelect />', () => {
     beforeEach(() => {
       localStorage.setItem('theme', 'system');
     });
-    it("should have default value of 'system'", ({ expect }) => {
+    it("should have default value of 'system'", () => {
       expect(localStorage.getItem('theme')).toEqual('system');
     });
-    it(`should update to '${theme}' on change`, async ({ expect }) => {
+    it(`should update to '${theme}' on change`, async () => {
       expect(screen.getByTestId(`system-default-selected`)).toBeInTheDocument();
       expect(screen.queryByTestId('custom-select-menu')).not.toBeInTheDocument();
 

@@ -1,19 +1,19 @@
 import { expect, Locator, Page, test } from '@playwright/test';
+import Component from './interfaces/Component';
+import Modal from './Modal';
 import SiteLinks from './SiteLinks';
 import SocialIcons from './SocialIcons';
-import Component from './interfaces/Component';
 
 /**
  * Fixture for Modal within {@link HamburgerMenu}.
  * @remarks
  * Provides method helpers for locating child elements and interactivity.
+ * Extends the base Modal class with HamburgerMenu-specific functionality.
  *
  * @includeExample tests/fixtures/HamburgerMenu.ts[103:107]
  * @source
  */
-export class HamburgerModal implements Component {
-  /** @public Component wrapper. */
-  private readonly hamburgerModal: Locator;
+export class HamburgerModal extends Modal {
   /** @public Child {@link SocialIcons}. */
   private readonly socialIcons: SocialIcons;
   /** @public Child {@link SiteLinks}. */
@@ -24,16 +24,11 @@ export class HamburgerModal implements Component {
   /**
    * @param page - Playwright page object.
    */
-  public constructor(private readonly page: Page) {
-    this.hamburgerModal = page.getByTestId('hamburger-modal');
-    this.socialIcons = new SocialIcons(this.hamburgerModal);
-    this.siteLinks = new SiteLinks(this.hamburgerModal);
-    this.closeIcon = this.hamburgerModal.getByTestId('hamburger-close');
-  }
-
-  /** Getter method. @returns {@link hamburgerModal}. */
-  public getWrapper(): Locator {
-    return this.hamburgerModal;
+  public constructor(page: Page) {
+    super(page);
+    this.socialIcons = new SocialIcons(this.modal);
+    this.siteLinks = new SiteLinks(this.modal);
+    this.closeIcon = this.modal.getByRole('button', { name: 'exit hamburger menu' });
   }
 
   /** Testing helper method. */
@@ -67,15 +62,18 @@ export class HamburgerModal implements Component {
   }
 
   /** Closes modal by interacting with {@link closeIcon}. */
-  async closeModal(): Promise<void> {
-    await expect(this.hamburgerModal, 'modal should be visible').toBeVisible();
+  public async closeModal(): Promise<void> {
+    await expect(this.modal, 'modal should be visible').toBeVisible();
     await this.getCloseIcon().click();
-    await expect(this.hamburgerModal, 'modal should be hidden').toBeHidden();
+    await expect(this.modal, 'modal should be hidden').toBeHidden();
   }
 
-  /** Cleans up tests by closing {@link hamburgerModal} if left open. */
-  async cleanup(): Promise<void> {
-    if (await this.getWrapper().isVisible()) await this.closeModal();
+  /**
+   * Closes the modal when screen width exceeds the mobile breakpoint.
+   * @param breakpointWidth - The width at which the modal should close (default: 768px).
+   */
+  public async closeOnScreenChange(breakpointWidth: number = 768): Promise<boolean> {
+    return await super.closeOnScreenChange(breakpointWidth);
   }
 }
 
@@ -101,8 +99,11 @@ export default class HamburgerMenu implements Component {
    * @param page - Playwright page object.
    */
   public constructor(private readonly page: Page) {
-    this.hamburgerMenu = this.page.getByTestId('hamburger-menu');
-    this.icon = this.hamburgerMenu.getByTestId('hamburger-icon');
+    this.hamburgerMenu = this.page
+      .locator('div')
+      .filter({ has: this.page.getByRole('button', { name: 'open hamburger menu' }) })
+      .first();
+    this.icon = this.page.getByRole('button', { name: 'open hamburger menu' });
     this.hamburgerModal = new HamburgerModal(page);
   }
 

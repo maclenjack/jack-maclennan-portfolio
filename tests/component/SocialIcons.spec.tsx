@@ -1,20 +1,22 @@
 import SocialIcons from '@components/page/nav-bar/SocialIcons';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 
 describe('<SocialIcons />', () => {
   beforeEach(() => {
     render(<SocialIcons />);
   });
-  it('renders wrapper <div />', ({ expect }) => {
-    const wrapperDiv = screen.getByTestId('social-icons');
-    expect(wrapperDiv).toBeInTheDocument();
-    expect(wrapperDiv).toBeVisible();
+  it('renders social links container', () => {
+    const emailLink = screen.getByRole('link', { name: 'email' });
+    expect(emailLink).toBeInTheDocument();
+    expect(emailLink).toBeVisible();
   });
-  it('should render links', ({ expect }) => {
-    const socialLinks = within(screen.getByTestId('social-icons'));
-    expect(socialLinks.getByLabelText('email')).toBeDefined();
-    expect(socialLinks.getByLabelText('github')).toBeDefined();
-    expect(socialLinks.getByLabelText('linkedin')).toBeDefined();
+  it('should render links', () => {
+    expect(screen.getByRole('link', { name: 'email' })).toHaveAttribute('href', 'mailto:jackwmaclennan@gmail.com');
+    expect(screen.getByRole('link', { name: 'github' })).toHaveAttribute('href', 'https://github.com/maclenjack/');
+    expect(screen.getByRole('link', { name: 'linkedin' })).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/in/jack-maclennan/'
+    );
   });
 });

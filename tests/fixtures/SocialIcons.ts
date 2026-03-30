@@ -26,10 +26,10 @@ export default class SocialIcons implements ListComponent {
    * @param parent - Parent element.
    */
   public constructor(public readonly parent: Locator) {
-    this.socialIcons = this.parent.getByTestId('social-icons');
-    this.emailLink = this.socialIcons.getByTestId('email-link');
-    this.githubLink = this.socialIcons.getByTestId('github-link');
-    this.linkedInLink = this.socialIcons.getByTestId('linkedin-link');
+    this.socialIcons = this.parent.getByRole('group', { name: 'Social links' });
+    this.emailLink = this.socialIcons.getByRole('link', { name: 'email' });
+    this.githubLink = this.socialIcons.getByRole('link', { name: 'github' });
+    this.linkedInLink = this.socialIcons.getByRole('link', { name: 'linkedin' });
   }
 
   /** Getter method. @returns {@link socialIcons}. */
