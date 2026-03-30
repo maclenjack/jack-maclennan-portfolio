@@ -10,12 +10,12 @@ describe('<Page />', () => {
       </Page>
     );
   });
-  it('should render <NavBar />', ({ expect }) => {
+  it('should render <NavBar />', () => {
     const navBar = screen.getByTestId('nav-bar');
     expect(navBar).toBeInTheDocument();
     expect(navBar).toBeVisible();
   });
-  it('should render children', ({ expect }) => {
+  it('should render children', () => {
     const children = screen.getByTestId('children');
     expect(children).toBeInTheDocument();
     expect(children).toBeVisible();

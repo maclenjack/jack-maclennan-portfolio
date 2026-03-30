@@ -37,12 +37,12 @@ describe('<Select />', () => {
     cleanup();
   });
   describe('default', () => {
-    it('should render <Wrapper />', ({ expect }) => {
+    it('should render <Wrapper />', () => {
       const wrapper = screen.getByTestId('custom-select');
       expect(wrapper).toBeInTheDocument();
       expect(wrapper).toBeVisible();
     });
-    it('should render <Button />', ({ expect }) => {
+    it('should render <Button />', () => {
       const button = screen.getByTestId('custom-select-button');
       expect(button).toBeInTheDocument();
       expect(button).toBeVisible();
@@ -61,7 +61,7 @@ describe('<Select />', () => {
       );
       expect(screen.getByText(props.placeholder.label)).toBeInTheDocument();
     });
-    it('should display selectedOption label when selectedOption is defined', ({ expect }) => {
+    it('should display selectedOption label when selectedOption is defined', () => {
       cleanup();
       render(
         <Select
@@ -76,7 +76,7 @@ describe('<Select />', () => {
     });
   });
   describe('not active', () => {
-    it("shouldn't render <Menu />", ({ expect }) => {
+    it("shouldn't render <Menu />", () => {
       const menu = screen.queryByTestId('custom-select-menu');
       expect(menu).not.toBeInTheDocument();
     });
@@ -86,11 +86,11 @@ describe('<Select />', () => {
     beforeEach(async () => {
       await user.click(screen.getByTestId('custom-select-button'));
     });
-    it('should render <Menu />', ({ expect }) => {
+    it('should render <Menu />', () => {
       const menu = screen.getByTestId('custom-select-menu');
       expect(menu).toBeInTheDocument();
     });
-    it('should render <MenuItem />s', ({ expect }) => {
+    it('should render <MenuItem />s', () => {
       const menuItems = screen.getAllByTestId('custom-select-menu-item');
       expect(menuItems).toHaveLength(3);
       menuItems.forEach((menuItem, i) => {
@@ -103,7 +103,7 @@ describe('<Select />', () => {
       beforeEach(() => {
         cleanup();
       });
-      it('should trigger onChange when different option selected', async ({ expect }) => {
+      it('should trigger onChange when different option selected', async () => {
         const onChangeSpy = vi.fn();
         render(
           <Select
@@ -117,7 +117,7 @@ describe('<Select />', () => {
         await user.click(screen.getAllByTestId('custom-select-menu-item')[options.indexOf(item)]);
         expect(onChangeSpy).toHaveBeenCalledOnce();
       });
-      it("shouldn't trigger onChange when same option selected", async ({ expect }) => {
+      it("shouldn't trigger onChange when same option selected", async () => {
         const onChangeSpy = vi.fn();
         render(
           <Select

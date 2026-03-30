@@ -6,7 +6,7 @@ describe('<NavBar />', () => {
   beforeEach(() => {
     render(<NavBar />);
   });
-  it('should render logo <Link />', ({ expect }) => {
+  it('should render logo <Link />', () => {
     const logoLink = screen.getByTestId('logo-link');
     expect(logoLink).toBeInTheDocument();
     expect(logoLink).toBeVisible();
