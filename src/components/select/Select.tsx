@@ -17,38 +17,51 @@ export default function Select({ className = '', selectedOption, placeholder, on
   }
 
   return (
-    <Wrapper className="relative" onMenuToggle={toggleIsOpen} onSelection={handleSelection} data-testid="custom-select">
+    <Wrapper
+      className="relative"
+      onMenuToggle={toggleIsOpen}
+      onSelection={handleSelection}
+      role="group"
+      aria-label="selector"
+    >
       <Button
         className={clsx(
-          'flex min-h-6 w-fit cursor-pointer items-center gap-2 rounded-sm border border-solid border-transparent outline-hidden focus-visible:border-slate-800 dark:focus-visible:border-slate-300',
+          'flex min-h-11 w-fit cursor-pointer items-center gap-3 rounded-lg border border-slate-200 bg-white px-4 py-2 outline-hidden transition-all hover:border-slate-300 focus-visible:border-emerald-500 focus-visible:ring-2 focus-visible:ring-emerald-500/20 sm:min-h-6 sm:px-3 sm:py-1.5 dark:border-slate-700 dark:bg-slate-800 dark:hover:border-slate-600 dark:focus-visible:border-emerald-400 dark:focus-visible:ring-emerald-400/20',
           className
         )}
         role="button"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
-        aria-label="select theme"
-        data-testid="custom-select-button"
+        aria-label="select option"
       >
         <span className="flex grow flex-wrap gap-2 text-slate-700 dark:text-slate-300">
           {selectedOption?.selected || selectedOption?.label || placeholder?.label}
         </span>
-        <div className="w-px self-stretch bg-slate-300" />
-        <div className="translate-y-1/4 border-4 border-solid border-transparent border-t-slate-300" />
+        <svg
+          className={clsx('h-4 w-4 text-slate-400 transition-transform duration-200 dark:text-slate-500', {
+            'rotate-180': isOpen
+          })}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
       </Button>
       <Menu
         className={clsx(
-          'absolute top-full left-1/2 z-50 max-h-60 w-fit translate-x-[-50%] translate-y-1 list-none overflow-y-auto rounded-sm border border-solid border-slate-900 bg-slate-600 shadow-md shadow-slate-900 dark:bg-slate-400',
-          { block: isOpen, hidden: !isOpen }
+          'absolute top-full left-1/2 z-50 mt-2 max-h-60 w-fit translate-x-[-50%] list-none overflow-y-auto rounded-lg border border-slate-200 bg-white shadow-lg shadow-slate-900/10 dark:border-slate-700 dark:bg-slate-800 dark:shadow-slate-900/20',
+          { 'block opacity-100': isOpen, 'hidden opacity-0': !isOpen }
         )}
-        data-testid="custom-select-menu"
+        role="listbox"
       >
         {options.map((option) => (
           <MenuItem
             key={option.value}
-            className="flex w-full cursor-pointer items-start px-2 py-3 hover:bg-slate-700 focus:bg-slate-700 dark:hover:bg-slate-300 dark:focus:bg-slate-300"
+            className="flex w-full cursor-pointer items-start px-4 py-3 text-slate-700 transition-colors hover:bg-slate-50 focus:bg-slate-50 sm:px-3 sm:py-2 dark:text-slate-300 dark:hover:bg-slate-700 dark:focus:bg-slate-700"
             value={option}
-            aria-label={`select ${option.label} theme`}
-            data-testid="custom-select-menu-item"
+            role="option"
+            aria-label={`select ${option.label}`}
           >
             {option.label}
           </MenuItem>

@@ -13,21 +13,18 @@ import Component from './interfaces/Component';
  * @source
  */
 export default class ThemeSelect implements Component {
-  /** Component wrapper. {@link themeSelect} */
-  private readonly themeSelect: Locator;
   /** Child {@link select}. */
   private readonly select: Select;
 
   /**
    * Fixture constructor - initialise variables.
    * @param page - Playwright Page object.
-   * @param parent - Parent element.
+   * @param themeSelect - ThemeSelect locator.
    */
   public constructor(
     private readonly page: Page,
-    private readonly parent: Locator
+    private readonly themeSelect: Locator
   ) {
-    this.themeSelect = this.parent.getByTestId('theme-select');
     this.select = new Select(this.themeSelect);
   }
 
@@ -38,6 +35,7 @@ export default class ThemeSelect implements Component {
 
   /** Testing helper method. */
   public async rendersCorrectly(): Promise<boolean> {
+    await expect(this.getWrapper(), 'theme select should be visible').toBeVisible();
     expect(await this.getSelect().rendersCorrectly()).toBeTruthy();
     return true;
   }
@@ -54,6 +52,11 @@ export default class ThemeSelect implements Component {
 
   /** Setter method; sets theme value stored in local storage. */
   public async setTheme(theme: string): Promise<void> {
-    await this.select.selectOption(`${theme}-option`);
+    const themeLabels: Record<string, string> = {
+      'light-mode': 'Light',
+      'dark-mode': 'Dark',
+      'system-default': 'System'
+    };
+    await this.select.selectOption(themeLabels[theme] || theme);
   }
 }

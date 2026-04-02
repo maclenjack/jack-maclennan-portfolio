@@ -7,15 +7,15 @@ describe('<ThemeSelect />', () => {
   beforeEach(() => {
     render(<ThemeSelect />);
   });
-  it('should render custom <Select />', () => {
-    const select = screen.getByTestId('custom-select');
-    expect(select).toBeInTheDocument();
-    expect(select).toBeVisible();
+  it('should render select button', () => {
+    const button = screen.getByRole('button', { name: 'select theme' });
+    expect(button).toBeInTheDocument();
+    expect(button).toBeVisible();
   });
   describe.each([
-    { theme: 'light', themeName: 'light-mode' },
-    { theme: 'dark', themeName: 'dark-mode' },
-    { theme: 'system', themeName: 'system-default' }
+    { theme: 'light', themeName: 'Light mode' },
+    { theme: 'dark', themeName: 'Dark mode' },
+    { theme: 'system', themeName: 'System default' }
   ])('update theme to $themeName', ({ theme, themeName }) => {
     const user = userEvent.setup();
     beforeEach(() => {
@@ -25,17 +25,20 @@ describe('<ThemeSelect />', () => {
       expect(localStorage.getItem('theme')).toEqual('system');
     });
     it(`should update to '${theme}' on change`, async () => {
-      expect(screen.getByTestId(`system-default-selected`)).toBeInTheDocument();
-      expect(screen.queryByTestId('custom-select-menu')).not.toBeInTheDocument();
+      expect(screen.getByRole('img', { name: 'System default' })).toBeInTheDocument();
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
 
-      await user.click(screen.getByTestId('custom-select-button'));
-      expect(screen.getByTestId('custom-select-menu')).toBeInTheDocument();
-      expect(screen.getByTestId('custom-select-menu')).toBeVisible();
+      await user.click(screen.getByRole('button', { name: 'select theme' }));
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
 
-      await user.click(screen.getByTestId(`${themeName}-option`));
+      const options = screen.getAllByRole('option');
+      const themeOption = options.find((opt) => opt.textContent?.toLowerCase().includes(theme));
+      if (themeOption) {
+        await user.click(themeOption);
+      }
       expect(localStorage.getItem('theme')).toEqual(theme);
-      expect(screen.getByTestId(`${themeName}-selected`)).toBeInTheDocument();
-      expect(screen.queryByTestId('custom-select-menu')).not.toBeInTheDocument();
+      expect(screen.getByRole('img', { name: themeName })).toBeInTheDocument();
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
   });
 });

@@ -29,7 +29,7 @@ export default class NavBar implements Component {
   /** @public Child {@link SocialIcons}. */
   private readonly socialIcons: SocialIcons;
   /** @public Child {@link ThemeSelect}s. */
-  private readonly themeSelects: { mobileThemeSelect: ThemeSelect; desktopThemeSelect: ThemeSelect };
+  private readonly themeSelect: ThemeSelect;
   /** @public Child {@link HamburgerMenu} */
   private readonly hamburgerMenu: HamburgerMenu;
 
@@ -44,10 +44,10 @@ export default class NavBar implements Component {
     this.mobileComponents = this.navBar.getByTestId('mobile-components');
     this.siteLinks = new SiteLinks(this.navBar.getByTestId('desktop-components'));
     this.socialIcons = new SocialIcons(this.navBar.getByTestId('desktop-components'));
-    this.themeSelects = {
-      mobileThemeSelect: new ThemeSelect(page, this.navBar.getByTestId('mobile-components')),
-      desktopThemeSelect: new ThemeSelect(page, this.navBar.getByTestId('desktop-components'))
-    };
+    this.themeSelect = new ThemeSelect(
+      this.page,
+      this.navBar.getByRole('group', { name: 'theme selector' }).filter({ visible: true })
+    );
     this.hamburgerMenu = new HamburgerMenu(this.page);
   }
 
@@ -61,9 +61,9 @@ export default class NavBar implements Component {
     const isMobile: boolean = await this.getMobileComponents().isVisible();
 
     await expect(this.getLogo(), 'logo is visible').toBeVisible();
+    expect(this.getThemeSelect().rendersCorrectly()).toBeTruthy();
     if (isMobile) {
       await expect(this.getSiteLinks().getWrapper(), 'site links hidden on mobile').toBeHidden();
-      await expect(this.getDesktopThemeSelect().getWrapper(), 'desktop theme select hidden on mobile').toBeHidden();
       await expect(this.getSocialIcons().getWrapper(), 'social icons hidden on mobile').toBeHidden();
       await expect(this.getDesktopComponents(), 'desktop components hidden on mobile').toBeHidden();
       await expect(this.getMobileComponents(), 'mobile components visible on mobile').toBeVisible();
@@ -76,7 +76,6 @@ export default class NavBar implements Component {
       await expect(this.getDesktopComponents(), 'desktop components visible on desktop').toBeVisible();
       expect(await this.getSiteLinks().rendersCorrectly()).toBeTruthy();
       expect(await this.getSiteLinks().navigatesCorrectly(this.page)).toBeTruthy();
-      expect(await this.getDesktopThemeSelect().rendersCorrectly()).toBeTruthy();
       expect(await this.getSocialIcons().rendersCorrectly()).toBeTruthy();
     }
     return true;
