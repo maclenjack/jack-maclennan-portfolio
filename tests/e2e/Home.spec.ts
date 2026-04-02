@@ -58,6 +58,7 @@ describe('all devices', () => {
   });
 });
 
+describe('mobile', () => {
   describe('<NavBar />', () => {
     describe('<HamburgerMenu />', () => {
       test('renders modal on icon click', async ({ hamburgerMenu }) => {
