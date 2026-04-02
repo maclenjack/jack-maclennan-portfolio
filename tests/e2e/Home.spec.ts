@@ -2,8 +2,9 @@ import { AxeBuilder } from '@axe-core/playwright';
 import { hamburgerMenuTest } from '@fixtures/HamburgerMenu';
 import { homeTest } from '@fixtures/Home';
 import { navBarTest } from '@fixtures/NavBar';
+import Select from '@fixtures/Select';
 import ThemeSelect from '@fixtures/ThemeSelect';
-import { expect, Locator, mergeTests } from '@playwright/test';
+import { expect, mergeTests } from '@playwright/test';
 
 const test = mergeTests(homeTest, navBarTest, hamburgerMenuTest);
 
@@ -29,34 +30,15 @@ describe('all devices', () => {
     });
 
     describe('<ThemeSelect />', () => {
-      test('renders <Select />', async ({ navBar }) => {
-        await expect(
-          (await navBar.getVisibleThemeSelect()).getSelect().getWrapper(),
-          'custom select is visible'
-        ).toBeVisible();
-      });
-
       describe('<Select />', () => {
-        test('<Menu /> is visible on <Button /> click', async ({ page }) => {
-          const customSelect: Locator = page.getByTestId('custom-select').locator('visible=true');
-          await expect(
-            customSelect.getByTestId('custom-select-menu'),
-            'custom select menu is hidden when closed'
-          ).toBeHidden();
-          await customSelect.getByTestId('custom-select-button').click();
-          await expect(
-            customSelect.getByTestId('custom-select-menu'),
-            'custom select menu is visible when open'
-          ).toBeVisible();
+        test('<Menu /> is visible on <Button /> click', async ({ navBar }) => {
+          const select: Select = navBar.getThemeSelect().getSelect();
+          await expect(select.getMenu(), 'custom select menu is hidden when closed').toBeHidden();
+          await select.getButton().click();
+          await expect(select.getMenu(), 'custom select menu is visible when open').toBeVisible();
         });
       });
-    });
-  });
-});
 
-describe('mobile', () => {
-  describe('<NavBar />', () => {
-    describe('<ThemeSelect />', () => {
       type TestOption = { theme: string; themeName: string };
       const testOptions: Array<TestOption> = [
         { theme: 'light', themeName: 'light-mode' },
@@ -65,7 +47,7 @@ describe('mobile', () => {
       ];
       testOptions.forEach(({ theme, themeName }: TestOption, i: number) => {
         test(`set theme to ${themeName}`, async ({ navBar }) => {
-          const themeSelect: ThemeSelect = navBar.getMobileThemeSelect();
+          const themeSelect: ThemeSelect = navBar.getThemeSelect();
           await themeSelect.setTheme(testOptions[(i + 1) % 3].themeName);
           await themeSelect.setTheme(themeName);
           const resolvedTheme = await themeSelect.getTheme();
@@ -73,7 +55,10 @@ describe('mobile', () => {
         });
       });
     });
+  });
+});
 
+  describe('<NavBar />', () => {
     describe('<HamburgerMenu />', () => {
       test('renders modal on icon click', async ({ hamburgerMenu }) => {
         await expect(hamburgerMenu.getModal().getWrapper(), 'modal is hidden when closed').toBeHidden();
@@ -111,14 +96,6 @@ describe('mobile', () => {
 
 describe('desktop', () => {
   describe('<NavBar />', () => {
-    test('mobile components are hidden', async ({ page }) => {
-      await expect(page.getByTestId('mobile-components'), 'mobile components hidden on desktop').toBeHidden();
-    });
-
-    test('desktop components are visible', async ({ page }) => {
-      await expect(page.getByTestId('desktop-components'), 'desktop components visible on desktop').toBeVisible();
-    });
-
     test('components are tabbable', async ({ page, navBar }) => {
       await page.keyboard.press('Tab');
       await expect(navBar.getLogo(), 'logo focused on tab').toBeFocused();
@@ -131,9 +108,6 @@ describe('desktop', () => {
         ).toBeFocused();
       }
 
-      await page.keyboard.press('Tab');
-      await expect(navBar.getDesktopThemeSelect().getSelect().getButton(), 'theme select focused on tab').toBeFocused();
-
       for (let i: number = 0; i < (await navBar.getSocialIcons().getListLength()); i++) {
         await page.keyboard.press('Tab');
         await expect(
@@ -141,6 +115,9 @@ describe('desktop', () => {
           `social icon at index ${i} focused on tab`
         ).toBeFocused();
       }
+
+      await page.keyboard.press('Tab');
+      await expect(navBar.getThemeSelect().getSelect().getButton(), 'theme select focused on tab').toBeFocused();
     });
 
     describe('<SiteLinks />', () => {
@@ -150,15 +127,6 @@ describe('desktop', () => {
 
       test('links navigate correctly', async ({ page, navBar }) => {
         expect(await navBar.getSiteLinks().navigatesCorrectly(page)).toBeTruthy();
-      });
-    });
-
-    describe('<ThemeSelect />', () => {
-      test('renders correctly', async ({ navBar }) => {
-        const themeSelect: ThemeSelect = navBar.getDesktopThemeSelect();
-        const mobileThemeSelect: ThemeSelect = navBar.getMobileThemeSelect();
-        await expect(themeSelect.getWrapper(), 'desktop component is visible').toBeVisible();
-        await expect(mobileThemeSelect.getWrapper(), 'mobile component is hidden').toBeHidden();
       });
     });
 

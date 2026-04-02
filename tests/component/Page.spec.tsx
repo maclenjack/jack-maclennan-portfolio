@@ -6,17 +6,17 @@ describe('<Page />', () => {
   beforeEach(() => {
     render(
       <Page>
-        <h1 data-testid="children">child</h1>
+        <h1>child</h1>
       </Page>
     );
   });
   it('should render <NavBar />', () => {
-    const navBar = screen.getByTestId('nav-bar');
+    const navBar = screen.getByRole('navigation', { name: 'Main navigation' });
     expect(navBar).toBeInTheDocument();
     expect(navBar).toBeVisible();
   });
   it('should render children', () => {
-    const children = screen.getByTestId('children');
+    const children = screen.getByRole('heading', { name: 'child' });
     expect(children).toBeInTheDocument();
     expect(children).toBeVisible();
     expect(children).toHaveTextContent('child');
