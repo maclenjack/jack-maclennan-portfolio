@@ -7,7 +7,7 @@ describe('<NavBar />', () => {
     render(<NavBar />);
   });
   it('should render logo <Link />', () => {
-    const logoLink = screen.getByTestId('logo-link');
+    const logoLink = screen.getByRole('link', { name: 'home' });
     expect(logoLink).toBeInTheDocument();
     expect(logoLink).toBeVisible();
     expect(logoLink).toHaveAttribute('href', '/');

@@ -13,22 +13,34 @@ import Link from 'next/link';
 export default function NavBar() {
   return (
     <nav
-      className="z-50 flex h-24 w-full justify-center bg-linear-to-r from-emerald-700 to-emerald-900 shadow-md shadow-slate-900"
-      data-testid="nav-bar"
+      className="sticky top-0 z-50 w-full border-b border-slate-200/20 bg-white/80 backdrop-blur-md dark:border-slate-700/40 dark:bg-slate-900/80"
+      aria-label="Main navigation"
     >
-      <div className="flex w-full max-w-(--breakpoint-2xl) flex-row justify-between px-12 py-8">
-        <Link href="/" tabIndex={0} role="link" aria-label="home" data-testid="logo-link">
-          <h1 className="text-2xl font-bold text-slate-300">Jack Maclennan</h1>
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <Link
+          href="/"
+          tabIndex={0}
+          role="link"
+          aria-label="home"
+          className="group flex items-center gap-3 transition-all hover:gap-4"
+        >
+          <div className="h-10 w-10 rounded-xl bg-linear-to-br from-emerald-500 to-emerald-600 shadow-lg shadow-emerald-500/20 transition-transform group-hover:scale-110" />
+          <h1 className="bg-linear-to-r from-slate-900 to-slate-600 bg-clip-text text-xl font-bold text-transparent dark:from-slate-100 dark:to-slate-400">
+            Jack Maclennan
+          </h1>
         </Link>
-        <span className="flex items-center gap-6 max-md:hidden" data-testid="desktop-components">
-          <SiteLinks className="flex items-center gap-6" />
-          <ThemeSelect />
+
+        <div className="flex items-center gap-8 max-md:hidden">
+          <SiteLinks className="flex items-center gap-8" />
+          <div className="h-8 w-px bg-slate-200 dark:bg-slate-700" />
           <SocialIcons />
-        </span>
-        <span className="flex items-center gap-4 md:hidden" data-testid="mobile-components">
+          <ThemeSelect />
+        </div>
+
+        <div className="flex items-center gap-3 md:hidden">
           <ThemeSelect />
           <HamburgerMenu />
-        </span>
+        </div>
       </div>
     </nav>
   );
