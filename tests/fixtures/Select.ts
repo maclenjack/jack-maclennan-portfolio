@@ -22,9 +22,9 @@ export default class Select implements Component {
    * @param parent - Parent element.
    */
   public constructor(public readonly parent: Locator) {
-    this.select = this.parent.getByTestId('custom-select');
-    this.button = this.select.getByTestId('custom-select-button');
-    this.menu = this.select.getByTestId('custom-select-menu');
+    this.select = this.parent.getByRole('group', { name: 'selector', exact: true });
+    this.button = this.parent.getByRole('button');
+    this.menu = this.select.getByRole('listbox');
   }
 
   /** Getter method. @returns {@link select}. */
@@ -34,6 +34,7 @@ export default class Select implements Component {
 
   /** Testing helper method. */
   public async rendersCorrectly(): Promise<boolean> {
+    await expect(this.getWrapper(), 'select should be visible').toBeVisible();
     await expect(this.getButton(), 'select button should be visible').toBeVisible();
     await expect(this.getMenu(), 'select menu should be hidden').toBeHidden();
     return true;
@@ -58,10 +59,10 @@ export default class Select implements Component {
    * Selects option by interacting with {@link menu}.
    * @param identifier - Test ID of option element.
    */
-  public async selectOption(identifier: string): Promise<void> {
+  public async selectOption(optionText: string): Promise<void> {
     await this.openMenu();
     await expect(this.getMenu()).toBeVisible();
-    await this.getMenu().getByTestId(identifier).click();
+    await this.getMenu().getByText(optionText).click();
     await expect(this.getMenu()).toBeHidden();
   }
 }

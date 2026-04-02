@@ -1,5 +1,5 @@
 import HamburgerMenu from '@components/page/nav-bar/HamburgerMenu';
-import { cleanup, render, screen } from '@testing-library/react';
+import { cleanup, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 
@@ -32,10 +32,12 @@ describe('<HamburgerMenu />', () => {
       expect(hamburgerButton).toBeVisible();
     });
     it("shouldn't render modal content", () => {
-      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+      expect(screen.queryByText('Menu')).not.toBeInTheDocument();
       expect(screen.queryByRole('button', { name: 'exit hamburger menu' })).not.toBeInTheDocument();
       expect(screen.queryByText('Connect')).not.toBeInTheDocument();
+      expect(screen.queryByRole('group', { name: 'Social links' })).not.toBeInTheDocument();
       expect(screen.queryByText('Explore')).not.toBeInTheDocument();
+      expect(screen.queryByRole('navigation', { name: 'Site links' })).not.toBeInTheDocument();
     });
   });
   describe('active', () => {
@@ -66,22 +68,15 @@ describe('<HamburgerMenu />', () => {
     });
     it('should render social icons section', () => {
       expect(screen.getByText('Connect')).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: 'email' })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: 'github' })).toBeInTheDocument();
-      expect(screen.getByRole('link', { name: 'linkedin' })).toBeInTheDocument();
+      expect(screen.getByRole('group', { name: 'Social links' })).toBeInTheDocument();
     });
     it('should render site links section', () => {
       expect(screen.getByText('Explore')).toBeInTheDocument();
-      const projectsLinks = screen.getAllByRole('link', { name: 'projects' });
-      expect(projectsLinks.length).toBeGreaterThan(0);
-      const experienceLinks = screen.getAllByRole('link', { name: 'experience' });
-      expect(experienceLinks.length).toBeGreaterThan(0);
-      const docsLinks = screen.getAllByRole('link', { name: 'docs' });
-      expect(docsLinks.length).toBeGreaterThan(0);
+      expect(screen.getByRole('navigation', { name: 'Site links' })).toBeInTheDocument();
     });
     it('should close modal when close button is clicked', async () => {
       await user.click(screen.getByRole('button', { name: 'exit hamburger menu' }));
-      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+      expect(screen.queryByText('Menu')).not.toBeInTheDocument();
       expect(screen.queryByRole('button', { name: 'exit hamburger menu' })).not.toBeInTheDocument();
     });
     it('should close modal when backdrop is clicked', async () => {
@@ -89,11 +84,18 @@ describe('<HamburgerMenu />', () => {
       if (backdrop) {
         await user.click(backdrop);
       }
-      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+      expect(screen.queryByText('Menu')).not.toBeInTheDocument();
     });
     it('should close modal when escape key is pressed', async () => {
       await user.keyboard('{Escape}');
-      expect(screen.queryByText('Mobile Menu')).not.toBeInTheDocument();
+      expect(screen.queryByText('Menu')).not.toBeInTheDocument();
+    });
+    it('should close modal when screen size increases past 768', async () => {
+      expect(screen.getByText('Menu')).toBeInTheDocument();
+      setWindowSize(1024, 768);
+      await waitFor(() => {
+        expect(screen.queryByText('Menu')).not.toBeInTheDocument();
+      });
     });
   });
 });

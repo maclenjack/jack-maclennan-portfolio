@@ -37,19 +37,12 @@ describe('<Select />', () => {
     cleanup();
   });
   describe('default', () => {
-    it('should render <Wrapper />', () => {
-      const wrapper = screen.getByTestId('custom-select');
-      expect(wrapper).toBeInTheDocument();
-      expect(wrapper).toBeVisible();
-    });
-    it('should render <Button />', () => {
-      const button = screen.getByTestId('custom-select-button');
+    it('should render select button', () => {
+      const button = screen.getByRole('button', { name: 'select option' });
       expect(button).toBeInTheDocument();
       expect(button).toBeVisible();
     });
-    it('should display placeholder label when placeholder prop passed and selectedOption is undefined', ({
-      expect
-    }) => {
+    it('should display placeholder label when placeholder prop passed and selectedOption is undefined', () => {
       cleanup();
       render(
         <Select
@@ -76,22 +69,21 @@ describe('<Select />', () => {
     });
   });
   describe('not active', () => {
-    it("shouldn't render <Menu />", () => {
-      const menu = screen.queryByTestId('custom-select-menu');
-      expect(menu).not.toBeInTheDocument();
+    it("shouldn't render menu", () => {
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
     });
   });
   describe('active', () => {
     const user = userEvent.setup();
     beforeEach(async () => {
-      await user.click(screen.getByTestId('custom-select-button'));
+      await user.click(screen.getByRole('button', { name: 'select option' }));
     });
-    it('should render <Menu />', () => {
-      const menu = screen.getByTestId('custom-select-menu');
+    it('should render menu', () => {
+      const menu = screen.getByRole('listbox');
       expect(menu).toBeInTheDocument();
     });
-    it('should render <MenuItem />s', () => {
-      const menuItems = screen.getAllByTestId('custom-select-menu-item');
+    it('should render menu items', () => {
+      const menuItems = screen.getAllByRole('option');
       expect(menuItems).toHaveLength(3);
       menuItems.forEach((menuItem, i) => {
         const { getByText } = within(menuItem);
@@ -113,8 +105,8 @@ describe('<Select />', () => {
             onChange={onChangeSpy}
           />
         );
-        await user.click(screen.getByTestId('custom-select-button'));
-        await user.click(screen.getAllByTestId('custom-select-menu-item')[options.indexOf(item)]);
+        await user.click(screen.getByRole('button', { name: 'select option' }));
+        await user.click(screen.getAllByRole('option')[options.indexOf(item)]);
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
       });
       it("shouldn't trigger onChange when same option selected", async () => {
@@ -127,8 +119,8 @@ describe('<Select />', () => {
             onChange={onChangeSpy}
           />
         );
-        await user.click(screen.getByTestId('custom-select-button'));
-        await user.click(screen.getAllByTestId('custom-select-menu-item')[options.indexOf(item)]);
+        await user.click(screen.getByRole('button', { name: 'select option' }));
+        await user.click(screen.getAllByRole('option')[options.indexOf(item)]);
         expect(onChangeSpy).not.toHaveBeenCalled();
       });
     });

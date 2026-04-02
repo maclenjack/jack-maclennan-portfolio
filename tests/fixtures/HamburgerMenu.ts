@@ -26,8 +26,12 @@ export class HamburgerModal extends Modal {
    */
   public constructor(page: Page) {
     super(page);
-    this.socialIcons = new SocialIcons(this.modal);
-    this.siteLinks = new SiteLinks(this.modal);
+    this.socialIcons = new SocialIcons(
+      this.modal.getByRole('group', { name: 'Social links' }).filter({ visible: true })
+    );
+    this.siteLinks = new SiteLinks(
+      this.modal.getByRole('navigation', { name: 'Site links' }).filter({ visible: true })
+    );
     this.closeIcon = this.modal.getByRole('button', { name: 'exit hamburger menu' });
   }
 
@@ -91,19 +95,13 @@ export default class HamburgerMenu implements Component {
   private readonly hamburgerMenu: Locator;
   /** @public Modal wrapper. */
   private readonly hamburgerModal: HamburgerModal;
-  /** @public Icon used to open {@link hamburgerModal} on interact */
-  private readonly icon: Locator;
 
   /**
    * Fixture constructor - initialise variables.
    * @param page - Playwright page object.
    */
   public constructor(private readonly page: Page) {
-    this.hamburgerMenu = this.page
-      .locator('div')
-      .filter({ has: this.page.getByRole('button', { name: 'open hamburger menu' }) })
-      .first();
-    this.icon = this.page.getByRole('button', { name: 'open hamburger menu' });
+    this.hamburgerMenu = this.page.getByRole('button', { name: 'open hamburger menu' });
     this.hamburgerModal = new HamburgerModal(page);
   }
 
@@ -114,14 +112,9 @@ export default class HamburgerMenu implements Component {
 
   /** Testing helper method. */
   public async rendersCorrectly(): Promise<boolean> {
-    await expect(this.getIcon(), 'hamburger icon visible when closed').toBeVisible();
+    await expect(this.hamburgerMenu, 'hamburger icon visible when closed').toBeVisible();
     expect(await this.getModal().rendersCorrectly()).toBeTruthy();
     return true;
-  }
-
-  /** Getter method. @returns {@link icon}. */
-  getIcon(): Locator {
-    return this.icon;
   }
 
   /** Getter method. @returns {@link hamburgerModal}. */
@@ -132,7 +125,7 @@ export default class HamburgerMenu implements Component {
   /** Opens {@link hamburgerModal} by interacting with {@link icon}. */
   async openModal(): Promise<HamburgerModal> {
     await expect(this.getModal().getWrapper(), 'modal should be hidden').toBeHidden();
-    await this.getIcon().click();
+    await this.hamburgerMenu.click();
     await expect(this.getModal().getWrapper(), 'modal should be visible').toBeVisible();
     return this.getModal();
   }

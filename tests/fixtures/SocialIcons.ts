@@ -13,8 +13,6 @@ import ListComponent from './interfaces/ListComponent';
  */
 export default class SocialIcons implements ListComponent {
   /** @public Component wrapper. */
-  private readonly socialIcons: Locator;
-  /** @public Component wrapper. */
   private readonly emailLink: Locator;
   /** @public Component wrapper. */
   private readonly githubLink: Locator;
@@ -23,10 +21,9 @@ export default class SocialIcons implements ListComponent {
 
   /**
    * Fixture constructor - initialise variables.
-   * @param parent - Parent element.
+   * @param socialIcons - Social icons locator.
    */
-  public constructor(public readonly parent: Locator) {
-    this.socialIcons = this.parent.getByRole('group', { name: 'Social links' });
+  public constructor(private readonly socialIcons: Locator) {
     this.emailLink = this.socialIcons.getByRole('link', { name: 'email' });
     this.githubLink = this.socialIcons.getByRole('link', { name: 'github' });
     this.linkedInLink = this.socialIcons.getByRole('link', { name: 'linkedin' });

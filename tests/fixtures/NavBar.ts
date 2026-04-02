@@ -20,16 +20,12 @@ export default class NavBar implements Component {
   private readonly navBar: Locator;
   /** @public Logo link element. */
   private readonly logoLink: Locator;
-  /** @public Wrapper for elements only visible on desktop screen sizes. */
-  private readonly desktopComponents: Locator;
-  /** @public Wrapper for elements only visible on mobile screen sizes. */
-  private readonly mobileComponents: Locator;
   /** @public Child {@link SiteLinks}. */
   private readonly siteLinks: SiteLinks;
   /** @public Child {@link SocialIcons}. */
   private readonly socialIcons: SocialIcons;
   /** @public Child {@link ThemeSelect}s. */
-  private readonly themeSelects: { mobileThemeSelect: ThemeSelect; desktopThemeSelect: ThemeSelect };
+  private readonly themeSelect: ThemeSelect;
   /** @public Child {@link HamburgerMenu} */
   private readonly hamburgerMenu: HamburgerMenu;
 
@@ -38,16 +34,18 @@ export default class NavBar implements Component {
    * @param page - Playwright page object.
    */
   public constructor(private readonly page: Page) {
-    this.navBar = this.page.getByTestId('nav-bar');
-    this.logoLink = this.navBar.getByTestId('logo-link');
-    this.desktopComponents = this.navBar.getByTestId('desktop-components');
-    this.mobileComponents = this.navBar.getByTestId('mobile-components');
-    this.siteLinks = new SiteLinks(this.navBar.getByTestId('desktop-components'));
-    this.socialIcons = new SocialIcons(this.navBar.getByTestId('desktop-components'));
-    this.themeSelects = {
-      mobileThemeSelect: new ThemeSelect(page, this.navBar.getByTestId('mobile-components')),
-      desktopThemeSelect: new ThemeSelect(page, this.navBar.getByTestId('desktop-components'))
-    };
+    this.navBar = this.page.getByRole('navigation', { name: 'Main navigation' });
+    this.logoLink = this.navBar.getByRole('link', { name: 'home' });
+    this.siteLinks = new SiteLinks(
+      this.navBar.getByRole('navigation', { name: 'Site links' }).filter({ visible: true })
+    );
+    this.socialIcons = new SocialIcons(
+      this.navBar.getByRole('group', { name: 'Social links' }).filter({ visible: true })
+    );
+    this.themeSelect = new ThemeSelect(
+      this.page,
+      this.navBar.getByRole('group', { name: 'theme selector' }).filter({ visible: true })
+    );
     this.hamburgerMenu = new HamburgerMenu(this.page);
   }
 
@@ -58,25 +56,20 @@ export default class NavBar implements Component {
 
   /** Testing helper method. */
   public async rendersCorrectly(): Promise<boolean> {
-    const isMobile: boolean = await this.getMobileComponents().isVisible();
+    const viewportSize = this.page.viewportSize();
+    const isMobile = viewportSize !== null && viewportSize.width < 768;
 
+    await expect(this.getWrapper(), 'navbar is visible').toBeVisible();
     await expect(this.getLogo(), 'logo is visible').toBeVisible();
+    expect(this.getThemeSelect().rendersCorrectly()).toBeTruthy();
     if (isMobile) {
       await expect(this.getSiteLinks().getWrapper(), 'site links hidden on mobile').toBeHidden();
-      await expect(this.getDesktopThemeSelect().getWrapper(), 'desktop theme select hidden on mobile').toBeHidden();
       await expect(this.getSocialIcons().getWrapper(), 'social icons hidden on mobile').toBeHidden();
-      await expect(this.getDesktopComponents(), 'desktop components hidden on mobile').toBeHidden();
-      await expect(this.getMobileComponents(), 'mobile components visible on mobile').toBeVisible();
-      expect(await this.getMobileThemeSelect().rendersCorrectly()).toBeTruthy();
       expect(await this.getHamburgerMenu().rendersCorrectly()).toBeTruthy();
     } else {
-      await expect(this.getMobileThemeSelect().getWrapper(), 'mobile theme select hidden on desktop').toBeHidden();
       await expect(this.getHamburgerMenu().getWrapper(), 'hamburger menu hidden on desktop').toBeHidden();
-      await expect(this.getMobileComponents(), 'mobile components hidden on desktop').toBeHidden();
-      await expect(this.getDesktopComponents(), 'desktop components visible on desktop').toBeVisible();
       expect(await this.getSiteLinks().rendersCorrectly()).toBeTruthy();
       expect(await this.getSiteLinks().navigatesCorrectly(this.page)).toBeTruthy();
-      expect(await this.getDesktopThemeSelect().rendersCorrectly()).toBeTruthy();
       expect(await this.getSocialIcons().rendersCorrectly()).toBeTruthy();
     }
     return true;
@@ -87,35 +80,14 @@ export default class NavBar implements Component {
     return this.logoLink;
   }
 
-  /** Getter method. @returns {@link mobileComponents}. */
-  getMobileComponents(): Locator {
-    return this.mobileComponents;
-  }
-
-  /** Getter method. @returns {@link themeSelects | mobileThemeSelect}. */
-  getMobileThemeSelect(): ThemeSelect {
-    return this.themeSelects.mobileThemeSelect;
-  }
-
-  /** Getter method. @returns {@link desktopComponents}. */
-  getDesktopComponents(): Locator {
-    return this.desktopComponents;
-  }
-
-  /** Getter method @returns {@link themeSelects} based on which one is visible. */
-  public async getVisibleThemeSelect(): Promise<ThemeSelect> {
-    if (await this.getMobileThemeSelect().getWrapper().isVisible()) return this.getMobileThemeSelect();
-    else return this.getDesktopThemeSelect();
+  /** Getter method @returns visible theme select using Playwright's visibility filtering. */
+  public getThemeSelect(): ThemeSelect {
+    return this.themeSelect;
   }
 
   /** Getter method. @returns {@link siteLinks}. */
   getSiteLinks(): SiteLinks {
     return this.siteLinks;
-  }
-
-  /** Getter method. @returns {@link themeSelects | desktopThemeSelect}. */
-  getDesktopThemeSelect(): ThemeSelect {
-    return this.themeSelects.desktopThemeSelect;
   }
 
   /** Getter method. @returns {@link socialIcons}. */

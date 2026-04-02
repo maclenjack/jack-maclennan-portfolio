@@ -2,7 +2,7 @@
 
 import Select from '@components/select/Select';
 import { SelectOption } from '@components/select/types';
-import { options, placeholder } from '@components/theme-select/constants';
+import { options, placeholder } from '@constants/theme-select';
 import clsx from 'clsx';
 import { useTheme } from 'next-themes';
 import { ReactNode, useCallback, useEffect, useState } from 'react';
@@ -40,7 +40,7 @@ export default function ThemeSelect({ className }: { className?: string }): Reac
   };
 
   return (
-    <div className={clsx(className)} data-testid="theme-select">
+    <div className={clsx(className)} role="group" aria-label="theme selector">
       <Select
         selectedOption={selectedOption}
         placeholder={{ value: 'placeholder', label: placeholder }}

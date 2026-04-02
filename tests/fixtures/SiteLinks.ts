@@ -12,8 +12,6 @@ import ListComponent from './interfaces/ListComponent';
  * @source
  */
 export default class SiteLinks implements ListComponent {
-  /** @public Component wrapper. */
-  private readonly siteLinks: Locator;
   /** @public Projects link element. */
   private readonly projectsLink: Locator;
   /** @public Experience link element. */
@@ -25,10 +23,9 @@ export default class SiteLinks implements ListComponent {
 
   /**
    * Fixture constructor - initialise variables.
-   * @param parent - Parent element.
+   * @param siteLinks - Site links locator.
    */
-  public constructor(public readonly parent: Locator) {
-    this.siteLinks = this.parent.getByRole('navigation', { name: 'Site links' });
+  public constructor(private readonly siteLinks: Locator) {
     this.projectsLink = this.siteLinks.getByRole('link', { name: 'projects' });
     this.experienceLink = this.siteLinks.getByRole('link', { name: 'experience' });
     this.aboutMeLink = this.siteLinks.getByRole('link', { name: 'about me' });

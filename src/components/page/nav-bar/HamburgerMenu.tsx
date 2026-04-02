@@ -5,18 +5,15 @@ import SiteLinks from '@components/page/nav-bar/SiteLinks';
 import SocialIcons from '@components/page/nav-bar/SocialIcons';
 import { faBars, faX } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import clsx from 'clsx';
 import { useToggle, useWindowSize } from 'usehooks-ts';
 
 /**
  * Menu for mobile devices.
- * @param props - The component accepts className as props.
- * @param props.className - Optional prop for styling the wrapper.
  * @returns The rendered HamburgerMenu component.
  * @includeExample src/components/page/nav-bar/NavBar.tsx[29:32]
  * @source
  */
-export default function HamburgerMenu({ className = '' }: { className?: string }) {
+export default function HamburgerMenu() {
   const [isActive, toggleActive, setIsActive] = useToggle();
   const { width } = useWindowSize();
 
@@ -30,7 +27,7 @@ export default function HamburgerMenu({ className = '' }: { className?: string }
   }
 
   return (
-    <div className={clsx(className)}>
+    <div>
       <button
         className="group flex h-10 w-10 items-center justify-center rounded-lg transition-all hover:bg-slate-100 dark:hover:bg-slate-800"
         type="button"

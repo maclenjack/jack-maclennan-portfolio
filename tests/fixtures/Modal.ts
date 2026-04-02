@@ -80,7 +80,7 @@ export default class Modal implements Component {
    */
   public async closeModalWithBackdrop(): Promise<void> {
     await expect(this.modal, 'modal should be visible').toBeVisible();
-    const backdrop = this.page.getByTestId('custom-modal-backdrop');
+    const backdrop = this.page.locator('.fixed').first();
     if (await backdrop.isVisible()) {
       await backdrop.click();
       await expect(this.modal, 'modal should be hidden').toBeHidden();
