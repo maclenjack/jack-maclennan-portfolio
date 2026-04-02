@@ -38,7 +38,7 @@ describe('<Select />', () => {
   });
   describe('default', () => {
     it('should render select button', () => {
-      const button = screen.getByRole('button', { name: 'select theme' });
+      const button = screen.getByRole('button', { name: 'select option' });
       expect(button).toBeInTheDocument();
       expect(button).toBeVisible();
     });
@@ -76,7 +76,7 @@ describe('<Select />', () => {
   describe('active', () => {
     const user = userEvent.setup();
     beforeEach(async () => {
-      await user.click(screen.getByRole('button', { name: 'select theme' }));
+      await user.click(screen.getByRole('button', { name: 'select option' }));
     });
     it('should render menu', () => {
       const menu = screen.getByRole('listbox');
@@ -105,7 +105,7 @@ describe('<Select />', () => {
             onChange={onChangeSpy}
           />
         );
-        await user.click(screen.getByRole('button', { name: 'select theme' }));
+        await user.click(screen.getByRole('button', { name: 'select option' }));
         await user.click(screen.getAllByRole('option')[options.indexOf(item)]);
         expect(onChangeSpy).toHaveBeenCalledTimes(1);
       });
@@ -119,7 +119,7 @@ describe('<Select />', () => {
             onChange={onChangeSpy}
           />
         );
-        await user.click(screen.getByRole('button', { name: 'select theme' }));
+        await user.click(screen.getByRole('button', { name: 'select option' }));
         await user.click(screen.getAllByRole('option')[options.indexOf(item)]);
         expect(onChangeSpy).not.toHaveBeenCalled();
       });

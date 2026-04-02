@@ -8,7 +8,7 @@ describe('<ThemeSelect />', () => {
     render(<ThemeSelect />);
   });
   it('should render select button', () => {
-    const button = screen.getByRole('button', { name: 'select theme' });
+    const button = screen.getByRole('button', { name: 'select option' });
     expect(button).toBeInTheDocument();
     expect(button).toBeVisible();
   });
@@ -28,7 +28,7 @@ describe('<ThemeSelect />', () => {
       expect(screen.getByRole('img', { name: 'System default' })).toBeInTheDocument();
       expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
 
-      await user.click(screen.getByRole('button', { name: 'select theme' }));
+      await user.click(screen.getByRole('button', { name: 'select option' }));
       expect(screen.getByRole('listbox')).toBeInTheDocument();
 
       const options = screen.getAllByRole('option');
