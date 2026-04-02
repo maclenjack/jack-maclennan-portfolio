@@ -42,12 +42,6 @@ export default class NavBar implements Component {
     this.socialIcons = new SocialIcons(
       this.navBar.getByRole('group', { name: 'Social links' }).filter({ visible: true })
     );
-    this.navBar = this.page.getByTestId('nav-bar');
-    this.logoLink = this.navBar.getByTestId('logo-link');
-    this.desktopComponents = this.navBar.getByTestId('desktop-components');
-    this.mobileComponents = this.navBar.getByTestId('mobile-components');
-    this.siteLinks = new SiteLinks(this.navBar.getByTestId('desktop-components'));
-    this.socialIcons = new SocialIcons(this.navBar.getByTestId('desktop-components'));
     this.themeSelect = new ThemeSelect(
       this.page,
       this.navBar.getByRole('group', { name: 'theme selector' }).filter({ visible: true })
