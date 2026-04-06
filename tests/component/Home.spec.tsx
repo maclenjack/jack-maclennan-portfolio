@@ -7,7 +7,9 @@ describe('<Home />', () => {
     render(<Home />);
   });
   it('should render a header', () => {
-    const heading = screen.getByRole('heading', { level: 1 });
+    const heading = screen.getByRole('heading', {
+      name: 'Page is currently in development, please check in later.'
+    });
     expect(heading).toBeInTheDocument();
     expect(heading).toBeVisible();
   });

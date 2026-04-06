@@ -7,19 +7,17 @@ describe('<AboutMe />', () => {
     render(<AboutMe />);
   });
   it('should render header', () => {
-    const header = screen.getByTestId('page-header');
+    const header = screen.getByRole('heading', { name: 'About Me' });
     expect(header).toBeInTheDocument();
     expect(header).toBeVisible();
-    expect(header).toHaveTextContent('About Me');
   });
   it('should render name', () => {
-    const name = screen.getByTestId('name-header');
+    const name = screen.getByRole('heading', { name: 'Jack Maclennan' });
     expect(name).toBeInTheDocument();
     expect(name).toBeVisible();
-    expect(name).toHaveTextContent('Jack Maclennan');
   });
   it('should render description', () => {
-    const description = screen.getByTestId('description');
+    const description = screen.getByText(/Hello! My name is Jack Maclennan/);
     expect(description).toBeInTheDocument();
     expect(description).toBeVisible();
   });
