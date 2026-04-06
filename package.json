@@ -10,9 +10,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
     "prettier-format": "prettier --config .prettierrc.json 'src/**/*.*' --write",
-    "test:vite": "vitest run",
-    "test:playwright": "playwright test --headed",
-    "test:playwright:report": "playwright show-report",
+    "test:component": "vitest run",
+    "test:e2e": "playwright test --reporter=list",
     "document": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin typedoc-plugin-missing-exports",
     "document:watch": "typedoc --plugin typedoc-plugin-merge-modules --plugin typedoc-plugin-include-example --plugin typedoc-plugin-inline-sources --plugin typedoc-plugin-github-widget --plugin typedoc-plugin-missing-exports --watch"
   },

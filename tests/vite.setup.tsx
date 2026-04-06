@@ -1,4 +1,3 @@
-import '@/app/globals.css';
 import '@testing-library/jest-dom';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import { expect, vi } from 'vitest';
@@ -9,5 +8,5 @@ expect.extend(matchers);
 vi.mock('@/app/globals.css', () => ({}));
 
 vi.mock('react-loader-spinner', () => ({
-  TailSpin: () => <div data-testid="tail-spin" />
+  TailSpin: () => <div role="status" aria-label="loading" />
 }));

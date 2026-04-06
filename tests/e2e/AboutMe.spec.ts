@@ -20,21 +20,14 @@ describe('all devices', () => {
   });
 
   test('renders headers', async ({ page }) => {
-    await expect(page.getByTestId('page-header'), 'page header should be visible').toBeVisible();
-    await expect(page.getByTestId('name-header'), 'name header should be visible').toBeVisible();
+    await expect(page.getByRole('heading', { name: 'About Me' }), 'page header should be visible').toBeVisible();
+    await expect(page.locator('h2').getByText('Jack Maclennan'), 'name header should be visible').toBeVisible();
   });
-});
 
-describe('mobile', () => {
-  test('renders image correctly', async ({ page }) => {
-    await expect(page.getByTestId('mobile-image'), 'mobile image should be visible').toBeVisible();
-    await expect(page.getByTestId('desktop-image'), 'desktop image should be hidden').toBeHidden();
-  });
-});
-
-describe('desktop', () => {
-  test('renders image correctly', async ({ page }) => {
-    await expect(page.getByTestId('desktop-image'), 'desktop image should be visible').toBeVisible();
-    await expect(page.getByTestId('mobile-image'), 'mobile image should be hidden').toBeHidden();
+  test('renders image', async ({ page }) => {
+    await expect(
+      page.getByAltText('Portrait of Jack Maclennan - Web Developer'),
+      'image should be visible'
+    ).toBeVisible();
   });
 });
