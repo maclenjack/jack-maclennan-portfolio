@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -5,6 +6,7 @@ export type CardListItemData = {
   id: string;
   href: string;
   imageSrc: string;
+  imageFit?: string;
   title: string;
   subtitle: string;
   description?: string;
@@ -22,7 +24,15 @@ export default function CardListItem({ item }: CardListItemProps) {
         className="block overflow-hidden rounded-xl focus-visible:ring-2 focus-visible:ring-blue-500"
       >
         <div className="relative h-44 w-full bg-slate-100">
-          <Image src={item.imageSrc} alt={item.title} fill className="object-contain" />
+          <Image
+            src={item.imageSrc}
+            alt={item.title}
+            fill
+            className={clsx({
+              'object-contain': item.imageFit === undefined,
+              'object-cover': item.imageFit === 'cover'
+            })}
+          />
         </div>
         <div className="p-4">
           <h2 className="text-lg font-semibold text-slate-800 dark:text-slate-100">{item.title}</h2>
