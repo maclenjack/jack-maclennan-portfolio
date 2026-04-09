@@ -50,8 +50,8 @@ export default async function ProjectIdPage({ params }: ProjectPageProps) {
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
-              <div className="h-1 w-16 rounded-full bg-linear-to-r from-emerald-500 to-emerald-600" />
-              <h2 className="text-sm font-semibold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
+              <div className="h-1 w-16 rounded-full bg-linear-to-r from-emerald-700 to-emerald-800" />
+              <h2 className="text-sm font-semibold tracking-wider text-emerald-800 uppercase dark:text-emerald-300">
                 Project
               </h2>
             </div>
@@ -72,7 +72,7 @@ export default async function ProjectIdPage({ params }: ProjectPageProps) {
 
           {/* Technologies */}
           <div className="flex flex-col gap-3">
-            <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technologies Used</h3>
+            <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technologies Used</h2>
             <div className="flex flex-wrap gap-2">
               {item.technologies.map((tech) => (
                 <span
@@ -119,7 +119,7 @@ export default async function ProjectIdPage({ params }: ProjectPageProps) {
             {item.demoUrl && (
               <Link
                 href={item.demoUrl}
-                className="group inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:bg-emerald-700 hover:shadow-xl hover:shadow-emerald-500/30 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none"
+                className="group inline-flex items-center gap-2 rounded-lg bg-emerald-700 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:bg-emerald-800 hover:shadow-xl hover:shadow-emerald-500/30 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none"
                 aria-label={`View live demo of ${item.title}`}
                 target="_blank"
                 rel="noopener noreferrer"
