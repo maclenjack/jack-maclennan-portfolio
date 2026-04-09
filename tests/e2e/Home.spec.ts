@@ -18,6 +18,147 @@ describe('all devices', () => {
     });
   });
 
+  describe('Home page content', () => {
+    test('renders hero section correctly', async ({ page }) => {
+      // Check main heading
+      await expect(
+        page.getByRole('heading', { name: 'Jack Maclennan' }),
+        'main heading should be visible'
+      ).toBeVisible();
+      // Check subtitle
+      await expect(
+        page.getByText('Building modern web experiences with React & TypeScript'),
+        'subtitle should be visible'
+      ).toBeVisible();
+      // Check Web Developer badge
+      await expect(page.getByText('Web Developer'), 'Web Developer badge should be visible').toBeVisible();
+      // Check buttons
+      await expect(
+        page.getByRole('link', { name: 'Explore My Work' }),
+        'Explore My Work button should be visible'
+      ).toBeVisible();
+      await expect(
+        page.getByRole('link', { name: 'Learn About Me' }),
+        'Learn About Me button should be visible'
+      ).toBeVisible();
+      // Check portrait image (there are two images with same alt text)
+      await expect(
+        page.getByAltText('Portrait of Jack Maclennan - Web Developer').first(),
+        'portrait image should be present'
+      ).toBeVisible();
+    });
+
+    test('renders metrics section correctly', async ({ page }) => {
+      // Check section heading
+      await expect(
+        page.getByRole('heading', { name: 'Quick Stats' }),
+        'Quick Stats heading should be visible'
+      ).toBeVisible();
+      // Check metric labels
+      const metrics = ['Years of Experience', 'Featured Project', 'Technologies Mastered', 'Computer Science'];
+      for (const metric of metrics) {
+        await expect(page.getByText(metric).first(), `metric "${metric}" should be visible`).toBeVisible();
+      }
+      // Check metric values (dynamic years of experience)
+      const plusValues = page.getByText(/\+$/);
+      await expect(plusValues, 'should have at least two "+" values').toHaveCount(2);
+    });
+
+    test('renders featured project section correctly', async ({ page }) => {
+      // Check section heading
+      await expect(
+        page.getByRole('heading', { name: 'Featured Project' }),
+        'Featured Project heading should be visible'
+      ).toBeVisible();
+      // Check project title (using the first project from constants)
+      await expect(
+        page.getByRole('heading', { name: 'Jack Maclennan Portfolio' }),
+        'project title should be visible'
+      ).toBeVisible();
+      // Check project subtitle
+      await expect(page.getByText('Personal Website & Portfolio'), 'project subtitle should be visible').toBeVisible();
+      // Check project description (partial match)
+      await expect(
+        page.getByText('A modern, responsive portfolio website'),
+        'project description should be visible'
+      ).toBeVisible();
+      // Check technologies (some may be duplicated in skills section)
+      const technologies = ['Next.js', 'TypeScript', 'Tailwind CSS', 'React'];
+      for (const tech of technologies) {
+        await expect(page.getByText(tech).first(), `technology "${tech}" should be visible`).toBeVisible();
+      }
+      // Check links
+      await expect(
+        page.getByRole('link', { name: 'View Details' }),
+        'View Details link should be visible'
+      ).toBeVisible();
+      await expect(
+        page.getByRole('link', { name: 'All Projects' }),
+        'All Projects link should be visible'
+      ).toBeVisible();
+      // Check project image (second image with same alt text)
+      const images = page.getByAltText('Portrait of Jack Maclennan - Web Developer');
+      await expect(images, 'should have at least two images').toHaveCount(2);
+    });
+
+    test('renders skills section correctly', async ({ page }) => {
+      // Check section heading
+      await expect(
+        page.getByRole('heading', { name: 'Skills & Expertise' }),
+        'Skills & Expertise heading should be visible'
+      ).toBeVisible();
+      // Check technical skills heading
+      await expect(
+        page.getByRole('heading', { name: 'Technical Skills' }),
+        'Technical Skills heading should be visible'
+      ).toBeVisible();
+      // Check technical skills badges
+      const technicalSkills = ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Ruby on Rails'];
+      for (const skill of technicalSkills) {
+        await expect(page.getByText(skill).first(), `technical skill "${skill}" should be visible`).toBeVisible();
+      }
+      // Check soft skills heading
+      await expect(
+        page.getByRole('heading', { name: 'Soft Skills' }),
+        'Soft Skills heading should be visible'
+      ).toBeVisible();
+      // Check soft skills badges
+      const softSkills = ['Teamwork', 'Collaboration', 'Problem-solving', 'Communication'];
+      for (const skill of softSkills) {
+        await expect(page.getByText(skill).first(), `soft skill "${skill}" should be visible`).toBeVisible();
+      }
+    });
+
+    test('renders navigation prompts section correctly', async ({ page }) => {
+      // Check section heading
+      await expect(
+        page.getByRole('heading', { name: 'Explore Further' }),
+        'Explore Further heading should be visible'
+      ).toBeVisible();
+      // Check navigation cards titles
+      const cardTitles = ['About Me', 'Experience', 'Projects', 'Connect'];
+      for (const title of cardTitles) {
+        await expect(
+          page.getByRole('heading', { name: title }),
+          `card title "${title}" should be visible`
+        ).toBeVisible();
+      }
+      // Check card descriptions
+      const cardDescriptions = [
+        'Learn more about my background, interests, and passion for programming',
+        "Discover my professional journey and roles I've contributed to",
+        'See my work and how I bring ideas to life through code',
+        'Reach out or follow my work'
+      ];
+      for (const description of cardDescriptions) {
+        await expect(page.getByText(description), `card description "${description}" should be visible`).toBeVisible();
+      }
+      // Check GitHub and LinkedIn links
+      await expect(page.getByText('GitHub'), 'GitHub link should be visible').toBeVisible();
+      await expect(page.getByText('LinkedIn'), 'LinkedIn link should be visible').toBeVisible();
+    });
+  });
+
   describe('<NavBar />', () => {
     test('renders correctly', async ({ navBar }) => {
       expect(await navBar.rendersCorrectly()).toBeTruthy();
