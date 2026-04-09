@@ -45,15 +45,15 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
   }
 
   return (
-    <main className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
         <div className="flex flex-col gap-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
               <div className="h-1 w-16 rounded-full bg-linear-to-r from-emerald-500 to-emerald-600" />
-              <h2 className="text-sm font-semibold tracking-wider text-emerald-600 uppercase dark:text-emerald-400">
+              <div className="text-sm font-semibold tracking-wider text-emerald-800 uppercase dark:text-emerald-400">
                 Experience
-              </h2>
+              </div>
             </div>
             <div className="space-y-4">
               <h1 className="text-4xl font-bold tracking-tight text-slate-900 lg:text-5xl dark:text-white">
@@ -69,6 +69,41 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
           >
             <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">{item.description}</p>
           </div>
+
+          {/* Skills Sections */}
+          <div className="flex flex-col gap-6">
+            {item.technicalSkills && item.technicalSkills.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technical Skills</h2>
+                <ul className="flex flex-wrap gap-2">
+                  {item.technicalSkills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {item.softSkills && item.softSkills.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Soft Skills</h2>
+                <ul className="flex flex-wrap gap-2">
+                  {item.softSkills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
           <div className="flex items-center gap-4 pt-4">
             <Link
               href="/experience"
@@ -102,6 +137,6 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

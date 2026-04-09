@@ -1,5 +1,5 @@
 import HamburgerMenu from '@components/page/nav-bar/HamburgerMenu';
-import { cleanup, render, screen, waitFor } from '@testing-library/react';
+import { act, cleanup, render, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { describe, it, vi } from 'vitest';
 
@@ -92,7 +92,9 @@ describe('<HamburgerMenu />', () => {
     });
     it('should close modal when screen size increases past 768', async () => {
       expect(screen.getByText('Menu')).toBeInTheDocument();
-      setWindowSize(1024, 768);
+      await act(async () => {
+        setWindowSize(1024, 768);
+      });
       await waitFor(() => {
         expect(screen.queryByText('Menu')).not.toBeInTheDocument();
       });

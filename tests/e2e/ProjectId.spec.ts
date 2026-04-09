@@ -13,7 +13,8 @@ describe('Project detail page', () => {
   });
 
   test('renders project title correctly', async ({ page }) => {
-    const projectTitle = page.getByRole('heading', { level: 1 });
+    // Use more specific selector to avoid conflict with site header
+    const projectTitle = page.getByRole('main').getByRole('heading', { level: 1 });
     await expect(projectTitle, 'project title heading is visible').toBeVisible();
     await expect(projectTitle, 'project title has content').not.toBeEmpty();
   });
@@ -26,11 +27,12 @@ describe('Project detail page', () => {
   });
 
   test('renders project technologies list', async ({ page }) => {
-    // Technology tags are typically presented as list items or badges
-    const technologies = page.getByRole('list').first();
-    await expect(technologies, 'project technologies section exists').toBeVisible();
+    // Technology tags are spans, not list items
+    const technologies = page.getByRole('main').getByText('Technologies Used');
+    await expect(technologies, 'technologies heading is visible').toBeVisible();
 
-    const techTags = technologies.getByRole('listitem');
+    // Find technology tags (they are spans with specific classes)
+    const techTags = page.getByRole('main').locator('span[class*="bg-emerald-100"]');
     const tagCount = await techTags.count();
     expect(tagCount, 'at least one technology tag is present').toBeGreaterThan(0);
   });
@@ -45,7 +47,8 @@ describe('Project detail page', () => {
   });
 
   test('back button navigates back to projects list', async ({ page }) => {
-    const backButton = page.getByRole('button', { name: /back to projects/i });
+    // Back button is a link, not a button
+    const backButton = page.getByRole('link', { name: /back to projects/i });
     await backButton.click();
 
     await expect(page, 'navigates back to projects listing page').toHaveURL('http://localhost:3000/projects');

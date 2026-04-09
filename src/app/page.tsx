@@ -11,9 +11,6 @@ export const metadata: Metadata = {
 
 /** Home page located [here](https://jack-maclennan-portfolio.vercel.app/). @source */
 export default function Home() {
-  const currentYear = new Date().getFullYear();
-  const yearsOfExperience = currentYear - 2021; // Graduated in 2021 TODO: change this
-
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       {/* Hero Section */}
@@ -38,7 +35,7 @@ export default function Home() {
           <div className="flex flex-wrap gap-4">
             <Link
               href="/projects"
-              className="rounded-lg bg-emerald-600 px-6 py-3 font-medium text-white transition-colors hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none dark:bg-emerald-500 dark:text-white dark:hover:bg-emerald-600"
+              className="rounded-lg bg-emerald-700 px-6 py-3 font-medium text-white transition-colors hover:bg-emerald-800 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700"
             >
               Explore My Work
             </Link>
@@ -69,7 +66,7 @@ export default function Home() {
         <h3 className="mb-8 text-2xl font-bold text-slate-800 dark:text-slate-100">Quick Stats</h3>
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <div className="flex flex-col items-center justify-center rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
-            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">{yearsOfExperience}+</div>
+            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">2+</div>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">Years of Experience</p>
           </div>
           <div className="flex flex-col items-center justify-center rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
@@ -109,7 +106,7 @@ export default function Home() {
               <div className="mt-8 flex gap-4">
                 <Link
                   href={PROJECT_ITEMS[0].href}
-                  className="rounded-lg bg-emerald-600 px-6 py-3 font-medium text-white transition-colors hover:bg-emerald-700 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none dark:bg-emerald-500 dark:text-white dark:hover:bg-emerald-600"
+                  className="rounded-lg bg-emerald-700 px-6 py-3 font-medium text-white transition-colors hover:bg-emerald-800 focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 focus:outline-none dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700"
                 >
                   View Details
                 </Link>
