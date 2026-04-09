@@ -9,7 +9,7 @@ const items: CardListItemData[] = [
     title: 'Test Card',
     subtitle: 'Testing subtitle',
     description: 'This is a test description for the card item.',
-    imageSrc: '/test.jpg',
+    imageSrc: '/test.png',
     href: '/experience/test-id'
   }
 ];

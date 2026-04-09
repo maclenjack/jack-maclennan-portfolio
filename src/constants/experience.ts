@@ -14,7 +14,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     subtitle: 'Software Developer',
     description:
       'Worked across the full stack on data-driven web apps with real-time updates, payments, and team management workflows.',
-    imageSrc: '/experience/crichq.jpg',
+    imageSrc: '/experience/crichq.png',
     href: '/experience/crichq'
   },
   {
@@ -23,7 +23,7 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
     subtitle: 'Sandwich Artist',
     description:
       'Worked as a Sandwich Artist shaping customer meals, handling food preparation, point-of-sale interactions, and delivering excellent service in a fast-paced environment.',
-    imageSrc: '/experience/subway.jpg',
+    imageSrc: '/experience/subway.png',
     href: '/experience/subway'
   }
 ];
