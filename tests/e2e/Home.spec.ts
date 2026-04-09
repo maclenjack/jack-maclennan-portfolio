@@ -22,7 +22,7 @@ describe('all devices', () => {
     test('renders hero section correctly', async ({ page }) => {
       // Check main heading
       await expect(
-        page.getByRole('heading', { name: 'Jack Maclennan' }),
+        page.getByRole('heading', { name: 'Jack Maclennan', level: 2 }),
         'main heading should be visible'
       ).toBeVisible();
       // Check subtitle
@@ -31,7 +31,10 @@ describe('all devices', () => {
         'subtitle should be visible'
       ).toBeVisible();
       // Check Web Developer badge
-      await expect(page.getByText('Web Developer'), 'Web Developer badge should be visible').toBeVisible();
+      await expect(
+        page.getByRole('heading', { name: 'Web Developer', level: 1 }),
+        'Web Developer badge should be visible'
+      ).toBeVisible();
       // Check buttons
       await expect(
         page.getByRole('link', { name: 'Explore My Work' }),
