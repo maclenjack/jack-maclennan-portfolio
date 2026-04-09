@@ -69,6 +69,41 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
           >
             <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">{item.description}</p>
           </div>
+
+          {/* Skills Sections */}
+          <div className="flex flex-col gap-6">
+            {item.technicalSkills && item.technicalSkills.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technical Skills</h2>
+                <ul className="flex flex-wrap gap-2">
+                  {item.technicalSkills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {item.softSkills && item.softSkills.length > 0 && (
+              <div className="flex flex-col gap-3">
+                <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Soft Skills</h2>
+                <ul className="flex flex-wrap gap-2">
+                  {item.softSkills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+
           <div className="flex items-center gap-4 pt-4">
             <Link
               href="/experience"
