@@ -1,5 +1,5 @@
-import CardList from '@components/card/CardList';
-import { CardListItemData } from '@components/card/CardListItem';
+import CardList from '@/components/card-list/CardList';
+import { CardListItemData } from '@/components/card-list/CardListItem';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
 

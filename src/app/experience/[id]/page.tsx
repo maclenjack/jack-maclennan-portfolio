@@ -1,4 +1,5 @@
-import { EXPERIENCE_ITEMS } from '@constants/experience';
+import SkillTagList from '@/components/SkillTagList';
+import { EXPERIENCE_ITEMS, getExperienceItemById } from '@constants/experience';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -12,17 +13,13 @@ interface ExperiencePageProps {
   params: Promise<ExperiencePageParams> | ExperiencePageParams;
 }
 
-function getExperienceItem(id: string) {
-  return EXPERIENCE_ITEMS.find((item) => item.id === id);
-}
-
 export async function generateStaticParams() {
   return EXPERIENCE_ITEMS.map((item) => ({ id: item.id }));
 }
 
 export async function generateMetadata({ params }: ExperiencePageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const item = getExperienceItem(resolvedParams.id);
+  const item = getExperienceItemById(resolvedParams.id);
 
   if (!item) {
     return {
@@ -39,7 +36,7 @@ export async function generateMetadata({ params }: ExperiencePageProps): Promise
 
 export default async function ExperienceIdPage({ params }: ExperiencePageProps) {
   const resolvedParams = await params;
-  const item = getExperienceItem(resolvedParams.id);
+  const item = getExperienceItemById(resolvedParams.id);
   if (!item) {
     notFound();
   }
@@ -69,41 +66,20 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
           >
             <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">{item.description}</p>
           </div>
-
-          {/* Skills Sections */}
           <div className="flex flex-col gap-6">
             {item.technicalSkills && item.technicalSkills.length > 0 && (
               <div className="flex flex-col gap-3">
                 <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technical Skills</h2>
-                <ul className="flex flex-wrap gap-2">
-                  {item.technicalSkills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+                <SkillTagList skills={item.technicalSkills} type="tech" />
               </div>
             )}
             {item.softSkills && item.softSkills.length > 0 && (
               <div className="flex flex-col gap-3">
                 <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Soft Skills</h2>
-                <ul className="flex flex-wrap gap-2">
-                  {item.softSkills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+                <SkillTagList skills={item.softSkills} type="soft" />
               </div>
             )}
           </div>
-
           <div className="flex items-center gap-4 pt-4">
             <Link
               href="/experience"

@@ -1,3 +1,6 @@
+import NavCard from '@/components/NavCard';
+import SkillTagList from '@/components/SkillTagList';
+import StatCard from '@/components/StatCard';
 import { PROJECT_ITEMS } from '@constants/projects';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -65,22 +68,10 @@ export default function Home() {
       <section className="mb-16">
         <h3 className="mb-8 text-2xl font-bold text-slate-800 dark:text-slate-100">Quick Stats</h3>
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-          <div className="flex flex-col items-center justify-center rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
-            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">2+</div>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">Years of Experience</p>
-          </div>
-          <div className="flex flex-col items-center justify-center rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
-            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">1</div>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">Featured Project</p>
-          </div>
-          <div className="flex flex-col items-center justify-center rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
-            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">4+</div>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">Technologies Mastered</p>
-          </div>
-          <div className="flex flex-col items-center justify-center rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
-            <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">BSc</div>
-            <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">Computer Science</p>
-          </div>
+          <StatCard value="2+" label="Years of Experience" />
+          <StatCard value="1" label="Featured Project" />
+          <StatCard value="4+" label="Technologies Mastered" />
+          <StatCard value="BSc" label="Computer Science" />
         </div>
       </section>
 
@@ -94,14 +85,7 @@ export default function Home() {
               <p className="mt-2 text-slate-600 dark:text-slate-300">{PROJECT_ITEMS[0].subtitle}</p>
               <p className="mt-4 text-slate-700 dark:text-slate-300">{PROJECT_ITEMS[0].description}</p>
               <div className="mt-6 flex flex-wrap gap-3">
-                {PROJECT_ITEMS[0].technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
+                <SkillTagList skills={PROJECT_ITEMS[0].technologies} type="tech" />
               </div>
               <div className="mt-8 flex gap-4">
                 <Link
@@ -140,40 +124,11 @@ export default function Home() {
         <div className="grid gap-6 md:grid-cols-2">
           <div className="rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
             <h4 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">Technical Skills</h4>
-            <div className="flex flex-wrap gap-3">
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                React
-              </span>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                TypeScript
-              </span>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                Next.js
-              </span>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                Tailwind CSS
-              </span>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                Ruby on Rails
-              </span>
-            </div>
+            <SkillTagList skills={['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Ruby on Rails']} type="tech" />
           </div>
           <div className="rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
             <h4 className="mb-4 text-lg font-semibold text-slate-800 dark:text-slate-100">Soft Skills</h4>
-            <div className="flex flex-wrap gap-3">
-              <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                Teamwork
-              </span>
-              <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                Collaboration
-              </span>
-              <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                Problem-solving
-              </span>
-              <span className="rounded-full bg-purple-100 px-3 py-1 text-sm font-medium text-purple-800 dark:bg-purple-900 dark:text-purple-200">
-                Communication
-              </span>
-            </div>
+            <SkillTagList skills={['Teamwork', 'Collaboration', 'Problem-solving', 'Communication']} type="soft" />
           </div>
         </div>
       </section>
@@ -182,33 +137,21 @@ export default function Home() {
       <section className="mb-16">
         <h3 className="mb-8 text-2xl font-bold text-slate-800 dark:text-slate-100">Explore Further</h3>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <Link
+          <NavCard
             href="/about-me"
-            className="rounded-xl bg-slate-100 p-6 transition-colors hover:bg-slate-200 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:outline-none dark:bg-slate-700 dark:hover:bg-slate-600"
-          >
-            <h4 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-100">About Me</h4>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Learn more about my background, interests, and passion for programming
-            </p>
-          </Link>
-          <Link
+            title="About Me"
+            description="Learn more about my background, interests, and passion for programming"
+          />
+          <NavCard
             href="/experience"
-            className="rounded-xl bg-slate-100 p-6 transition-colors hover:bg-slate-200 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:outline-none dark:bg-slate-700 dark:hover:bg-slate-600"
-          >
-            <h4 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-100">Experience</h4>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Discover my professional journey and roles I&apos;ve contributed to
-            </p>
-          </Link>
-          <Link
+            title="Experience"
+            description="Discover my professional journey and roles I've contributed to"
+          />
+          <NavCard
             href="/projects"
-            className="rounded-xl bg-slate-100 p-6 transition-colors hover:bg-slate-200 focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:outline-none dark:bg-slate-700 dark:hover:bg-slate-600"
-          >
-            <h4 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-100">Projects</h4>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              See my work and how I bring ideas to life through code
-            </p>
-          </Link>
+            title="Projects"
+            description="See my work and how I bring ideas to life through code"
+          />
           <div className="rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
             <h4 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-100">Connect</h4>
             <p className="mb-4 text-sm text-slate-600 dark:text-slate-300">Reach out or follow my work</p>
