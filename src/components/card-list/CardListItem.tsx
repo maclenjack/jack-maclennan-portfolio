@@ -36,6 +36,9 @@ interface CardListItemProps {
  * Renders a single card with image, title, and subtitle.
  *
  * @param item - The card data.
+ * @returns The rendered CardListItem component.
+ * @includeExample src/components/card-list/CardList.tsx[27:29]
+ * @source
  */
 export default function CardListItem({ item }: CardListItemProps) {
   return (

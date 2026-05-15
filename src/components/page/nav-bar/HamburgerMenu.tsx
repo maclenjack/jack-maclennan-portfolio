@@ -10,7 +10,7 @@ import { useToggle, useWindowSize } from 'usehooks-ts';
 /**
  * Menu for mobile devices.
  * @returns The rendered HamburgerMenu component.
- * @includeExample src/components/page/nav-bar/NavBar.tsx[29:32]
+ * @includeExample src\components\page\nav-bar\NavBar.tsx[43]
  * @source
  */
 export default function HamburgerMenu() {

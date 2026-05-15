@@ -18,6 +18,8 @@ interface ModalProps {
  * @param props.children - Content to render inside the modal.
  * @param props.title - Optional title for accessibility.
  * @returns The rendered Modal component.
+ * @includeExample src\components\page\nav-bar\HamburgerMenu.tsx[43:78]
+ * @source
  */
 export default function Modal({ isOpen, onClose, children, title = 'Modal' }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);

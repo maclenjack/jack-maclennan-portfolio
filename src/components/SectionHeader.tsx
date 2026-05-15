@@ -26,6 +26,9 @@ interface SectionHeaderProps {
  * @param children - Optional content to render after the header.
  * @param className - Tailwind classes for the section wrapper.
  * @param headerClassName - Tailwind classes for the header wrapper.
+ * @returns The rendered SectionHeader component.
+ * @includeExample src\app\experience\page.tsx[25:30]
+ * @source
  */
 export default function SectionHeader({
   title,

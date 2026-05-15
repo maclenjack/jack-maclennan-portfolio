@@ -9,9 +9,13 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 
 /**
- * Implementation of Select. Used to select theme for user: dark, light or system
- * @param className optional value to customize wrapper style
- * @includeExample src/components/page/nav-bar/NavBar.tsx[24:28]
+ * A wrapper around {@link Select} that provides theme selection for the
+ * application. It persists the chosen theme in local storage and updates the
+ * Next.js theme context.
+ *
+ * @param className - Optional Tailwind classes for the outer wrapper.=
+ * @returns The rendered ThemeSelect component.
+ * @includeExample src\components\page\nav-bar\NavBar.tsx[37]
  * @source
  */
 export default function ThemeSelect({ className }: { className?: string }): ReactNode {

@@ -21,6 +21,9 @@ interface NavCardProps {
  * @param href - The URL or route to navigate to.
  * @param title - The card title.
  * @param description - A brief description of the destination.
+ * @returns The rendered NavCard component.
+ * @includeExample src\app\page.tsx[140:144]
+ * @source
  */
 export default function NavCard({ href, title, description }: NavCardProps) {
   return (

@@ -6,7 +6,8 @@ import { ReactNode } from 'react';
  * @param props - The component accepts children as props.
  * @param props.children - Page content to be rendered.
  * @returns The rendered Page component and it's children.
- * @includeExample src/app/layout.tsx[28]
+ * @returns The rendered Page component.
+ * @includeExample src\app\layout.tsx[36]
  * @source
  */
 export default function Page({ children }: { children: ReactNode }) {

@@ -20,6 +20,9 @@ interface StatCardProps {
  * @param value - The value to display.
  * @param label - The label for the value.
  * @param className - Optional Tailwind classes for custom styling.
+ * @returns The rendered StatCard component.
+ * @includeExample src\app\page.tsx[71]
+ * @source
  */
 const StatCard: React.FC<StatCardProps> = ({ value, label, className = '' }) => (
   <div
