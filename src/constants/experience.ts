@@ -1,3 +1,15 @@
+/**
+ * Represents a single work experience entry.
+ *
+ * @property id - Unique identifier for the experience.
+ * @property title - Company or role title.
+ * @property subtitle - Position or role subtitle.
+ * @property description - Summary of responsibilities and achievements.
+ * @property imageSrc - Path to an image or logo for the experience.
+ * @property href - Internal route to the experience detail page.
+ * @property technicalSkills - Technical skills used in this role.
+ * @property softSkills - Soft skills demonstrated.
+ */
 export interface ExperienceItem {
   id: string;
   title: string;
@@ -8,7 +20,10 @@ export interface ExperienceItem {
   technicalSkills?: string[];
   softSkills?: string[];
 }
-
+/**
+ * Static list of all experiences displayed in the portfolio.
+ * Exported so components can render experience cards or detail pages.
+ */
 export const EXPERIENCE_ITEMS: ExperienceItem[] = [
   {
     id: 'crichq',
@@ -33,6 +48,12 @@ export const EXPERIENCE_ITEMS: ExperienceItem[] = [
   }
 ];
 
+/**
+ * Retrieve an {@link ExperienceItem} by its {@link ExperienceItem.id}.
+ *
+ * @param id - The unique identifier of the experience.
+ * @returns The matching experience or `undefined` if not found.
+ */
 export function getExperienceItemById(id: string): ExperienceItem | undefined {
   return EXPERIENCE_ITEMS.find((item) => item.id === id);
 }
