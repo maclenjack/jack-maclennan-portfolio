@@ -176,7 +176,7 @@ describe('all devices', () => {
     describe('<ThemeSelect />', () => {
       describe('<Select />', () => {
         test('<Menu /> is visible on <Button /> click', async ({ navBar }) => {
-          const select: Select = navBar.getThemeSelect().getSelect();
+          const select: Select = new Select(navBar.getThemeSelect().getWrapper());
           await expect(select.getMenu(), 'custom select menu is hidden when closed').toBeHidden();
           await select.getButton().click();
           await expect(select.getMenu(), 'custom select menu is visible when open').toBeVisible();
@@ -262,7 +262,7 @@ describe('desktop', () => {
       }
 
       await page.keyboard.press('Tab');
-      await expect(navBar.getThemeSelect().getSelect().getButton(), 'theme select focused on tab').toBeFocused();
+      await expect(navBar.getThemeSelect().getButton(), 'theme select focused on tab').toBeFocused();
     });
 
     describe('<SiteLinks />', () => {

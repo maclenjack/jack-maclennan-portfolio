@@ -2,24 +2,36 @@ import { expect, Locator } from '@playwright/test';
 import Component from './interfaces/Component';
 
 /**
- * Fixture for Select component
+ * Base fixture class for customizable generic select components.
  * @remarks
- * Provides method helpers for locating child elements and interactivity.
+ * Provides reusable methods for locating and interacting with select elements.
+ * Designed to be extended by specific implementations (e.g., {@link ThemeSelect}).
+ * Implements common select patterns: role-based locators, menu visibility, and option selection.
  *
- * @includeExample tests/fixtures/ThemeSelect.ts[26:32]
+ * @example
+ * // Extend Select for a specific use case
+ * class ThemeSelect extends Select {
+ *   constructor(parent: Locator) {
+ *     super(parent);
+ *   }
+ * }
+ *
  * @source
  */
 export default class Select implements Component {
   /** @public Component wrapper. */
-  private readonly select: Locator;
+  public readonly select: Locator;
   /** @public Button element used to open select {@link menu}. */
-  private readonly button: Locator;
+  public readonly button: Locator;
   /** @public Menu element containing options. */
-  private readonly menu: Locator;
+  public readonly menu: Locator;
 
   /**
-   * Fixture constructor - initialise variables.
-   * @param parent - Parent element.
+   * Fixture constructor - initializes select wrapper and child locators.
+   * @param parent - Parent locator containing the select component.
+   * @remarks
+   * Subclasses should call `super(parent)` in their constructor
+   * to properly initialize the base select fixture.
    */
   public constructor(public readonly parent: Locator) {
     this.select = this.parent.getByRole('group', { name: 'selector', exact: true });

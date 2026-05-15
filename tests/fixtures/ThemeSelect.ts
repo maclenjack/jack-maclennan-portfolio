@@ -1,6 +1,5 @@
 import { Locator, Page, expect } from '@playwright/test';
 import Select from './Select';
-import Component from './interfaces/Component';
 
 /**
  * Fixture for ThemeSelect component
@@ -9,13 +8,10 @@ import Component from './interfaces/Component';
  *
  * Used in example to be accessed in testing environment.
  *
- * @includeExample tests/fixtures/NavBar.ts[40:52]
+ * @includeExample tests\e2e\Home.spec.ts[192:200]
  * @source
  */
-export default class ThemeSelect implements Component {
-  /** Child {@link select}. */
-  private readonly select: Select;
-
+export default class ThemeSelect extends Select {
   /**
    * Fixture constructor - initialise variables.
    * @param page - Playwright Page object.
@@ -23,9 +19,9 @@ export default class ThemeSelect implements Component {
    */
   public constructor(
     private readonly page: Page,
-    private readonly themeSelect: Locator
+    public readonly themeSelect: Locator
   ) {
-    this.select = new Select(this.themeSelect);
+    super(themeSelect);
   }
 
   /** Getter method. @returns {@link themeSelect}. */
@@ -36,12 +32,12 @@ export default class ThemeSelect implements Component {
   /** Testing helper method. */
   public async rendersCorrectly(): Promise<boolean> {
     await expect(this.getWrapper(), 'theme select should be visible').toBeVisible();
-    expect(await this.getSelect().rendersCorrectly()).toBeTruthy();
+    await super.rendersCorrectly();
     return true;
   }
 
   /** Getter method. @returns {@link select}. */
-  public getSelect(): Select {
+  public getSelect(): Locator {
     return this.select;
   }
 
@@ -57,6 +53,6 @@ export default class ThemeSelect implements Component {
       'dark-mode': 'Dark',
       'system-default': 'System'
     };
-    await this.select.selectOption(themeLabels[theme] || theme);
+    await super.selectOption(themeLabels[theme] || theme);
   }
 }
