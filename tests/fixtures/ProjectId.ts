@@ -6,9 +6,8 @@ import { test } from '@playwright/test';
  * Sets up testing environment for Project detail page tests by navigating to a project page before each test.
  * Uses the first available project id from the projects list.
  *
- * @includeExample tests/e2e/ProjectId.spec.ts[7]
+ * @includeExample tests/e2e/ProjectId.spec.ts[5]
  * @source
- *
  */
 export const projectIdTest = test.extend<{ forEachTest: void }>({
   forEachTest: [

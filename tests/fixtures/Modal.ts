@@ -7,6 +7,7 @@ import Component from './interfaces/Component';
  * Provides common methods for locating modal elements and handling modal interactions.
  * Can be extended for specific modal implementations.
  *
+ * @includeExample tests\fixtures\HamburgerMenu.ts[16]
  * @source
  */
 export default class Modal implements Component {

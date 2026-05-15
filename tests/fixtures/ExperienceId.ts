@@ -6,7 +6,7 @@ import { test } from '@playwright/test';
  * Sets up testing environment for Experience detail page tests by navigating to an experience page before each test.
  * Uses the first available experience id from the experience list.
  *
- * @includeExample tests/e2e/ExperienceId.spec.ts[7]
+ * @includeExample tests\e2e\ExperienceId.spec.ts[5]
  * @source
  *
  */

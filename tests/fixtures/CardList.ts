@@ -7,6 +7,7 @@ import ListComponent from './interfaces/ListComponent';
  * @remarks
  * Provides method helpers for locating child elements.
  *
+ * @includeExample tests\e2e\Experience.spec.ts[33:37]
  * @source
  */
 export class CardListItem implements Component {
@@ -67,6 +68,7 @@ export class CardListItem implements Component {
  * @remarks
  * Provides method helpers for locating child CardListItem elements.
  *
+ * @includeExample tests\e2e\Experience.spec.ts[30:38]
  * @source
  */
 export default class CardList implements ListComponent {
@@ -112,6 +114,7 @@ export default class CardList implements ListComponent {
  * @remarks
  * Provides a CardList to be used in tests.
  *
+ * @includeExample tests\e2e\Experience.spec.ts[9]
  * @source
  */
 export const cardListTest = test.extend<{ cardList: CardList }>({
