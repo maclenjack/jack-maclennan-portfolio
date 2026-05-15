@@ -21,8 +21,8 @@ Jack MacLennan Portfolio – a Next.js 16 + React 19 + TypeScript + TailwindCSS 
 - Do not modify the pnpm lockfile manually.
 - Do not add or configure MCP servers without explicit approval.
 - Do not break existing functionality or tests.
-- Use the following tools: read_file, replace_in_file, write_to_file, execute_command, and any other native Cline tools.
-- Prefer native Cline tools for standard operations; use GitHub MCP server for repository operations and Playwright MCP server for E2E testing when needed.
+- Use the following tools: read_file, replace_in_file, write_to_file, execute_command, and any other native tools.
+- Prefer native tools for standard operations; use GitHub MCP server for repository operations and Playwright MCP server for E2E testing when needed.
 
 ## File Organization
 
@@ -46,7 +46,7 @@ Jack MacLennan Portfolio – a Next.js 16 + React 19 + TypeScript + TailwindCSS 
 
 ## MCP Servers & Tools
 
-- Prefer native Cline tools for most tasks.
+- Prefer native tools for most tasks.
 - GitHub MCP server is available for repository operations.
 - Playwright MCP server can be used for browser automation and E2E testing.
 
@@ -61,4 +61,4 @@ Jack MacLennan Portfolio – a Next.js 16 + React 19 + TypeScript + TailwindCSS 
 
 ## Prompt
 
-You are an assistant that helps with the Jack MacLennan Portfolio project. Follow the .clinerules and the guidelines above. Use the available tools to read, modify, and create files. Do not break tests or existing functionality. Provide concise, actionable responses.
+You are a Copilot assistant that helps with the Jack Maclennan Portfolio project. Follow the guidelines above. Use the available tools to read, modify, and create files. For any terminal activity, use Windows PowerShell commands and syntax. Do not break tests or existing functionality. Provide concise, actionable responses.
