@@ -8,7 +8,7 @@ import ListComponent from './interfaces/ListComponent';
  *
  * Used in example to be accessed in testing environment.
  *
- * @includeExample tests/fixtures/NavBar.ts[40:52]
+ * @includeExample tests/fixtures/NavBar.ts[37:39]
  * @source
  */
 export default class SiteLinks implements ListComponent {
@@ -60,8 +60,7 @@ export default class SiteLinks implements ListComponent {
     await this.navigateToAboutMe(page);
     await expect(page, 'navigate to about me page').toHaveURL('/about-me');
     if (beforeEach !== undefined) await beforeEach();
-    // TODO: Add test for docs link - currently stuck on how to test new tab links, behaviour is inconsistent across browsers.
-    await page.goto('http://localhost:3000');
+    await this.navigateToDocs(page);
     return true;
   }
 
@@ -110,13 +109,23 @@ export default class SiteLinks implements ListComponent {
   }
 
   /** Interact with {@link docsLink}. @param page - Playwright Page object */
-  /** Currently doesn't work */
-  // public async navigateToDocs(page: Page): Promise<void> {
-  //   const docsLink: Locator = this.getDocsLink();
-  //   expect(docsLink, 'docs link is visible').toBeVisible();
-  //   await docsLink.click();
-  //   await page.waitForURL('https://maclenjack.github.io/jack-maclennan-portfolio/');
-  // }
+  public async navigateToDocs(page: Page): Promise<void> {
+    const docsLink: Locator = this.getDocsLink();
+    expect(docsLink, 'docs link is visible').toBeVisible();
+    await expect(docsLink, 'docs link has correct href').toHaveAttribute(
+      'href',
+      'https://maclenjack.github.io/jack-maclennan-portfolio-docs/'
+    );
+    await expect(docsLink, 'docs link opens in a new tab').toHaveAttribute('target', '_blank');
+
+    const [newPage] = await Promise.all([page.waitForEvent('popup'), docsLink.click()]);
+
+    await newPage.waitForLoadState('domcontentloaded');
+    await expect(newPage, 'docs page opened correctly').toHaveURL(
+      'https://maclenjack.github.io/jack-maclennan-portfolio-docs/'
+    );
+    await newPage.close();
+  }
 
   /** Getter method. @returns Link element children. */
   public getListItems(): Locator {

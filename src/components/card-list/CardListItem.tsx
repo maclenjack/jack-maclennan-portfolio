@@ -2,6 +2,17 @@ import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
+/**
+ * Data shape for a single card in the list.
+ *
+ * @property id - Unique identifier for the card.
+ * @property href - Link target for the card.
+ * @property imageSrc - Source URL for the card image.
+ * @property imageFit - Optional image fit style (`cover` or `contain`).
+ * @property title - Card title.
+ * @property subtitle - Card subtitle.
+ * @property description - Optional card description.
+ */
 export type CardListItemData = {
   id: string;
   href: string;
@@ -12,10 +23,23 @@ export type CardListItemData = {
   description?: string;
 };
 
+/**
+ * Props for the {@link CardListItem} component.
+ *
+ * @property item - The data for this card.
+ */
 interface CardListItemProps {
   item: CardListItemData;
 }
 
+/**
+ * Renders a single card with image, title, and subtitle.
+ *
+ * @param item - The card data.
+ * @returns The rendered CardListItem component.
+ * @includeExample src/components/card-list/CardList.tsx[27:29]
+ * @source
+ */
 export default function CardListItem({ item }: CardListItemProps) {
   return (
     <li className="rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-slate-700 dark:bg-slate-800">

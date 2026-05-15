@@ -27,12 +27,11 @@ describe('Project detail page', () => {
   });
 
   test('renders project technologies list', async ({ page }) => {
-    // Technology tags are spans, not list items
     const technologies = page.getByRole('main').getByText('Technologies Used');
     await expect(technologies, 'technologies heading is visible').toBeVisible();
 
-    // Find technology tags (they are spans with specific classes)
-    const techTags = page.getByRole('main').locator('span[class*="bg-emerald-100"]');
+    // Find technology tags using role-based locator
+    const techTags = page.getByRole('main').getByRole('list', { name: 'Technology skills' }).locator('li');
     const tagCount = await techTags.count();
     expect(tagCount, 'at least one technology tag is present').toBeGreaterThan(0);
   });

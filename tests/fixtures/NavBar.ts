@@ -10,9 +10,7 @@ import Component from './interfaces/Component';
  * @remarks
  * Provides method helpers for locating child elements.
  *
- * Used in example to be accessed in testing environment.
- *
- * @includeExample tests/fixtures/NavBar.ts[141:147]
+ * @includeExample tests\e2e\Home.spec.ts[166:168]
  * @source
  */
 export default class NavBar implements Component {
@@ -106,7 +104,7 @@ export default class NavBar implements Component {
  * @remarks
  * Provides a NavBar to be used in tests.
  *
- * @includeExample tests/e2e/AboutMe.spec.ts[5]
+ * @includeExample tests\e2e\Home.spec.ts[9]
  * @source
  *
  */

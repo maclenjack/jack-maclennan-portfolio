@@ -1,29 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-- It is hosted using vercel at https://jack-maclennan-portfolio.vercel.app/.
-- It is written using [React](https://react.dev/) with [TypeScript](https://www.typescriptlang.org/).
-- It is styled using [TailwindCSS](https://tailwindcss.com/).
-- Testing is done with [Playwright](https://playwright.dev/) for E2E testing and [Vitest](https://vitest.dev/) for component testing.
-- Linting and formatting is done through [ESLint](https://eslint.org/) utilising a [Prettier](https://prettier.io/) plugin.
-- Documentation uses [TypeDoc](https://typedoc.org/) and is located at https://github.com/maclenjack/jack-maclennan-portfolio-docs.
+This is a **Next.js 13+** project bootstrapped with `create-next-app`.
+It is a personal portfolio built with **React**, **TypeScript**, and **TailwindCSS**.
+The site is deployed on Vercel at https://jack-maclennan-portfolio.vercel.app/.
+
+## Tech Stack
+
+- **Framework**: Next.js 16
+- **UI**: React 19 + TypeScript 5.9
+- **Styling**: TailwindCSS 4
+- **Linting / Formatting**: ESLint + Prettier + plugins
+- **Testing**:
+	- Unit / component tests – Vitest + React Testing Library
+	- End‑to‑end tests – Playwright + Axe core
+- **Documentation**: TypeDoc + plugins
+- **Package Manager**: pnpm
 
 ## Getting Started
 
-This repo utilises a submodule for documentation which can be acquired though using the following terminal command to clone this repo and submodules:
-
 ```bash
-git clone --recurse-submodules https://github.com/maclenjack/jack-maclennan-portfolio.
-```
+# Clone repo with submodules
+git clone --recurse-submodules https://github.com/maclenjack/jack-maclennan-portfolio
 
-This project uses a few deprecated packages for component accessibility so pnpm is used as the package management tool.
-To install pnpm and packages:
+# Install dependencies
+npm install -g pnpm
+pnpm install
 
-```bash
-npm install -g pnpm && pnpm install
-```
-To run the development server:
-
-```bash
+# Run dev server
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site.
+
+## AI & Tooling
+
+After exhausting my monthly Copilot quota, I switched to a local LLM to keep costs low.  
+I run **gpt‑oss:20b** via **Ollama** and integrate it with Copilot to unlock its agentic capabilities.
+
+- **Model**: `gpt-oss:20b` (Ollama)
+- **Integration**: Copilot + Ollama
+
+## License
+
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.

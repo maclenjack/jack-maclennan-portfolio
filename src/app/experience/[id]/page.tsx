@@ -1,28 +1,44 @@
-import { EXPERIENCE_ITEMS } from '@constants/experience';
+import SkillTagList from '@/components/SkillTagList';
+import { EXPERIENCE_ITEMS, getExperienceItemById } from '@constants/experience';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+/**
+ * Parameters for the experience page route.
+ * @property id - The unique identifier for the experience item.
+ */
 interface ExperiencePageParams {
   id: string;
 }
 
+/**
+ * Props for the experience page component.
+ * @property params - Route parameters.
+ */
 interface ExperiencePageProps {
   params: Promise<ExperiencePageParams> | ExperiencePageParams;
 }
 
-function getExperienceItem(id: string) {
-  return EXPERIENCE_ITEMS.find((item) => item.id === id);
-}
-
+/**
+ * Generates static parameters for all experience items.
+ * @returns Array of params objects.
+ * @source
+ */
 export async function generateStaticParams() {
   return EXPERIENCE_ITEMS.map((item) => ({ id: item.id }));
 }
 
+/**
+ * Generates metadata for a specific experience page.
+ * @param params - Route parameters.
+ * @returns Metadata object for Next.js.
+ * @source
+ */
 export async function generateMetadata({ params }: ExperiencePageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const item = getExperienceItem(resolvedParams.id);
+  const item = getExperienceItemById(resolvedParams.id);
 
   if (!item) {
     return {
@@ -37,9 +53,15 @@ export async function generateMetadata({ params }: ExperiencePageProps): Promise
   };
 }
 
+/**
+ * Default export for the experience detail page.
+ * @param params - Route parameters.
+ * @returns The rendered page component.
+ * @source
+ */
 export default async function ExperienceIdPage({ params }: ExperiencePageProps) {
   const resolvedParams = await params;
-  const item = getExperienceItem(resolvedParams.id);
+  const item = getExperienceItemById(resolvedParams.id);
   if (!item) {
     notFound();
   }
@@ -48,6 +70,7 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
     <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
         <div className="flex flex-col gap-8">
+          {/* Header */}
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
               <div className="h-1 w-16 rounded-full bg-linear-to-r from-emerald-500 to-emerald-600" />
@@ -62,6 +85,8 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
               <p className="text-xl font-medium text-slate-600 dark:text-slate-300">{item.subtitle}</p>
             </div>
           </div>
+
+          {/* Description */}
           <div
             className="prose prose-slate dark:prose-invert max-w-none"
             role="article"
@@ -70,40 +95,23 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
             <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">{item.description}</p>
           </div>
 
-          {/* Skills Sections */}
+          {/* Skills */}
           <div className="flex flex-col gap-6">
             {item.technicalSkills && item.technicalSkills.length > 0 && (
               <div className="flex flex-col gap-3">
                 <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technical Skills</h2>
-                <ul className="flex flex-wrap gap-2">
-                  {item.technicalSkills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+                <SkillTagList skills={item.technicalSkills} type="tech" />
               </div>
             )}
             {item.softSkills && item.softSkills.length > 0 && (
               <div className="flex flex-col gap-3">
                 <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Soft Skills</h2>
-                <ul className="flex flex-wrap gap-2">
-                  {item.softSkills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
+                <SkillTagList skills={item.softSkills} type="soft" />
               </div>
             )}
           </div>
 
+          {/* Back link */}
           <div className="flex items-center gap-4 pt-4">
             <Link
               href="/experience"
@@ -123,6 +131,8 @@ export default async function ExperienceIdPage({ params }: ExperiencePageProps) 
             </Link>
           </div>
         </div>
+
+        {/* Image */}
         <div className="relative">
           <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-linear-to-br from-emerald-500/20 to-emerald-600/20 p-2 backdrop-blur-sm">
             <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-emerald-400/40 to-emerald-600/40 shadow-2xl shadow-emerald-500/20" />

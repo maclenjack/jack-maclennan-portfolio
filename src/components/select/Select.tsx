@@ -4,9 +4,15 @@ import { Button, Menu, MenuItem, Wrapper } from 'react-aria-menubutton';
 import { useToggle } from 'usehooks-ts';
 
 /**
- * Custom select component. Made to be slightly generic.
- * @param {SelectProps} props
- * @includeExample src/components/theme-select/ThemeSelect.tsx[43:50]
+ * A generic dropdown selector that supports custom rendering of options.
+ *
+ * @param className - Optional Tailwind classes for the wrapper.
+ * @param selectedOption - The currently selected option.
+ * @param placeholder - Placeholder option shown when nothing is selected.
+ * @param onChange - Callback invoked when the selection changes.
+ * @param options - Array of {@link SelectOption} objects.
+ * @returns The rendered Select component.
+ * @includeExample src\components\theme-select\ThemeSelect.tsx[48:53]
  * @source
  */
 export default function Select({ className = '', selectedOption, placeholder, onChange, options }: SelectProps) {

@@ -1,25 +1,51 @@
+import SkillTagList from '@/components/SkillTagList';
 import { PROJECT_ITEMS } from '@constants/projects';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+/**
+ * Route parameters for a project detail page.
+ * @property id - The unique identifier of the project.
+ */
 interface ProjectPageParams {
   id: string;
 }
 
+/**
+ * Props for the project detail page component.
+ * @property params - Route parameters.
+ */
 interface ProjectPageProps {
   params: Promise<ProjectPageParams> | ProjectPageParams;
 }
 
+/**
+ * Retrieve a project item by its ID.
+ * @param id - The project ID.
+ * @returns The matching project or undefined.
+ * @source
+ */
 function getProjectItem(id: string) {
   return PROJECT_ITEMS.find((item) => item.id === id);
 }
 
+/**
+ * Generate static parameters for all project pages.
+ * @returns Array of params objects.
+ * @source
+ */
 export async function generateStaticParams() {
   return PROJECT_ITEMS.map((item) => ({ id: item.id }));
 }
 
+/**
+ * Generate metadata for a project detail page.
+ * @param params - Route parameters.
+ * @returns Metadata for Next.js.
+ * @source
+ */
 export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const item = getProjectItem(resolvedParams.id);
@@ -37,6 +63,12 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   };
 }
 
+/**
+ * Project detail page component.
+ * @param params - Route parameters.
+ * @returns The rendered page.
+ * @source
+ */
 export default async function ProjectIdPage({ params }: ProjectPageProps) {
   const resolvedParams = await params;
   const item = getProjectItem(resolvedParams.id);
@@ -73,16 +105,7 @@ export default async function ProjectIdPage({ params }: ProjectPageProps) {
           {/* Technologies */}
           <div className="flex flex-col gap-3">
             <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-300">Technologies Used</h2>
-            <div className="flex flex-wrap gap-2">
-              {item.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full bg-emerald-100 px-3 py-1 text-sm font-medium text-emerald-800 dark:bg-emerald-900 dark:text-emerald-200"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
+            <SkillTagList skills={item.technologies} type="tech" />
           </div>
 
           {/* Date */}
@@ -153,6 +176,8 @@ export default async function ProjectIdPage({ params }: ProjectPageProps) {
             </Link>
           </div>
         </div>
+
+        {/* Project Image */}
         <div className="relative">
           <div className="relative aspect-4/3 overflow-hidden rounded-2xl bg-linear-to-br from-emerald-500/20 to-emerald-600/20 p-2 backdrop-blur-sm">
             <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-emerald-400/40 to-emerald-600/40 shadow-2xl shadow-emerald-500/20" />
