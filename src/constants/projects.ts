@@ -34,6 +34,30 @@ export interface ProjectItem {
  */
 export const PROJECT_ITEMS: ProjectItem[] = [
   {
+    id: 'crm-platform',
+    title: 'CRM Platform',
+    subtitle: 'Full-Stack Customer Relationship Management',
+    description:
+      'A production-ready CRM application built with Next.js 16 (App Router), Prisma ORM, Neon PostgreSQL, and NextAuth v5. Features a dashboard with metrics, contacts management (people & organizations), deals pipeline with Kanban board drag-and-drop, activities tracking, and Pipedrive CSV import with validation and rollback support. Includes role-based access control, soft deletes, audit trails, and optimistic UI updates.',
+    imageSrc: '/projects/crm.jpg',
+    imageFit: 'cover',
+    href: '/projects/crm-platform',
+    technologies: [
+      'Next.js 16',
+      'TypeScript',
+      'Prisma',
+      'Neon PostgreSQL',
+      'NextAuth v5',
+      'Tailwind CSS v4',
+      'Radix UI',
+      'TanStack Table',
+      '@dnd-kit',
+      'Zod'
+    ],
+    githubUrl: 'https://github.com/maclenjack/CRM',
+    date: '2026-Present'
+  },
+  {
     id: 'jack-maclennan-portfolio',
     title: 'Jack Maclennan Portfolio',
     subtitle: 'Personal Website & Portfolio',

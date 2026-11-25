@@ -39,12 +39,45 @@ export default function AboutMe() {
           <div className="prose prose-slate dark:prose-invert max-w-none">
             <p className="text-lg leading-relaxed text-slate-700 dark:text-slate-300">
               Hello! My name is Jack Maclennan and I am a passionate web developer. I graduated from Victoria University
-              of Wellington in 2021 with a Bachelors of Science majoring in Computer Science. Shortly after, I started
-              my first job in the industry at cricHQ, where I discovered my love for React and Ruby on Rails.
+              of Wellington in 2021 with a Bachelors of Science majoring in Computer Science. I started my career at
+              cricHQ as a full-stack developer, where I discovered my love for React and Ruby on Rails. More recently,
+              I've worked as an independent developer building a full-stack CRM platform, and gained public sector
+              experience at the Electoral Commission processing overseas voting operations.
               <br />
               Programming is my passion. I love tackling challenges and finding elegant solutions to complex problems.
-              When I&apos;m not coding, you&apos;ll usually find me going for walks or curled up with a good book.
+              When I&apos;m not coding, you&apos;ll usually find me going for walks or watching movies.
             </p>
+          </div>
+
+          {/* Passions Section */}
+          <div className="space-y-6">
+            <h3 className="text-xl font-semibold text-slate-800 dark:text-slate-100">What Drives Me</h3>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="rounded-lg bg-emerald-50 p-5 dark:bg-emerald-900/20">
+                <h4 className="font-medium text-emerald-800 dark:text-emerald-300">Problem Solving</h4>
+                <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                  Breaking down complex issues and crafting clean, maintainable solutions.
+                </p>
+              </div>
+              <div className="rounded-lg bg-blue-50 p-5 dark:bg-blue-900/20">
+                <h4 className="font-medium text-blue-800 dark:text-blue-300">Continuous Learning</h4>
+                <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                  Staying current with modern tools, frameworks, and best practices.
+                </p>
+              </div>
+              <div className="rounded-lg bg-amber-50 p-5 dark:bg-amber-900/20">
+                <h4 className="font-medium text-amber-800 dark:text-amber-300">User-Centric Design</h4>
+                <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                  Building intuitive experiences that solve real problems for real people.
+                </p>
+              </div>
+              <div className="rounded-lg bg-purple-50 p-5 dark:bg-purple-900/20">
+                <h4 className="font-medium text-purple-800 dark:text-purple-300">Collaboration</h4>
+                <p className="mt-1 text-sm text-slate-700 dark:text-slate-300">
+                  Working closely with teams to share knowledge and deliver quality results.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <div className="relative">
