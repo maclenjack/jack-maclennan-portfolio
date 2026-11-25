@@ -61,7 +61,7 @@ describe('<Home />', () => {
     expect(sectionHeading).toBeVisible();
 
     // Check all four metric boxes
-    const metrics = ['Years of Experience', 'Featured Project', 'Technologies Mastered', 'Computer Science'];
+    const metrics = ['Years of Experience', 'Projects', 'Technologies Mastered', 'Computer Science'];
 
     metrics.forEach((metric) => {
       const metricElements = screen.getAllByText(metric);
@@ -75,9 +75,9 @@ describe('<Home />', () => {
     expect(plusValues.length).toBe(2);
   });
 
-  it('should render the featured project section correctly', () => {
+  it('should render the latest project section correctly', () => {
     // Check section heading
-    const sectionHeading = screen.getByRole('heading', { name: 'Featured Project' });
+    const sectionHeading = screen.getByRole('heading', { name: 'Latest Project' });
     expect(sectionHeading).toBeInTheDocument();
     expect(sectionHeading).toBeVisible();
 

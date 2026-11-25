@@ -69,15 +69,15 @@ export default function Home() {
         <h3 className="mb-8 text-2xl font-bold text-slate-800 dark:text-slate-100">Quick Stats</h3>
         <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
           <StatCard value="2+" label="Years of Experience" />
-          <StatCard value="1" label="Featured Project" />
+          <StatCard value="2" label="Projects" />
           <StatCard value="4+" label="Technologies Mastered" />
           <StatCard value="BSc" label="Computer Science" />
         </div>
       </section>
 
-      {/* Featured Project Preview */}
+      {/* Latest Project Preview */}
       <section className="mb-16">
-        <h3 className="mb-8 text-2xl font-bold text-slate-800 dark:text-slate-100">Featured Project</h3>
+        <h3 className="mb-8 text-2xl font-bold text-slate-800 dark:text-slate-100">Latest Project</h3>
         <div className="rounded-xl bg-slate-100 p-6 dark:bg-slate-700">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center">
             <div className="lg:w-2/3">
@@ -107,7 +107,7 @@ export default function Home() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src={PROJECT_ITEMS[0].imageSrc}
-                    alt="Portrait of Jack Maclennan - Web Developer"
+                    alt={`${PROJECT_ITEMS[0].title} - ${PROJECT_ITEMS[0].subtitle}`}
                     fill
                     className="object-cover"
                   />
