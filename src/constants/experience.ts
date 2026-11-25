@@ -26,25 +26,36 @@ export interface ExperienceItem {
  */
 export const EXPERIENCE_ITEMS: ExperienceItem[] = [
   {
+    id: 'electoral-commission',
+    title: 'Electoral Commission',
+    subtitle: 'Casual Processing Officer - Overseas Operations',
+    description:
+      'Processed overseas voting applications in a high-accountability environment, following strict procedures to ensure accuracy and compliance. Collaborated with a diverse team to meet tight deadlines, resolved discrepancies, and handled confidential records responsibly.',
+    imageSrc: '/experience/electoral-commission.jpg',
+    href: '/experience/electoral-commission',
+    technicalSkills: ['Standard Operating Procedures', 'Data Processing', 'Quality Assurance'],
+    softSkills: ['Teamwork', 'Problem-solving', 'Communication', 'Attention to Detail', 'Adaptability', 'Time Management', 'Public Sector Experience', 'Confidentiality']
+  },
+  {
     id: 'crichq',
     title: 'cricHQ',
-    subtitle: 'Software Developer',
+    subtitle: 'Full Time Software Developer',
     description:
-      'Worked across the full stack on data-driven web apps with real-time updates, payments, and team management workflows.',
+      'Full-stack developer on a sports management platform. Built React components, refactored legacy code, developed Rails APIs, and collaborated in an Agile team to deliver scalable web applications.',
     imageSrc: '/experience/crichq.png',
     href: '/experience/crichq',
-    technicalSkills: ['React', 'TypeScript', 'Next.js', 'Ruby on Rails', 'PostgreSQL', 'AWS'],
-    softSkills: ['Teamwork', 'Problem-solving', 'Communication', 'Agile Development']
+    technicalSkills: ['React', 'TypeScript', 'Ruby on Rails', 'PostgreSQL', 'AWS', 'Agile'],
+    softSkills: ['Teamwork', 'Problem-solving', 'Communication', 'Agile Development', 'Collaboration']
   },
   {
     id: 'subway',
     title: 'Subway',
-    subtitle: 'Sandwich Artist',
+    subtitle: 'Part Time Sandwich Artist',
     description:
-      'Worked as a Sandwich Artist shaping customer meals, handling food preparation, point-of-sale interactions, and delivering excellent service in a fast-paced environment.',
+      'Delivered customer service in a fast-paced environment, resolving issues, following procedures, and managing multiple tasks during high-pressure shifts.',
     imageSrc: '/experience/subway.png',
     href: '/experience/subway',
-    softSkills: ['Customer Service', 'Teamwork', 'Time Management', 'Attention to Detail', 'Food Safety']
+    softSkills: ['Customer Service', 'Teamwork', 'Time Management', 'Attention to Detail', 'Food Safety', 'De-escalation', 'Procedure Compliance']
   }
 ];
 
